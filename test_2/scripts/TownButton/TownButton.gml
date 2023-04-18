@@ -33,6 +33,7 @@ function DisplayHover(){
 
 function DisplayMain(){
 	switch(oTown.currentMenu){
+		#region guild
 		case menus.guild:
 			global.contract = oMenuScreen.currentDisplayedContrat;
 			oTown.currentMenu = -1;
@@ -42,12 +43,16 @@ function DisplayMain(){
 				event_user(0);
 			}
 		break;
+		#endregion 
 		
+		#region tavern
 		case menus.tavern:
 			
 		break;
+		#endregion
 		
-		case menus.mercant:
+		#region merchant
+		case menus.merchant:
 			toBuyItem = self.itemDisplayed;
 			
 			if(global.gold >= toBuyItem.cost && 
@@ -55,7 +60,7 @@ function DisplayMain(){
 			!mInventory.isInventoryFull()){
 				global.gold -= toBuyItem.cost;
 				oMerchant.merchantInventory[self.position].sold = true;
-				mInventory.addItemToInventoryAtEnd(toBuyItem.typeOfItem);
+				mInventory.addItemToInventory(toBuyItem.typeOfItem);
 				self.image_index = 1;
 				with(oTown){
 					event_user(0);
@@ -65,6 +70,7 @@ function DisplayMain(){
 			}
 
 		break;
+		#endregion
 	}
 	
 }

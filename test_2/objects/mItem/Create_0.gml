@@ -19,9 +19,6 @@ function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionH
 	battleSprite = _battleSprite;
 	battleDescriptionHover  = _battleDescriptionHover;
 	battledDescriptionEffect = _battledDescriptionEffect;
-
-	displaySpriteSubImage = _displaySpriteSubImage; 
-	cost = _cost;
 	positionInInventory = _positionInInventory
 
 	function effect(){

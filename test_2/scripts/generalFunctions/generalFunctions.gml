@@ -241,7 +241,7 @@ function findRandomItemInArray(_arrayToFindIn){
 	lengthResult = array_length(_arrayToFindIn); //2
 	resultNumer = chanceFrom100(); 
 	amountPerPosition = round(100/lengthResult); //100/1 = 100	
-	position =  floor(amountPerPosition / resultNumer);
+	position =  floor(resultNumer /amountPerPosition);
 	return _arrayToFindIn[position];
 }
 

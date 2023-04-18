@@ -21,6 +21,7 @@ function displayMenu(){
 	
 	drawSelf = false;
 	switch(oTown.currentMenu){
+		#region guild 
 		case menus.guild:
 			
 			currentDisplayedContrat = false;
@@ -59,7 +60,9 @@ function displayMenu(){
 			}
 			
 		break;
+		#endregion 
 		
+		#region inventory
 		case menus.inventory:
 			inventory = global.inventory;
 			
@@ -110,8 +113,10 @@ function displayMenu(){
 			}
 			
 		break;
+		#endregion
 		
-		case menus.mercant:
+		#region merchant
+		case menus.merchant:
 			bg = Menu_Background_Guild;
 			bgSubimage = 0;
 			
@@ -155,6 +160,7 @@ function displayMenu(){
 				}
 			}
 		break;
+		#endregion 
 	}
 	
 }

@@ -15,9 +15,9 @@ function  generateInventory(){
 //generates a random SaleItem 
 function generateRandomSaleItem(_tierChances = [-1, 15, 35],
 _tier3Items = -1, _tier2Items = -1,_tier1Items  = -1){
-	tier3Items = [bloodFlask];
-	tier2Items = [lockPickSet, posionOFX, shovel];
-	tier1Items = [bandage, healPot , rations, fieldMedicalSupply, rations,antiPosion];
+	tier3Items = [healPot]; //[bloodFlask]
+	tier2Items = [healPot, healPot]; //[lockPickSet, posionOFX, shovel]
+	tier1Items = [bandage, bandage , bandage]; //[bandage, healPot , rations, fieldMedicalSupply, rations,antiPosion]
 	#region changes the default arrays to para []
 		if(_tier3Items  != -1 and is_array(_tier3Items)){
 			tier3Items = _tier3Items;

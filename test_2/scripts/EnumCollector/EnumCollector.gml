@@ -2,7 +2,7 @@
 enum menus{
 	guild,
 	inventory,
-	mercant, //can be used in map and in town
+	merchant, //can be used in map and in town
 	tavern,
 	
 	campfire, //for map

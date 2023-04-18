@@ -239,34 +239,6 @@ function checkIfBuffBetterAndUse(buff){
 			}
 		break;
 		
-		case buffTypes.hp:
-			if(buffHealth!= false){
-				if(buffHealth.amount < buff.amount){
-					buffHealth = buff;
-					buffHealth.effect();
-				}else {
-					buffHealth.duration ++;
-				}
-			}else{ 
-				buffHealth = buff;
-				buffHealth.effect();
-			}
-		break;
-		
-		case buffTypes.blood:
-			if(buffBlood!= false){
-				if(buffBlood.amount < buff.amount){
-					buffBlood = buff;
-					buffBlood.effect();
-				}else {
-					buffBlood.duration ++;
-				}
-			}else{ 
-				buffBlood = buff;
-				buffBlood.effect();
-			}
-		break;
-		
 		case buffTypes.dmgRed:
 			if(buffDmgRed != false){
 				if(buffDmgRed.amount < buff.amount){
@@ -281,6 +253,50 @@ function checkIfBuffBetterAndUse(buff){
 				buffDmgRed = buff;
 				buffDmgRed.effect();
 				show_debug_message("i have a new armor Buff");
+			}
+		break;
+		
+		
+		//have to add --> var for it to save
+		case buffTypes.reRollAcc:
+			if(buffDoge!= false){
+				if(buffDoge.amount < buff.amount){
+					buffDoge = buff;
+					buffDoge.effect();
+				}else {
+					buffDoge.duration ++;
+				}
+			}else{ 
+				buffDoge = buff;
+				buffDoge.effect();
+			}
+		break;
+		
+		case buffTypes.reRollCrit:
+			if(buffDoge!= false){
+				if(buffDoge.amount < buff.amount){
+					buffDoge = buff;
+					buffDoge.effect();
+				}else {
+					buffDoge.duration ++;
+				}
+			}else{ 
+				buffDoge = buff;
+				buffDoge.effect();
+			}
+		break;
+		
+		case buffTypes.reRollDoge:
+			if(buffDoge!= false){
+				if(buffDoge.amount < buff.amount){
+					buffDoge = buff;
+					buffDoge.effect();
+				}else {
+					buffDoge.duration ++;
+				}
+			}else{ 
+				buffDoge = buff;
+				buffDoge.effect();
 			}
 		break;
 	}
@@ -316,34 +332,6 @@ function checkIfDeBuffBetterAndUse(buff){
 			}
 		break;
 		
-		case buffTypes.hp:
-			if(deBuffHealth!= false){
-				if(deBuffHealth.amount < buff.amount){
-					deBuffHealth = buff;
-					deBuffHealth.effect();
-				}else {
-					deBuffHealth.duration ++;
-				}
-			}else{ 
-				deBuffHealth = buff;
-				deBuffHealth.effect();
-			}
-		break;
-		
-		case buffTypes.blood:
-			if(deBuffBlood!= buff){
-				if(deBuffBlood.amount < buff.amount){
-					deBuffBlood = buff;
-					deBuffBlood.effect();
-				}else {
-					deBuffBlood.duration ++;
-				}
-			}else{ 
-				deBuffBlood = buff;
-				deBuffBlood.effect();
-			}
-		break;
-		
 		case buffTypes.dmgRed:
 			if(deBuffDmgRed != false){
 				if(deBuffDmgRed.amount < buff.amount){
@@ -360,6 +348,49 @@ function checkIfDeBuffBetterAndUse(buff){
 				show_debug_message("i have a new armor Buff");
 			}
 		break;
+		
+		case buffTypes.reRollAcc:
+			if(deBuffDoge!= false){
+				if(deBuffDoge.amount < buff.amount){
+					deBuffDoge = buff;
+					deBuffDoge.effect();
+				}else {
+					deBuffDoge.duration ++;
+				}
+			}else{ 
+				deBuffDoge = buff;
+				deBuffDoge.effect();
+			}
+		break;
+		
+		case buffTypes.reRollCrit:
+			if(deBuffDoge!= false){
+				if(deBuffDoge.amount < buff.amount){
+					deBuffDoge = buff;
+					deBuffDoge.effect();
+				}else {
+					deBuffDoge.duration ++;
+				}
+			}else{ 
+				deBuffDoge = buff;
+				deBuffDoge.effect();
+			}
+		break;
+		
+		case buffTypes.reRollDoge:
+			if(deBuffDoge!= false){
+				if(deBuffDoge.amount < buff.amount){
+					deBuffDoge = buff;
+					deBuffDoge.effect();
+				}else {
+					deBuffDoge.duration ++;
+				}
+			}else{ 
+				deBuffDoge = buff;
+				deBuffDoge.effect();
+			}
+		break;
+		
 	}
 }
 
