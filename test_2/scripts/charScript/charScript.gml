@@ -88,4 +88,5 @@ function checkAgainstRandom100(_valueToCheck, _rerolls = 0){
 // is used like stress --> dd 
 // works a bit diffrent 
 
+//now works on both Linux and windows
 #endregion
