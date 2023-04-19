@@ -41,10 +41,6 @@ function playBattleAnimations(attackAnimation, leftChar, rightChar){
 		case actions.skill3: 
 		
 		break;
-		
-		case actions.useBandage: 
-		
-		break;
 	}
 }
 

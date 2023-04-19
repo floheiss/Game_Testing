@@ -3,6 +3,9 @@ contracts = [];
 //generatesContracts for the display in Guild
 //
 function generateContracts(){
+	
+	oTavern.generateSupportSelection(); //REMOVE LATER
+	
 	randomize();
 	contracts = [];
 	

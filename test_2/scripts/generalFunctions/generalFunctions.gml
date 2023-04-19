@@ -175,7 +175,7 @@ function chanceFrom100(_rerolls){
 
 #region tierList System
 
-//NEW FORM LINUX
+
 //is used to generate random items/things form 1-4 tiers
 //is given an array that reflects the chances of tier pics (undefined --> random form tier1)
 //ie [10,10,30] -->(tier 4 has 10% | tier 3 has 10% | tier 2 30% | tier 1 50% / the rest)
@@ -191,8 +191,8 @@ _rerolls = 0){
 	procentChances = [];
 	
 
+	#region change chances to fit better 
 	
-	//transforms the given chances to the needed rolls 
 	if(_tierChances[0] == -1){
 		procentChances[0] = -1;
 	}else{
@@ -208,7 +208,7 @@ _rerolls = 0){
 			procentChances[1] = _tierChances[1];
 		}
 	}
-	
+
 	if(_tierChances[2] == -1){
 		procentChances[2] = -1;
 	}else{
@@ -218,7 +218,7 @@ _rerolls = 0){
 			procentChances[2] = _tierChances[2];
 		}
 	}
-	//transform code over	
+	#endregion
 	
 	if(procentChances[0] != -1 and number < procentChances[0]){
 		return findRandomItemInArray(_resultsTier4);

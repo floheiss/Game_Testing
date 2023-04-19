@@ -51,6 +51,24 @@ enum itemList{
 }
 #endregion
 
+#region classes 
+
+enum classList{
+	bloodMage,
+	fieldHand,
+	berserker,
+	witchhunter,
+	disownedNobal,
+	butcher,
+	monch,
+	samurai,
+	huntsMan,
+	gunSlinger,
+	peasent
+}
+
+#endregion
+
 #region contrat, dungeon and map generation stuff
 
 //contracttypes for diffrent contractrs 
@@ -112,6 +130,7 @@ enum eventKinds{
 #endregion
 
 #region combat related 
+
 //for mCombat battlephases
 enum phase{
 	init,
@@ -132,7 +151,6 @@ enum actions{
 	skill1,
 	skill2,
 	skill3,
-	useBandage
 }
 
 //what can be targeted in the battlephase by attacks
