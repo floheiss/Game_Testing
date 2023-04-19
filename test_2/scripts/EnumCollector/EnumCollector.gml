@@ -17,6 +17,14 @@ enum buttonState{
 	hover
 };
 
+//list of all rooms in the game 
+enum roomList{
+	town,//hub town
+	map,//the dungeon map
+	battle, //the battle screen
+	defeat // the defeat screen
+}
+
 #region items 
 
 //list of all items in the game 

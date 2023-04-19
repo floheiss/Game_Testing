@@ -29,3 +29,13 @@ function getPlayerInfo(){
 		}
 	}
 }
+
+function transitionRoom(_roomToGoTO){
+	room_goto(_roomToGoTO);
+	for(i = 0; i < array_length(global.inventory); i ++){
+		if(global.inventory[i] != -1){
+			global.inventory[i].updateCanBeUsed();
+		}
+	}
+	
+}

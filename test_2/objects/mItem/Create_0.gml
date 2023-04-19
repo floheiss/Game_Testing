@@ -29,7 +29,6 @@ function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionH
 	
 	
 	function effect(){
-		updateCanBeUsed();
 		if(canBeUsed){
 			script_execute(battleEffect);
 		}
