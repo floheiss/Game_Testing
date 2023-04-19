@@ -75,6 +75,7 @@ function addItemToInventory(_item, _position = -1){
 				battleSprite = Bandage;
 				battleDescriptionHover = "An old Bandage that will heal body and stops bleeding";
 				battleDescriptionEffect = "heals for 15% max health, and stops any bleeding";
+				roomToUse = ["rBattleScreen","rDungeonMap"];
 			break;
 			case itemList.healingPotion:
 				name = "Healing Potion";
@@ -83,6 +84,7 @@ function addItemToInventory(_item, _position = -1){
 				battleSprite = HealingPotion;
 				battleDescriptionHover = "Produced by toe local Methhead I hope it will heal";
 				battleDescriptionEffect = "heals for 50% max health, and stops any bleeding";
+				roomToUse = ["rBattleScreen","rDungeonMap"];
 			break;
 			
 			case itemList.lockPickSet:
@@ -92,6 +94,7 @@ function addItemToInventory(_item, _position = -1){
 				battleSprite = LockPickSet; 
 				battleDescriptionHover = "Produced by toe local Methhead I hope it will heal";
 				battleDescriptionEffect = "heals for 50% max health, and stops any bleeding";
+				roomToUse = ["rDungeonMap"];
 			break;
 			case itemList.rations:
 				name = "Food Rations";
@@ -100,6 +103,7 @@ function addItemToInventory(_item, _position = -1){
 				battleSprite = Rations;
 				battleDescriptionHover = "Produced by toe local Methhead I hope it will heal";
 				battleDescriptionEffect = "heals for 50% max health, and stops any bleeding";
+				roomToUse = ["rDungeonMap"];
 			break;
 		}
 		item = new global.ItemGen.createItem(name,type,

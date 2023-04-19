@@ -3,6 +3,7 @@ battleEffect = 0;
 battleSprite = 0;
 battleDescriptionHover  = "";
 battledDescriptionEffect = "";
+roomToUse = [];
 
 displaySpriteSubImage = -1; 
 displayHoverDescribtion = "";
@@ -12,7 +13,8 @@ positionInInventory = 0;
 typeOfItem = itemList.bandage;
 merchantText = "";
 
-function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionHover, _battledDescriptionEffect, _positionInInventory) constructor{
+canBeUsed = false;
+function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionHover, _battledDescriptionEffect, _positionInInventory, _roomToUse) constructor{
 	name = _name;
 	typeOfItem = _type;
 	battleEffect = _battleEffect;
@@ -20,9 +22,27 @@ function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionH
 	battleDescriptionHover  = _battleDescriptionHover;
 	battledDescriptionEffect = _battledDescriptionEffect;
 	positionInInventory = _positionInInventory
-
+	roomToUse = [];
+	for(i = 0; i < array_last(_roomToUse); i++){
+		roomToUse[i] = _roomToUse[i];
+	}
+	
+	
 	function effect(){
-		script_execute(battleEffect);
+		updateCanBeUsed();
+		if(canBeUsed){
+			script_execute(battleEffect);
+		}
+	}
+	
+	function updateCanBeUsed(){
+		for(i = 0; i < array_length(roomToUse); i++){
+			if(room_get_name(room) == roomToUse[i]){
+				canBeUsed = true;
+			}else if(room_get_name(room) != roomToUse[i]){
+				canBeUsed = false;
+			}	
+		}
 	}
 
 }
