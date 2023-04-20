@@ -4,14 +4,18 @@ numerOfDisplayedSupports = 8;
 
 #region define all support choices 
 
-function createSaleSupport(_class, _cost, _lvl = 1){
+function createSaleSupport(_class, _cost, _hoverText, _icon,_lvl = 1){
 	class = _class;
 	cost = _cost;
 	lvl = _lvl;
+	hoverText = _hoverText;
+	icon = _icon
 }
 
 class = 0;
 cost = 0;
+hoverText = "something went wrong";
+icon = 0;
 lvl = 1; //have to look at later might be deleted (only buy lvl 1 )
 
 class = classList.fieldHand;
