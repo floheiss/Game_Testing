@@ -14,8 +14,8 @@ function CancelButtonTown(){
 }
 
 function DisplayHover(){
-	if(self.contract != false){
-		oMenuScreen.currentDisplayedContrat = self.contract;
+	if(self.contractDispalyed!= false){
+		oMenuScreen.currentDisplayedContrat = self.contractDispalyed;
 	}
 	if(self.itemDisplayed != false){
 		if(mInventory.isInventoryFull()){
@@ -26,8 +26,8 @@ function DisplayHover(){
 			oMenuScreen.currentDisplayedItem = self.itemDisplayed;
 		}
 	}
-	if(self.displayedSupport != false){
-		
+	if(self.supportDispalyed != false){
+		oMenuScreen.currentDisplayedSupport = self.supportDispalyed;
 	}
 	
 	
@@ -49,8 +49,29 @@ function DisplayMain(){
 		
 		#region tavern
 		case menus.tavern:
+			support = self.supportDispalyed;
+			if(support  != false){
+				if(global.maxPlayGroupSize <= array_length(global.playerGroup)){
+					if(support.sold = false){
+						if(support .cost <= global.gold){
+							global.gold -= suppot.cost;
+							class = support.class;
+							lvl = support.lvl;
+							oTavern.convertSaleSupportIntoPlayGroup(class, lvl);
+						}else{
+							oMenuScreen.welcomeText = "You cant aford to hire even him/her";
+						}	
+					}else{
+						oMenuScreen.welcomeText = "You cant hire that one";
+						//accually funny might need gender var lul
+						oMenuScreen.welcomeText = "You cant aford to hire even him/her";
+					}
+				}
+				oMenuScreen.welcomeText = "Sorry the people hire dont trust you enough to come in higher numbers";
+			}
 			
 		break;
+		
 		#endregion
 		
 		#region merchant
@@ -64,6 +85,7 @@ function DisplayMain(){
 				oMerchant.merchantInventory[self.position].sold = true;
 				mInventory.addItemToInventory(toBuyItem.typeOfItem);
 				self.image_index = 1;
+				//have to change as now oGame handels allowInput !!!
 				with(oTown){
 					event_user(0);
 					event_user(0);

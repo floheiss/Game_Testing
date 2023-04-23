@@ -12,6 +12,7 @@ function createSaleSupport(_class, _cost, _hoverText, _icon){
 	icon = _icon;
 	cost = _cost
 	useLvLbasedOnBM = true;
+	sold = false;
 	
 	//generates a random LvL based on BM
 	// can be turned of with useLvLbasedOnBM = false
@@ -175,4 +176,66 @@ function generateSupportSelection(){
 	show_debug_message(supportSelection);
 }
 
-
+function convertSaleSupportIntoPlayGroup(_class, _lvl){
+	support = false;
+	position = oGame.findOpenSlotInPlayGroup();
+	if(position == -1){
+		show_debug_message("there are no open Slots for teammates");
+		return 0;
+	}
+	
+	switch(_class){
+		case classList.berserker:
+			support = instance_create_depth(0,0,0,oSamurai);
+			support.class = classList.berserker; //remove later:) 
+			
+		break;
+		case classList.butcher:
+			support = instance_create_depth(0,0,0,oSamurai);
+			support.class = classList.butcher;
+			
+		break;
+		case classList.disownedNobal:
+			support = instance_create_depth(0,0,0,oSamuraiCommander);
+			support.class = classList.disownedNobal;
+		break;
+		case classList.fieldHand:
+			support = instance_create_depth(0,0,0,oSamurai);
+			support.class = classList.fieldHand;
+			
+		break;
+		case classList.gunSlinger:			
+			support = instance_create_depth(0,0,0,oSamuraiArcher);
+			support.class = classList.gunSlinger;
+			
+		break;
+		case classList.huntsMan:
+			support = instance_create_depth(0,0,0,oSamuraiArcher);
+			support.class = classList.huntsMan;
+		break;
+		case classList.monch:
+			support = instance_create_depth(0,0,0,oSamuraiCommander);
+			support.class = classList.monch;
+		break;
+		case classList.peasent:
+			support = instance_create_depth(0,0,0,oSamurai);
+			support.class = classList.peasent;
+		break;
+		case classList.samurai:
+			support = instance_create_depth(0,0,0,oSamurai);
+			support.class = classList.samurai;
+		break;
+		case classList.witchhunter:
+			support = instance_create_depth(0,0,0,oSamuraiCommander);
+			support.class = classList.witchhunter;
+		break;
+	}
+	
+	support.lvl = _lvl;
+	//i = 1000 !!!!!!!!!!!
+	for(i = 1000; i < support.lvl; i++){
+		support.lvlUp(); // have to make 
+	}
+	
+	global.playerGroup[position] = support;
+}
