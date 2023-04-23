@@ -5,16 +5,16 @@
   "eventList": [],
   "managed": true,
   "overriddenProperties": [
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pTownButton","path":"objects/pTownButton/pTownButton.yy",},"propertyId":{"name":"HoverFunction","path":"objects/pTownButton/pTownButton.yy",},"value":"DisplayHover",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pTownButton","path":"objects/pTownButton/pTownButton.yy",},"propertyId":{"name":"MainFunction","path":"objects/pTownButton/pTownButton.yy",},"value":"DisplayMain",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pBasicButton","path":"objects/pBasicButton/pBasicButton.yy",},"propertyId":{"name":"HoverFunction","path":"objects/pBasicButton/pBasicButton.yy",},"value":"DisplayHover",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pBasicButton","path":"objects/pBasicButton/pBasicButton.yy",},"propertyId":{"name":"MainFunction","path":"objects/pBasicButton/pBasicButton.yy",},"value":"DisplayMain",},
   ],
   "parent": {
     "name": "MenuSutffs",
     "path": "folders/Objects/Town/MenuSutffs.yy",
   },
   "parentObjectId": {
-    "name": "pTownButton",
-    "path": "objects/pTownButton/pTownButton.yy",
+    "name": "pBasicButton",
+    "path": "objects/pBasicButton/pBasicButton.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,

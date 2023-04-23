@@ -10,8 +10,8 @@
     "path": "folders/Objects/Town/MenuSutffs.yy",
   },
   "parentObjectId": {
-    "name": "pTownButton",
-    "path": "objects/pTownButton/pTownButton.yy",
+    "name": "pBasicButton",
+    "path": "objects/pBasicButton/pBasicButton.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,

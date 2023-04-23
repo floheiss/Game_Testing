@@ -57,7 +57,7 @@ deBuffDoge = false;
 
 
 lvl = 1; // insert statsbonus from this 
-expToNextLvl = 10; //later calculae after lvl up 
+expToNextLvl = 100; //later calculae after lvl up 
 
 tempo = 200 + irandom_range(1,10);
 buffTempo = false;

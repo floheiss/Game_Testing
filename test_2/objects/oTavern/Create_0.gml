@@ -1,69 +1,129 @@
 supportSelection = [];
-numerOfDisplayedSupports = 8;
+numberOfDisplayedSupports = 8;
 
 
 #region define all support choices 
 
-function createSaleSupport(_class, _cost, _hoverText, _icon,_lvl = 1){
+function createSaleSupport(_class, _cost, _hoverText, _icon){
 	class = _class;
-	cost = _cost;
-	lvl = _lvl;
+	baseCost = _cost;
+	lvl = 1;
 	hoverText = _hoverText;
-	icon = _icon
+	icon = _icon;
+	cost = _cost
+	useLvLbasedOnBM = true;
+	
+	//generates a random LvL based on BM
+	// can be turned of with useLvLbasedOnBM = false
+	function generateLvL(){
+		if(useLvLbasedOnBM){
+			randomize();
+			bmLvL = oGame.getPlayerInfo().lvl;
+	
+			if(1 < bmLvL <= 5){
+				lvl = bmLvL + round(random_range(-1, 1));
+			}else if(bmLvL <= 10){
+				lvl = bmLvL + round(random_range(0, 2));
+			}else if(bmLvL <= 20){
+				lvl = bmLvL + round(random_range(1, 3));
+			}
+			if(lvl == 0){
+				lvl = 1;
+				show_debug_message("lvl was calculated wrong : )");
+			}
+		}else {
+			lvl = 1;
+		}
+	}
+	generateLvL();
+	
+	//adhusts the cost of the support based on LvL
+	//not sure about the formular (5x the basecost maxes at ca lvl 15)
+	function adjustCost(){
+		if(lvl != 1){
+			
+			cost = ((5 * baseCost) - baseCost) * exp((0.1 * baseCost) * lvl)
+		}
+	}
+	adjustCost();
 }
 
 class = 0;
 cost = 0;
 hoverText = "something went wrong";
 icon = 0;
-lvl = 1; //have to look at later might be deleted (only buy lvl 1 )
 
 class = classList.fieldHand;
 cost = 150;
-fieldHand = new createSaleSupport(class, cost, lvl);
+hoverText = "filler field Hand";
+icon = 0;
+fieldHand = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.berserker;
 cost = 300;
-berserker = new createSaleSupport(class, cost, lvl);
+hoverText = "filler Berserker";
+icon = 0;
+berserker = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.peasent;
 cost = 100;
-peasent = new createSaleSupport(class, cost, lvl);
+hoverText = "filler Peasent";
+icon = 0;
+peasent = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.butcher;
 cost = 200;
-butcher = new createSaleSupport(class, cost, lvl);
+hoverText = "filler Butcher";
+icon = 0;
+butcher = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.disownedNobal;
 cost = 350;
-disownedNobal = new createSaleSupport(class, cost, lvl);
+hoverText = "filler Nobal";
+icon = 0;
+disownedNobal = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.witchhunter;
 cost = 675;
-witchHunter= new createSaleSupport(class, cost, lvl);
+hoverText = "filler Witchhunter";
+icon = 0;
+witchHunter= new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.huntsMan;
 cost = 325;
-huntsMan= new createSaleSupport(class, cost, lvl);
+hoverText = "filler HuntsMan";
+icon = 0;
+huntsMan= new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.monch;
 cost = 275;
-monch = new createSaleSupport(class, cost, lvl);
+hoverText = "filler Monch";
+icon = 0;
+monch = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.samurai;
 cost = 600;
-samurai = new createSaleSupport(class, cost, lvl);
+hoverText = "filler Samurai";
+icon = 0;
+samurai = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.gunSlinger;
 cost = 325;
-gunSlinger = new createSaleSupport(class, cost, lvl);
+hoverText = "filler GunSlinger";
+icon = 0;
+gunSlinger = new createSaleSupport(class, cost, hoverText, icon);
 
 #endregion
 
+//is used to fill the supportSelection
+// generates numberOfDisplayedSupports
+//uses the tier system 
+//LvL of the Supps is always based on PlayerLvL
 function generateSupportSelection(){
 	//1 is a high tier support 
-	//3 mid tier
-	//4 low tier
+	//3 3 tier
+	//4 2/1 tier
+	//rest filled with tier 1 
 	//ON AVARAGE
 	show_debug_message("___________________________");
 	show_debug_message(supportSelection);
@@ -98,8 +158,21 @@ function generateSupportSelection(){
 		tier1,
 		-1);
 	}
+	
+	if(numberOfDisplayedSupports  > 8){
+		for(i = 8; i < numberOfDisplayedSupports; i ++){
+			supportSelection[i] = generateFormTierList(
+			[-1,5,25],
+			undefined,
+			tier3,
+			tier2,
+			tier1,
+			-1);
+		}
+	}
+	
 	show_debug_message("___________________________");
 	show_debug_message(supportSelection);
 }
 
-generateSupportSelection();
+
