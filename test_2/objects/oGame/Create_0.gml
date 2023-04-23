@@ -1,3 +1,4 @@
+
 #macro MOUSEGUI_X device_mouse_x_to_gui(0)
 #macro MOUSEGUI_Y device_mouse_y_to_gui(0)
 
@@ -20,6 +21,8 @@ global.gold = 1000; //gold of the player
 
 
 global.ItemGen = instance_create_depth(0,0,0,mItem); //fk items 
+
+allowInput = true;
 
 function getPlayerInfo(){
 	for(i = 0; i < array_length(global.playerGroup); i ++){

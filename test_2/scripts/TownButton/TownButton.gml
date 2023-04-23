@@ -26,7 +26,9 @@ function DisplayHover(){
 			oMenuScreen.currentDisplayedItem = self.itemDisplayed;
 		}
 	}
-	
+	if(self.displayedSupport != false){
+		
+	}
 	
 	
 }

@@ -5,6 +5,7 @@ wasOpen = 0;
 
 currentDisplayedContrat = false;
 currentDisplayedItem = false;
+currentDisplayedSupport = false;
 
 welcomeText = "";
 
@@ -23,7 +24,6 @@ function displayMenu(){
 	switch(oTown.currentMenu){
 		#region guild 
 		case menus.guild:
-			
 			currentDisplayedContrat = false;
 			bg = Menu_Background_Guild;
 			
@@ -34,25 +34,23 @@ function displayMenu(){
 				with(objects[|0]){
 					changeSprite(400,220,Sign_Go_Work);
 				}
-			}else {
+			}else{
 				welcomeText = "Hi, need money again ?";
 				with(objects[|0]){
-					changeSprite(228,250,Vera_Guild_girl);
-					btnState = buttonState.active;
+					changeSprite(228,250,Vera_Guild_girl, false,0);
 				}
 			
 				for(i = 0; i < 6; i++){
 					with(objects[|i + 1]){
 						if(other.i < 3){
 							xCord = 480 + 192 * other.i;
+							contractDispalyed = oGuild.contracts[other.i];
 							changeSprite(xCord,220,Contract);
-							contract = oGuild.contracts[other.i];
-							btnState = buttonState.active;
 						}else{
 							xCord = 480 + 192 * (other.i - 3)
+							contractDispalyed = oGuild.contracts[other.i];
 							changeSprite(xCord,220+64+50,Contract);
-							contract = oGuild.contracts[other.i];
-							btnState = buttonState.active;
+							
 						}
 					
 					}
@@ -86,27 +84,13 @@ function displayMenu(){
 				if(i < global.maxInventorySize){
 					item = global.inventory[i];
 					with(objects[|i]){
-						
-						/*
-						if(array_length(global.inventory) < other.i){
-							image_index = global.inventory[other.i].displaySpriteSubImage;
-						
-						}else{
-							image_index = 0;
-						}
-						*/
-						subImageBtnIndicUse = false;
-						//image = string(global.inventory[other.i].displaySpriteSubImage);
-						image_index = global.inventory[other.i] != -1 ?  global.inventory[other.i].displaySpriteSubImage : 0;
-						changeSprite(other.xCord,other.yCord,ItemSprite);
+						index = global.inventory[other.i] != -1 ?  global.inventory[other.i].displaySpriteSubImage : 0;
+						changeSprite(other.xCord,other.yCord,ItemSprite, false, index);
 						
 					}
 				}else{
 					with(objects[|i]){
-						subImageBtnIndicUse = false;
-						image_index = 1; //Displaies a Lock for all the Slots not yet unlocked
-						changeSprite(other.xCord,other.yCord,ItemSprite);
-						
+						changeSprite(other.xCord,other.yCord,ItemSprite, false,1);	
 					}
 				}
 				
@@ -132,35 +116,59 @@ function displayMenu(){
 				with(objects[|i + 1]){
 					if(other.i < array_length(other.merchantInventory) /2){
 						xCord = 480 + 95 * other.i;
-						changeSprite(xCord,220,ItemSprite);
 						itemDisplayed = other.merchantInventory[other.i];
 						position = other.i;
-						btnState = buttonState.active;
-						subImageBtnIndicUse = false;
 						if(itemDisplayed.sold == true){
-							image_index = 1;
+							index = 1;
 						}else{
-							image_index = itemDisplayed.displaySpriteSubImage;;
+							index = itemDisplayed.displaySpriteSubImage;
 						}
+						changeSprite(xCord,220,ItemSprite, false, index);
 					}else{
 						xCord = 480 + 95  * (other.i - array_length(other.merchantInventory) /2)
-						changeSprite(xCord,220+64+50,ItemSprite);
 						itemDisplayed = other.merchantInventory[other.i];
 						position = other.i;
-						
-						btnState = buttonState.active;
-						subImageBtnIndicUse = false;
 						if(itemDisplayed.sold == true){
-							image_index = 1;
+							index = 1;
 						}else{
-							image_index = itemDisplayed.displaySpriteSubImage;;
+							index = itemDisplayed.displaySpriteSubImage;;
 						}
+						changeSprite(xCord,220+64+50,ItemSprite,false,index);
 					}
 					
 				}
 			}
 		break;
 		#endregion 
+	
+		#region tavern
+		
+		case menus.tavern:
+			currentDisplayedSupport = false;
+			bg = Menu_Background_Guild;
+			welcomeText = "Need replacments ?";
+			with(objects[|0]){
+				changeSprite(228,250,Vera_Guild_girl, false, 0);
+			}
+			for(i = 0; i < oTavern.numberOfDisplayedSupports; i++){
+				with(objects[|i + 1]){
+					if(other.i < (oTavern.numberOfDisplayedSupports / 2)){
+						xCord = 480 + 192 * other.i;
+						supportDispalyed = oTavern.supportSelection[other.i];
+						changeSprite(xCord,220,supportDispalyed.icon, false, 0);
+						
+					}else{
+						xCord = 480 + 192 * (other.i - (oTavern.numberOfDisplayedSupports / 2));
+						supportDispalyed = oTavern.supportSelection[other.i];
+						changeSprite(xCord,220+64+50,supportDispalyed.icon, false, 0);
+					}
+					
+				}
+			}
+			
+		break;
+		
+		#endregion
 	}
 	
 }

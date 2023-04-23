@@ -2,7 +2,9 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "oDisplaySprite",
-  "eventList": [],
+  "eventList": [
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
+  ],
   "managed": true,
   "overriddenProperties": [
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pBasicButton","path":"objects/pBasicButton/pBasicButton.yy",},"propertyId":{"name":"HoverFunction","path":"objects/pBasicButton/pBasicButton.yy",},"value":"DisplayHover",},
