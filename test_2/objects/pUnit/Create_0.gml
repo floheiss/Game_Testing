@@ -26,18 +26,26 @@ spriteWidth = 128;
 
 maxActionsInTurn = 1;
 
+critMultiplier = 2.0;
+buffCritMultiplier = false; // have to add in buff list and below
+deBuffCritMultiplier = false;
+
 reRollCrit = 0;
+buffReRollCrit = false;
+deBuffReRollCrit = false;
+
 reRollDoge = 0;
+buffReRollDoge = false;
+deBuffReRollDoge = false;
+
 reRollAcc = 0;
+buffReRollAcc = false;
+deBuffReRollDoge = false;
 
 baseHealth = 0;
-buffHealth = false;
-deBuffHealth = false;
 currentHealth = baseHealth;
 
 bloodMeter = 0;
-buffBlood = false;
-deBuffBlood = false;
 currentBloodLvL = bloodMeter;
 
 dmgRedMelee = 0; //les then 1 
@@ -55,30 +63,25 @@ doge = 0.0; //les then 1
 buffDoge = false;
 deBuffDoge = false;
 
-
-lvl = 1; // insert statsbonus from this 
-expToNextLvl = 100; //later calculae after lvl up 
-
-tempo = 200 + irandom_range(1,10);
+tempo = 200;
 buffTempo = false;
 deBuffTempo = false;
 
 
+lvl = 1; // insert statsbonus from this 
+expToNextLvl = 100; //later calculae after lvl up 
 
 
 #endregion
 
 
 
-
-
-
 function damageUnit(dmgNumber, dmgType, armorPen){
-	dogeVaule = random(1); 
+	dogeVaule = chanceFrom100(); 
 	if(doge > 0.95){
 		doge = 0.95;
 	}
- 	if(dogeVaule < doge){
+ 	if(checkAgainstRandom100(doge, reRollDoge)){
 		show_debug_message("Doged");
 	} else {
 		dmgRedction = 0;
@@ -98,8 +101,8 @@ function damageUnit(dmgNumber, dmgType, armorPen){
 		if(dmgRedction < 0){
 			dmgRedction = 0;
 		}
-		if(dmgRedction > 0.9){
-			dmgRedction = 0.9;
+		if(dmgRedction > 0.85){
+			dmgRedction = 0.85;
 		}
 		
 		// - for even more dmg ??? 
@@ -108,6 +111,7 @@ function damageUnit(dmgNumber, dmgType, armorPen){
 		currentHealth -=  amountDamaged;
 		 
 		
+		show_debug_message("i have " + string(currentHealth));
 		show_debug_message("i take " + string(amountDamaged) + " dmg");
 		show_debug_message("i have " + string(currentHealth));
 	}	
@@ -115,16 +119,14 @@ function damageUnit(dmgNumber, dmgType, armorPen){
 }
 
 function applyDot(dot){
-	dogeVaule = random(1); 
-	if(doge > 0.95){
-		doge = 0.95;
+	if(doge > 0.85){
+		doge = 0.85;
 	}
-	if(doge > 0.95){
-		doge = 0.95;
-	}
-	switch(dot.typeOfDot){
-		case dotTypes.poison: 
-			if(dogeVaule < doge){
+	if(checkAgainstRandom100(doge, reRollDoge)){
+		show_debug_message("i doged the dot (i am the funny : ) )");
+	}else{
+		switch(dot.typeOfDot){
+			case dotTypes.poison: 
 				if(poisonDot != false ){
 					if(poisonDot.amount < dot.amount){
 						poisonDot = dot;
@@ -135,28 +137,21 @@ function applyDot(dot){
 						poisonDot = dot;
 						poisonDot.effect();
 					}
-				}	
-			}else{
-				show_debug_message("i doged the poision");
-			}
-		break;
-		case dotTypes.bleed:
-			if(dogeVaule < doge){
-				if(bleedDot != false ){
-					if(bleedDot.amount < dot.amount){
-						bleedDot = dot;
-						bleedDot.effect();
-					}else if(bleedDot.amount > dot.amount){
-						bleedDot.duration ++;
-					}else{
-						bleedDot = dot;
-						bleedDot.effect();
-					}
-				}	
-			}else{
-				show_debug_message("i doged the bleed");
-			}
-		break;
+				}
+			break;
+		case dotTypes.bleed:		
+			if(bleedDot != false ){
+				if(bleedDot.amount < dot.amount){
+					bleedDot = dot;
+					bleedDot.effect();
+				}else if(bleedDot.amount > dot.amount){
+					bleedDot.duration ++;
+				}else{
+					bleedDot = dot;
+					bleedDot.effect();
+				}
+			}	
+		}
 	}
 	
 }
@@ -187,6 +182,8 @@ function checkDeath(){
 	}
 }
 
+#region attack Stuff
+
 title = "deafault Attack";
 describtion = "someone fucked up I guess";
 attack1 = new mAttacks.createAttacks(1,0.55,(30 + 10 * lvl),dmgType.melee, 0.2,100,title, describtion); ;
@@ -208,7 +205,10 @@ function updateTargetNumbers(){
 
 }
 
+#endregion
 
+//checks if the Buff is stronger 
+//the replaces / addes (if none was there) / duration ++ (if worse)
 function checkIfBuffBetterAndUse(buff){
 	switch(buff.typeOfBuff){
 		case buffTypes.tempo:
@@ -244,64 +244,63 @@ function checkIfBuffBetterAndUse(buff){
 				if(buffDmgRed.amount < buff.amount){
 					buffDmgRed = buff;
 					buffDmgRed.effect();
-					show_debug_message("i have a better armor Buff");
 				}else {
 					buffDmgRed.duration ++;
-					show_debug_message("i have a longer armor Buff");
 				}
 			}else{ 
 				buffDmgRed = buff;
 				buffDmgRed.effect();
-				show_debug_message("i have a new armor Buff");
 			}
 		break;
 		
 		
 		//have to add --> var for it to save
 		case buffTypes.reRollAcc:
-			if(buffDoge!= false){
-				if(buffDoge.amount < buff.amount){
-					buffDoge = buff;
-					buffDoge.effect();
+			if(buffReRollAcc!= false){
+				if(buffReRollAcc.amount < buff.amount){
+					buffReRollAcc = buff;
+					buffReRollAcc.effect();
 				}else {
-					buffDoge.duration ++;
+					buffReRollAcc.duration ++;
 				}
 			}else{ 
-				buffDoge = buff;
-				buffDoge.effect();
+				buffReRollAcc = buff;
+				buffReRollAcc.effect();
 			}
 		break;
 		
 		case buffTypes.reRollCrit:
-			if(buffDoge!= false){
-				if(buffDoge.amount < buff.amount){
-					buffDoge = buff;
-					buffDoge.effect();
+			if(buffReRollCrit!= false){
+				if(buffReRollCrit.amount < buff.amount){
+					buffReRollCrit = buff;
+					buffReRollCrit.effect();
 				}else {
-					buffDoge.duration ++;
+					buffReRollCrit.duration ++;
 				}
 			}else{ 
-				buffDoge = buff;
-				buffDoge.effect();
+				buffReRollCrit= buff;
+				buffReRollCrit.effect();
 			}
 		break;
 		
 		case buffTypes.reRollDoge:
-			if(buffDoge!= false){
-				if(buffDoge.amount < buff.amount){
-					buffDoge = buff;
-					buffDoge.effect();
+			if(buffReRollDoge != false){
+				if(buffReRollDoge.amount < buff.amount){
+					buffReRollDoge = buff;
+					buffReRollDoge.effect();
 				}else {
-					buffDoge.duration ++;
+					buffReRollDoge.duration ++;
 				}
 			}else{ 
-				buffDoge = buff;
-				buffDoge.effect();
+				buffReRollDoge = buff;
+				buffReRollDoge.effect();
 			}
 		break;
 	}
 }
 
+//checks if the deBuff is stronger 
+//the replaces / addes (if none was there) / duration ++ (if worse)
 function checkIfDeBuffBetterAndUse(buff){
 	switch(buff.typeOfBuff){
 		case buffTypes.tempo:
@@ -337,39 +336,39 @@ function checkIfDeBuffBetterAndUse(buff){
 				if(deBuffDmgRed.amount < buff.amount){
 					deBuffDmgRed = buff;
 					deBuffDmgRed.effect();
-					show_debug_message("i have a better armor Buff");
+					show_debug_message("i have a better armor deBuff");
 				}else {
 					deBuffDmgRed.duration ++;
-					show_debug_message("i have a longer armor Buff");
+					show_debug_message("i have a longer armor deBuff");
 				}
 			}else{ 
 				deBuffDmgRed = buff;
 				deBuffDmgRed.effect();
-				show_debug_message("i have a new armor Buff");
+				show_debug_message("i have a new armor deBuff");
 			}
 		break;
 		
 		case buffTypes.reRollAcc:
-			if(deBuffDoge!= false){
-				if(deBuffDoge.amount < buff.amount){
-					deBuffDoge = buff;
-					deBuffDoge.effect();
+			if(deBuffReRollAcc != false){
+				if(deBuffReRollAcc .amount < buff.amount){
+					deBuffReRollAcc = buff;
+					deBuffReRollAcc .effect();
 				}else {
-					deBuffDoge.duration ++;
+					deBuffReRollAcc .duration ++;
 				}
 			}else{ 
-				deBuffDoge = buff;
-				deBuffDoge.effect();
+				deBuffReRollAcc = buff;
+				deBuffReRollAcc .effect();
 			}
 		break;
 		
 		case buffTypes.reRollCrit:
-			if(deBuffDoge!= false){
-				if(deBuffDoge.amount < buff.amount){
-					deBuffDoge = buff;
-					deBuffDoge.effect();
+			if(deBuffReRollCrit!= false){
+				if(deBuffReRollCrit.amount < buff.amount){
+					deBuffReRollCrit = buff;
+					deBuffReRollCrit.effect();
 				}else {
-					deBuffDoge.duration ++;
+					deBuffReRollCrit.duration ++;
 				}
 			}else{ 
 				deBuffDoge = buff;
@@ -394,7 +393,12 @@ function checkIfDeBuffBetterAndUse(buff){
 	}
 }
 
+//does all the End of Turn stuff 
+//dots, check buffs, ...
 function checkEndTurn(){
+	
+	#region deBuffs 
+	
 	if(deBuffTempo != false){
 		if(deBuffTempo.duration <= 0){
 			deBuffTempo.removeEffect();
@@ -409,20 +413,6 @@ function checkEndTurn(){
 			deBuffDoge.duration --;
 		}
 	}
-	if(deBuffHealth != false){
-		if(deBuffHealth.duration <= 0){
-			deBuffHealth.removeEffect();
-		}else {
-			deBuffHealth.duration --;
-		}
-	}
-	if(deBuffBlood != false){
-		if(deBuffBlood.duration <= 0){
-			deBuffBlood.removeEffect();
-		}else {
-			deBuffBlood.duration --;
-		}
-	}
 	if(deBuffDmgRed != false){
 		if(deBuffDmgRed.duration <= 0){
 			deBuffDmgRed.removeEffect();
@@ -430,6 +420,31 @@ function checkEndTurn(){
 			deBuffDmgRed.duration --;
 		}
 	}
+	if(deBuffReRollCrit != false){
+		if(deBuffReRollCrit.duration <= 0){
+			deBuffReRollCrit.removeEffect();
+		}else {
+			deBuffReRollCrit.duration --;
+		}
+	}
+	if(deBuffReRollAcc != false){
+		if(deBuffReRollAcc.duration <= 0){
+			deBuffReRollAcc.removeEffect();
+		}else {
+			deBuffReRollAcc.duration --;
+		}
+	}
+	if(deBuffReRollDoge != false){
+		if(deBuffReRollDoge.duration <= 0){
+			deBuffReRollDoge.removeEffect();
+		}else {
+			deBuffReRollDoge.duration --;
+		}
+	}
+	
+	#endregion
+	
+	#region buffs
 	
 	if(buffTempo != false){
 		if(buffTempo.duration <= 0){
@@ -445,18 +460,19 @@ function checkEndTurn(){
 			buffDoge.duration --;
 		}
 	}
-	if(buffHealth != false){
-		if(buffHealth.duration <= 0){
-			buffHealth.removeEffect();
-		}else {
-			buffHealth.duration --;
+	if(buffReRollAcc != false){
+		if(buffReRollAcc.duration <= 0){
+			buffReRollAcc.removeEffect();
+		} else {
+			buffReRollAcc.duration --;
 		}
 	}
-	if(buffBlood != false){
-		if(buffBlood.duration <= 0){
-			buffBlood.removeEffect();
-		}else {
-			buffBlood.duration --;
+	
+	if(buffReRollCrit != false){
+		if(buffReRollCrit .duration <= 0){
+			buffReRollCrit .removeEffect();
+		} else {
+			buffReRollCrit .duration --;
 		}
 	}
 	if(buffDmgRed != false){
@@ -466,6 +482,15 @@ function checkEndTurn(){
 			buffDmgRed.duration --;
 		}
 	}
+	
+	if(buffReRollDoge != false){
+		if(buffReRollDoge.duration <= 0){
+			buffReRollDoge.removeEffect();
+		} else {
+			buffReRollDoge.duration --;
+		}
+	}
+	#endregion
 	
 	if(poisonDot != false){
 		if(poisonDot.duration <= 0){
@@ -483,6 +508,8 @@ function checkEndTurn(){
 	}
 }
 
+//calcualtes the Points value for the DM
+//have to add all the new vars here
 function calculatePointsValue(){
 	value = 0;
 	
@@ -505,7 +532,10 @@ function calculatePointsValue(){
 	return value;
 }
 
+//lvl Up based on some Stat ???????
+function lvlUp(){
 
+}
 
 
 
