@@ -6,17 +6,22 @@ function CancelButtonTown(){
 		objects[|i].spriteToDraw = -1;
 	}
 	
+	object_set_visible(oMenuScreen.cancelButton, false);
+	
 	with(oTown){
 		event_user(0);
 		event_user(1);
 		event_user(0);
 	}
+	
 }
 
 function DisplayHover(){
+	show_debug_message("Hover triggered");
 	if(self.contractDispalyed!= false){
 		oMenuScreen.currentDisplayedContrat = self.contractDispalyed;
 	}
+	
 	if(self.itemDisplayed != false){
 		if(mInventory.isInventoryFull()){
 			oMenuScreen.welcomeText = "Your inventory is already full";
@@ -26,8 +31,16 @@ function DisplayHover(){
 			oMenuScreen.currentDisplayedItem = self.itemDisplayed;
 		}
 	}
+	
 	if(self.supportDispalyed != false){
-		oMenuScreen.currentDisplayedSupport = self.supportDispalyed;
+		if(global.maxPlayGroupSize >= array_length(global.playerGroup)){
+			oMenuScreen.welcomeText = "Sorry the people hire dont trust you enough to come in higher numbers";
+		} else if(global.gold < self.supportDispalyed.cost){
+			oMenuScreen.welcomeText = "Sry i cant give credit filler"; 
+		} else{
+			oMenuScreen.currentDisplayedSupport = self.supportDispalyed;
+		}
+		
 	}
 	
 	
@@ -49,27 +62,14 @@ function DisplayMain(){
 		
 		#region tavern
 		case menus.tavern:
-			support = self.supportDispalyed;
-			if(support  != false){
-				if(global.maxPlayGroupSize <= array_length(global.playerGroup)){
-					if(support.sold = false){
-						if(support .cost <= global.gold){
-							global.gold -= suppot.cost;
-							class = support.class;
-							lvl = support.lvl;
-							oTavern.convertSaleSupportIntoPlayGroup(class, lvl);
-						}else{
-							oMenuScreen.welcomeText = "You cant aford to hire even him/her";
-						}	
-					}else{
-						oMenuScreen.welcomeText = "You cant hire that one";
-						//accually funny might need gender var lul
-						oMenuScreen.welcomeText = "You cant aford to hire even him/her";
-					}
-				}
-				oMenuScreen.welcomeText = "Sorry the people hire dont trust you enough to come in higher numbers";
+			support = oMenuScreen.currentDisplayedSupport;
+			if(support != false){
+				support.sold = true;
+				global.gold -= suppot.cost;
+				class = support.class;
+				lvl = support.lvl;
+				oTavern.convertSaleSupportIntoPlayGroup(class, lvl);
 			}
-			
 		break;
 		
 		#endregion

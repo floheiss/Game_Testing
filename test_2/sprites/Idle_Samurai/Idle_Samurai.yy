@@ -31,7 +31,7 @@
   "origin": 0,
   "parent": {
     "name": "Samurai",
-    "path": "folders/Sprites/Chars/Samurai.yy",
+    "path": "folders/Sprites/Chars/Testing/Samurai.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

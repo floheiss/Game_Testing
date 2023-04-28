@@ -10,3 +10,4 @@ function changeSprite(_xCord, _yCord, _spriteToChangeTo, _useSubImage = false, _
 	sprite_index = _spriteToChangeTo;
 	image_index = _imageIndex;
 }
+

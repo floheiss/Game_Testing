@@ -4,7 +4,7 @@ numberOfDisplayedSupports = 8;
 
 #region define all support choices 
 
-function createSaleSupport(_class, _cost, _hoverText, _icon){
+function createSaleSupport(_class, _cost, _hoverText, _icon) constructor{
 	class = _class;
 	baseCost = _cost;
 	lvl = 1;
@@ -57,61 +57,61 @@ icon = 0;
 class = classList.fieldHand;
 cost = 150;
 hoverText = "filler field Hand";
-icon = 0;
+icon = SamuraiIcon;
 fieldHand = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.berserker;
 cost = 300;
 hoverText = "filler Berserker";
-icon = 0;
+icon = SamuraiIcon;
 berserker = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.peasent;
 cost = 100;
 hoverText = "filler Peasent";
-icon = 0;
+icon = SamuraiIcon;
 peasent = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.butcher;
 cost = 200;
 hoverText = "filler Butcher";
-icon = 0;
+icon = SamuraiIcon;
 butcher = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.disownedNobal;
 cost = 350;
 hoverText = "filler Nobal";
-icon = 0;
+icon = SamuraiIcon;
 disownedNobal = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.witchhunter;
 cost = 675;
 hoverText = "filler Witchhunter";
-icon = 0;
+icon = SamuraiIcon;
 witchHunter= new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.huntsMan;
 cost = 325;
 hoverText = "filler HuntsMan";
-icon = 0;
+icon = SamuraiIcon;
 huntsMan= new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.monch;
 cost = 275;
 hoverText = "filler Monch";
-icon = 0;
+icon = SamuraiIcon;
 monch = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.samurai;
 cost = 600;
 hoverText = "filler Samurai";
-icon = 0;
+icon = SamuraiIcon;
 samurai = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.gunSlinger;
 cost = 325;
 hoverText = "filler GunSlinger";
-icon = 0;
+icon = SamuraiIcon;
 gunSlinger = new createSaleSupport(class, cost, hoverText, icon);
 
 #endregion
@@ -126,15 +126,13 @@ function generateSupportSelection(){
 	//4 2/1 tier
 	//rest filled with tier 1 
 	//ON AVARAGE
-	show_debug_message("___________________________");
-	show_debug_message(supportSelection);
-	
 	number = round( random_range(1, 2));
 	if(number == 1){
 		supportSelection[0] = witchHunter;
 	}else{
 		supportSelection[0] = samurai;
 	}
+
 	//very unsure about this 
 	tier1 = [fieldHand, peasent, butcher, monch];  
 	tier2 = [huntsMan, gunSlinger, berserker]; 
@@ -150,8 +148,8 @@ function generateSupportSelection(){
 		tier1);
 	}
 	
-	for(i = 4; i < 8; i ++){
-		supportSelection[i] = generateFormTierList(
+	for(j = 4; j < 8; j ++){
+		supportSelection[j] = generateFormTierList(
 		[-1,10,30],
 		undefined,
 		tier3,
@@ -159,10 +157,10 @@ function generateSupportSelection(){
 		tier1,
 		-1);
 	}
-	
+		
 	if(numberOfDisplayedSupports  > 8){
-		for(i = 8; i < numberOfDisplayedSupports; i ++){
-			supportSelection[i] = generateFormTierList(
+		for(k = 8; k < numberOfDisplayedSupports; k ++){
+			supportSelection[k] = generateFormTierList(
 			[-1,5,25],
 			undefined,
 			tier3,

@@ -28,7 +28,10 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": null,
+  "spriteId": {
+    "name": "dd_backdrop_testing_guild",
+    "path": "sprites/dd_backdrop_testing_guild/dd_backdrop_testing_guild.yy",
+  },
   "spriteMaskId": null,
   "visible": true,
 }

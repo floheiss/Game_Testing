@@ -25,7 +25,6 @@
     {"name":"inst_66AAC4CF","path":"rooms/rBattleScreen/rBattleScreen.yy",},
     {"name":"inst_2539A0FA","path":"rooms/rBattleScreen/rBattleScreen.yy",},
     {"name":"inst_40418FF2","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_6CC71DC4","path":"rooms/rBattleScreen/rBattleScreen.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -93,7 +92,6 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_5FE1A82C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mSequence","path":"objects/mSequence/mSequence.yy",},"properties":[],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":384.0,"y":-128.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_34042E0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mCombat","path":"objects/mCombat/mCombat.yy",},"properties":[],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":128.0,"y":-128.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_40418FF2","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oBattlePanel","path":"objects/oBattlePanel/oBattlePanel.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":544.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_6CC71DC4","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mAttacks","path":"objects/mAttacks/mAttacks.yy",},"properties":[],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":512.0,"y":-128.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4278190080,"depth":400,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],

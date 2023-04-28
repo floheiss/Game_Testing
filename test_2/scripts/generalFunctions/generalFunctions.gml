@@ -238,10 +238,13 @@ _rerolls = 0){
 //returns a random item in an given array 
 function findRandomItemInArray(_arrayToFindIn){
 	//have to check math :) 
-	lengthResult = array_length(_arrayToFindIn); //2
+	lengthResult = array_length(_arrayToFindIn);
 	resultNumer = chanceFrom100(); 
-	amountPerPosition = round(100/lengthResult); //100/1 = 100	
+	amountPerPosition = round(100/lengthResult);
 	position =  floor(resultNumer /amountPerPosition);
+	if(resultNumer == 99 && amountPerPosition == 33 && position == 3){
+		position = 2; //fixes a very special case : ) 
+	}
 	return _arrayToFindIn[position];
 }
 

@@ -7,6 +7,11 @@ currentDisplayedContrat = false;
 currentDisplayedItem = false;
 currentDisplayedSupport = false;
 
+cancelButton = instance_create_depth(0, 0, 0, oTownButtonCancel);
+cancelButtonX = 1082;
+cancelButtonY = 219;
+
+
 welcomeText = "";
 
 
@@ -15,8 +20,8 @@ function displayMenu(){
 	
 	for(i = 0; i < ds_list_size(objects); i ++){
 		objects[|i].spriteToDraw = -1;
-		objects[|i].btnState = buttonState.disabled;
 	}
+	
 	
 	
 	
@@ -37,7 +42,7 @@ function displayMenu(){
 			}else{
 				welcomeText = "Hi, need money again ?";
 				with(objects[|0]){
-					changeSprite(228,250,Vera_Guild_girl, false,0);
+					changeSprite(228,250,Vera_Guild_girl, false, 0);
 				}
 			
 				for(i = 0; i < 6; i++){
@@ -172,6 +177,7 @@ function displayMenu(){
 			
 	}
 	
+	object_set_visible(cancelButton, true);
 }
 
 

@@ -19,6 +19,7 @@ global.maxPlayGroupSize = 2; //default 2
 global.gold = 1000; //gold of the player 
 
 global.playerGroup = array_create(global.maxPlayGroupSize, -1); //default -1 for all slots
+global.playerGroup[0] = instance_create_depth(0,0,0,oSamurai);
 global.enemies = []; //default []
 
 global.ItemGen = instance_create_depth(0,0,0,mItem); //fk items 
@@ -27,6 +28,7 @@ allowInput = true;
 
 //retuns the instance of the BM in the Party
 function getPlayerInfo(){
+
 	for(i = 0; i < array_length(global.playerGroup); i ++){
 		unit = global.playerGroup[i];
 		if(unit.class == classList.bloodMage){

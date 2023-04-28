@@ -45,7 +45,7 @@
   "origin": 0,
   "parent": {
     "name": "Samurai_Archer",
-    "path": "folders/Sprites/Samurai_Archer.yy",
+    "path": "folders/Sprites/Chars/Old/Samurai_Archer.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

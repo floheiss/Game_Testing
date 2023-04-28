@@ -2,9 +2,13 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "oTownButtonCancel",
-  "eventList": [],
+  "eventList": [
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
+  ],
   "managed": true,
-  "overriddenProperties": [],
+  "overriddenProperties": [
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pBasicButton","path":"objects/pBasicButton/pBasicButton.yy",},"propertyId":{"name":"MainFunction","path":"objects/pBasicButton/pBasicButton.yy",},"value":"CancelButtonTown",},
+  ],
   "parent": {
     "name": "MenuSutffs",
     "path": "folders/Objects/Town/MenuSutffs.yy",

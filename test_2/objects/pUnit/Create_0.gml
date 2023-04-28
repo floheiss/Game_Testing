@@ -2,13 +2,16 @@
 
 #region general stuff
 team = 0;
-position  = 0;
-class = 0;
+position  = 0; //has to be set in class 
+class = 0;//has to be set in class 
 
 state = states.IDLE;
+unitSequence = 0; //has to be set in class 
+//REWORK HOW VISUALS WORK FOR BETTER TRANSPORT
+icon = 0;//has to be set in class 
+
 
 actionsInTurn = 0; 
-maxActionsInTurn = 1;
 selected = false;
 
 drawTarget = false;
@@ -21,7 +24,6 @@ bloodFlaskHeight = sprite_get_height(uiBloodFlask);
 
 spriteHeight = 128;
 spriteWidth = 128;
-
 #endregion
 
 maxActionsInTurn = 1;
@@ -71,17 +73,31 @@ deBuffTempo = false;
 lvl = 1; // insert statsbonus from this 
 expToNextLvl = 100; //later calculae after lvl up 
 
+#endregion
+
+#region attackStrukt
+
+function createAttacks(_targetNumber, _acc, _dmg, _dmgType, _pen,_pointValue, _title,_describtion, _bloodCost = 0) constructor{
+	numberTarget = _targetNumber;
+	acc = _acc;
+	dmg = _dmg;
+	dmgTypeAttack = _dmgType;
+	pen = _pen;
+	title = _title;
+	describtion = _describtion;
+	bloodCost = _bloodCost;
+	pointValue = _pointValue;
+}
 
 #endregion
 
-
-
 function damageUnit(dmgNumber, dmgType, armorPen){
-	dogeVaule = chanceFrom100(); 
 	if(doge > 0.95){
-		doge = 0.95;
+		dogeCal = 0.95;
+	}else{
+		dogeCal = doge;
 	}
- 	if(checkAgainstRandom100(doge, reRollDoge)){
+ 	if(checkAgainstRandom100(dogeCal, reRollDoge)){
 		show_debug_message("Doged");
 	} else {
 		dmgRedction = 0;
@@ -119,10 +135,12 @@ function damageUnit(dmgNumber, dmgType, armorPen){
 }
 
 function applyDot(dot){
-	if(doge > 0.85){
-		doge = 0.85;
+	if(doge > 0.95){
+		dogeCal = 0.95;
+	}else{
+		dogeCal = doge;
 	}
-	if(checkAgainstRandom100(doge, reRollDoge)){
+	if(checkAgainstRandom100(dogeCal, reRollDoge)){
 		show_debug_message("i doged the dot (i am the funny : ) )");
 	}else{
 		switch(dot.typeOfDot){
@@ -156,7 +174,7 @@ function applyDot(dot){
 	
 }
 
-function healUnit(heal){
+function healUnit(heal){ 
 	if(currentHealth + heal < maxHealth){
 		currentHealth += heal;
 	} else {
@@ -186,7 +204,7 @@ function checkDeath(){
 
 title = "deafault Attack";
 describtion = "someone fucked up I guess";
-attack1 = new mAttacks.createAttacks(1,0.55,(30 + 10 * lvl),dmgType.melee, 0.2,100,title, describtion); ;
+attack1 = new createAttacks(1,0.55,(30 + 10 * lvl),dmgType.melee, 0.2,100,title, describtion); ;
 numberTargetAttack1 = 1;
 canTargetAttack1 = possibleTargets.enemies;
 function attack1(list){}
@@ -499,6 +517,7 @@ function checkEndTurn(){
 			poisonDot.duration --;
 		}
 	}
+	
 	if(bleedDot != false){
 		if(bleedDot.duration <= 0){
 			bleedDot.removeEffect();
@@ -506,10 +525,12 @@ function checkEndTurn(){
 			bleedDot.duration --;
 		}
 	}
+	
 }
 
 //calcualtes the Points value for the DM
 //have to add all the new vars here
+//REWORK NOT SURE HOW !!!! :)
 function calculatePointsValue(){
 	value = 0;
 	

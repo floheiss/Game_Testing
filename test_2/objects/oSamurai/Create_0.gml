@@ -1,23 +1,20 @@
 event_inherited();
-
-unitSequence = layer_sequence_create("Squences", x, y, sSamurai);
-
 baseTempo = 200 + irandom_range(1,10);
 
 
 
 //healthstuffs
 baseHealth = 60; 
-currentHealth = maxHealth;
+currentHealth = baseHealth;
 
 class = classList.bloodMage; //NEED TO CHANGE LATER
 //dmgRedStuff
 dmgRedMelee = 0.3;
-dmgRedRange = 0.3;
+dmgRedRange = 0.35;
 dmgRedMagic = 0.1;
 
 //doge is used for all kindes of doge (dots, stuns)
-doge = 0.00; // 0.2
+doge = 0.2; // 0.2
 
 //spriteStuff
 idleStart = 0;
@@ -46,7 +43,7 @@ deathEnd = 80;
 // targets --> 1
 title = "Overhead swing";
 describtion = "An overhead swing with low penetration and accuracy but devestating gamage if it hits"
-attack1 = new mAttacks.createAttacks(1,0.55,(30 + 10 * lvl),dmgType.melee, 0.2,100,title, describtion); 
+attack1 = new createAttacks(1,0.55,(30 + 10 * lvl),dmgType.melee, 0.2,100,title, describtion); 
 
 costBloodAttack1 = 10;
 canTargetAttack1 = possibleTargets.enemies;
@@ -95,7 +92,7 @@ function attack1(list){
 // targets --> 1
 title = "precision strike";
 describtion = "A precision strike with low penetration but high accuracy and medium damage"
-attack2 = new mAttacks.createAttacks(1,0.95,(15 + 7.5 * lvl),dmgType.melee, 0.9,80, title, describtion); 
+attack2 = new createAttacks(1,0.95,(15 + 7.5 * lvl),dmgType.melee, 0.9,80, title, describtion); 
 
 
 costBloodAttack2 = 55;
@@ -138,7 +135,7 @@ function attack2(list){
 // targets --> 2
 title = "broad cleave";
 describtion = "A broad cleave that targets multiple enemies with low accuracy, medium penetration and medium damage"
-attack3 = new mAttacks.createAttacks(2,0.7,(20 + 5 * lvl),dmgType.melee, 0.45, 70,title, describtion); 
+attack3 = new createAttacks(2,0.7,(20 + 5 * lvl),dmgType.melee, 0.45, 70,title, describtion); 
 
 
 costBloodAttack3 = 5;

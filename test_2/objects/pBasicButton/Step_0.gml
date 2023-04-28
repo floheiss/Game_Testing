@@ -16,6 +16,6 @@ if(useSubImage){
 
 if(HoverFunction != noone && 
 position_meeting(MOUSEGUI_X,MOUSEGUI_Y, id) &&
-buttonState != buttonState.disabled){
+btnState != buttonState.disabled){
 	script_execute(HoverFunction);
 }
