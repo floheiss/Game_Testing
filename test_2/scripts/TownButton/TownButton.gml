@@ -17,10 +17,16 @@ function CancelButtonTown(){
 }
 
 function DisplayHover(){
-	show_debug_message("Hover triggered");
+	
+	#region guild
+	
 	if(self.contractDispalyed!= false){
 		oMenuScreen.currentDisplayedContrat = self.contractDispalyed;
 	}
+	
+	#endregion
+	
+	#region merchant
 	
 	if(self.itemDisplayed != false){
 		if(mInventory.isInventoryFull()){
@@ -31,6 +37,10 @@ function DisplayHover(){
 			oMenuScreen.currentDisplayedItem = self.itemDisplayed;
 		}
 	}
+	
+	#endregion
+	
+	#region Tavern
 	
 	if(self.supportDispalyed != false){
 		if(global.maxPlayGroupSize >= array_length(global.playerGroup)){
@@ -43,10 +53,11 @@ function DisplayHover(){
 		
 	}
 	
-	
+	#endregion
 }
 
 function DisplayMain(){
+	
 	switch(oTown.currentMenu){
 		#region guild
 		case menus.guild:
@@ -76,10 +87,10 @@ function DisplayMain(){
 		
 		#region merchant
 		case menus.merchant:
-			toBuyItem = self.itemDisplayed;
+			toBuyItem = oMenuScreen.currentDisplayedItem;
 			
 			if(global.gold >= toBuyItem.cost && 
-			!self.toBuyItem.sold &&
+			!oMerchant.merchantInventory[self.position].sold &&
 			!mInventory.isInventoryFull()){
 				global.gold -= toBuyItem.cost;
 				oMerchant.merchantInventory[self.position].sold = true;

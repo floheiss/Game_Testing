@@ -1,5 +1,4 @@
 merchantInventory = [];
-merchantInventorySold = [];
 maxItems = 8;
 
 function  generateInventory(){

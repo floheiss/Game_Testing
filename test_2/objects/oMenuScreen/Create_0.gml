@@ -20,6 +20,10 @@ function displayMenu(){
 	
 	for(i = 0; i < ds_list_size(objects); i ++){
 		objects[|i].spriteToDraw = -1;
+		objects[|i].contractDispalyed = false;
+		objects[|i].itemDisplayed = false;
+		objects[|i].supportDispalyed= false;
+		//show_debug_message("DisplayObject number: " + string(i) + string(objects[|i]));
 	}
 	
 	
@@ -115,9 +119,10 @@ function displayMenu(){
 			welcomeText = "Hi, need supplies again?";
 			with(objects[|0]){
 				changeSprite(228,250,Vera_Guild_girl);
-				btnState = buttonState.active;
 			}
+
 			for(i = 0; i < array_length(merchantInventory); i++){
+				
 				with(objects[|i + 1]){
 					if(other.i < array_length(other.merchantInventory) /2){
 						xCord = 480 + 95 * other.i;
@@ -128,9 +133,9 @@ function displayMenu(){
 						}else{
 							index = itemDisplayed.displaySpriteSubImage;
 						}
-						changeSprite(xCord,220,ItemSprite, false, index);
+						changeSprite(xCord, 220, ItemSprite, false, index);
 					}else{
-						xCord = 480 + 95  * (other.i - array_length(other.merchantInventory) /2)
+						xCord = 480 + 95  * (other.i - array_length(other.merchantInventory) / 2)
 						itemDisplayed = other.merchantInventory[other.i];
 						position = other.i;
 						if(itemDisplayed.sold == true){

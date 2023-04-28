@@ -1,4 +1,4 @@
-if(oTown.currentMenu == -1 && oTown.allowInputs && position_meeting(mouse_x,mouse_y, id)){
+if(oTown.currentMenu == -1 && oTown.allowInputs && position_meeting(MOUSEGUI_X,MOUSEGUI_Y, id)){
 	oTown.currentMenu = menus.merchant;
 	with(oTown){
 		event_user(0);

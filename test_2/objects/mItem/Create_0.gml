@@ -14,6 +14,7 @@ typeOfItem = itemList.bandage;
 merchantText = "";
 
 canBeUsed = false;
+
 function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionHover, _battledDescriptionEffect, _positionInInventory /*, _roomToUse*/) constructor{
 	name = _name;
 	typeOfItem = _type;
