@@ -36,17 +36,16 @@ function createSaleSupport(_class, _cost, _hoverText, _icon) constructor{
 			lvl = 1;
 		}
 	}
-	generateLvL();
+	// generateLvL(); for late when worked on 
 	
 	//adhusts the cost of the support based on LvL
 	//not sure about the formular (5x the basecost maxes at ca lvl 15)
 	function adjustCost(){
 		if(lvl != 1){
-			
 			cost = ((5 * baseCost) - baseCost) * exp((0.1 * baseCost) * lvl)
 		}
 	}
-	adjustCost();
+	// adjustCost(); for late when worked on 
 }
 
 class = 0;
@@ -57,13 +56,13 @@ icon = 0;
 class = classList.fieldHand;
 cost = 150;
 hoverText = "filler field Hand";
-icon = SamuraiIcon;
+icon = FieldHandIcon;
 fieldHand = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.berserker;
 cost = 300;
 hoverText = "filler Berserker";
-icon = SamuraiIcon;
+icon = BerserkerIcon;
 berserker = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.peasent;
@@ -75,31 +74,31 @@ peasent = new createSaleSupport(class, cost, hoverText, icon);
 class = classList.butcher;
 cost = 200;
 hoverText = "filler Butcher";
-icon = SamuraiIcon;
+icon = ButcherIcon;
 butcher = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.disownedNobal;
 cost = 350;
 hoverText = "filler Nobal";
-icon = SamuraiIcon;
+icon = DisowedNobalIcon;
 disownedNobal = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.witchhunter;
 cost = 675;
 hoverText = "filler Witchhunter";
-icon = SamuraiIcon;
+icon = WitchHunterIcon;
 witchHunter= new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.huntsMan;
 cost = 325;
 hoverText = "filler HuntsMan";
-icon = SamuraiIcon;
+icon = HuntsManIcon;
 huntsMan= new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.monch;
 cost = 275;
 hoverText = "filler Monch";
-icon = SamuraiIcon;
+icon = MonchIcon;
 monch = new createSaleSupport(class, cost, hoverText, icon);
 
 class = classList.samurai;
@@ -111,7 +110,7 @@ samurai = new createSaleSupport(class, cost, hoverText, icon);
 class = classList.gunSlinger;
 cost = 325;
 hoverText = "filler GunSlinger";
-icon = SamuraiIcon;
+icon = GunSlingerIcon;
 gunSlinger = new createSaleSupport(class, cost, hoverText, icon);
 
 #endregion
@@ -169,9 +168,6 @@ function generateSupportSelection(){
 			-1);
 		}
 	}
-	
-	show_debug_message("___________________________");
-	show_debug_message(supportSelection);
 }
 
 function convertSaleSupportIntoPlayGroup(_class, _lvl){

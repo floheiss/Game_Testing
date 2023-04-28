@@ -43,8 +43,17 @@ function DisplayHover(){
 	#region Tavern
 	
 	if(self.supportDispalyed != false){
-		if(global.maxPlayGroupSize >= array_length(global.playerGroup)){
-			oMenuScreen.welcomeText = "Sorry the people hire dont trust you enough to come in higher numbers";
+		numberInParty = 0;
+		for(i = 0; i < array_length(global.playerGroup); i ++){
+			if(global.playerGroup[i] != -1){
+				numberInParty ++;
+			}
+		}
+		show_debug_message("support cost: " + string(self.supportDispalyed.cost));
+		show_debug_message("--------------------");
+		show_debug_message( "all gold: " +string(global.gold));
+		if(global.maxPlayGroupSize <= numberInParty){
+			oMenuScreen.welcomeText = "Sorry the people here dont trust you enough to come in higher numbers";
 		} else if(global.gold < self.supportDispalyed.cost){
 			oMenuScreen.welcomeText = "Sry i cant give credit filler"; 
 		} else{
@@ -76,11 +85,12 @@ function DisplayMain(){
 			support = oMenuScreen.currentDisplayedSupport;
 			if(support != false){
 				support.sold = true;
-				global.gold -= suppot.cost;
+				global.gold -= support.cost;
 				class = support.class;
 				lvl = support.lvl;
 				oTavern.convertSaleSupportIntoPlayGroup(class, lvl);
 			}
+			oMenuScreen.currentDisplayedSupport = false;
 		break;
 		
 		#endregion

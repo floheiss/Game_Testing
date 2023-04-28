@@ -163,12 +163,12 @@ function displayMenu(){
 			for(i = 0; i < oTavern.numberOfDisplayedSupports; i++){
 				with(objects[|i + 1]){
 					if(other.i < (oTavern.numberOfDisplayedSupports / 2)){
-						xCord = 480 + 192 * other.i;
+						xCord = 480 + 142 * other.i;
 						supportDispalyed = oTavern.supportSelection[other.i];
 						changeSprite(xCord,220,supportDispalyed.icon, false, 0);
 						
 					}else{
-						xCord = 480 + 192 * (other.i - (oTavern.numberOfDisplayedSupports / 2));
+						xCord = 480 + 142 * (other.i - (oTavern.numberOfDisplayedSupports / 2));
 						supportDispalyed = oTavern.supportSelection[other.i];
 						changeSprite(xCord,220+64+50,supportDispalyed.icon, false, 0);
 					}

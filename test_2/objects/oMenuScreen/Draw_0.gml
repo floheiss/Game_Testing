@@ -3,7 +3,8 @@ if(bg != false){
 }
 
 if(!currentDisplayedContrat &&
-	!currentDisplayedItem){
+	!currentDisplayedItem &&
+	!currentDisplayedSupport){
 	draw_text(x + 70, y + 290, welcomeText);
 }
 
@@ -17,5 +18,11 @@ if(currentDisplayedContrat != false && oTown.currentMenu == menus.guild){
 if(currentDisplayedItem != false && oTown.currentMenu == menus.merchant){
 	draw_text(x + 70, y + 290, currentDisplayedItem.name);
 	draw_text(x + 70 , y + 290 + 20, currentDisplayedItem.merchantText);
-	draw_text(x + 70 , y + 290 + 20 + 20, "It woll only cost you " + string(currentDisplayedItem.cost) + "g");
+	draw_text(x + 70 , y + 290 + 20 + 20, "It woll only cost you " + string(currentDisplayedItem.cost) + " gold");
 }
+
+if(currentDisplayedSupport!= false && oTown.currentMenu == menus.tavern){
+	draw_text(x + 70, y + 290, currentDisplayedSupport.hoverText);
+	draw_text(x + 70 , y + 290 + 20, "You can hire him/her for " + string(currentDisplayedSupport.cost) + " gold");
+}
+
