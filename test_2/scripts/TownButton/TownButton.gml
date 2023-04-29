@@ -5,9 +5,7 @@ function CancelButtonTown(){
 	for(i = 0; i < ds_list_size(objects); i ++){
 		objects[|i].spriteToDraw = -1;
 	}
-	
-	object_set_visible(oMenuScreen.cancelButton, false);
-	
+	//have to change so oGame allowInputs is used 
 	with(oTown){
 		event_user(0);
 		event_user(1);

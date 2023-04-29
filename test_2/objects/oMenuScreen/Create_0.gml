@@ -7,9 +7,6 @@ currentDisplayedContrat = false;
 currentDisplayedItem = false;
 currentDisplayedSupport = false;
 
-cancelButton = instance_create_depth(0, 0, 0, oTownButtonCancel);
-cancelButtonX = 1082;
-cancelButtonY = 219;
 
 
 welcomeText = "";
@@ -182,7 +179,7 @@ function displayMenu(){
 			
 	}
 	
-	object_set_visible(cancelButton, true);
+	
 }
 
 
