@@ -76,6 +76,8 @@ function displayMenu(){
 			for(i = 0; i < 30; i ++){
 				xCord = 0; //note sure
 				yCord = 0;
+				#region calculate x/y
+				
 				if(i < 10){
 					xCord = x + 25 + 4 * i + 85*i;
 					yCord = y + 35;
@@ -87,10 +89,13 @@ function displayMenu(){
 					yCord = y + 35 + 25 * 2 + 85 * 2;
 				}
 				
+				#endregion
+				
 				if(i < global.maxInventorySize){
 					item = global.inventory[i];
 					with(objects[|i]){
-						index = global.inventory[other.i] != -1 ?  global.inventory[other.i].displaySpriteSubImage : 0;
+						show_debug_message("the item will be: " + string(other.item));
+						index = other.item != -1 ?  other.item.displaySpriteSubImage : 0;
 						changeSprite(other.xCord,other.yCord,ItemSprite, false, index);
 						
 					}

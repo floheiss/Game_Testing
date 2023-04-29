@@ -15,7 +15,7 @@ merchantText = "";
 
 canBeUsed = false;
 
-function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionHover, _battledDescriptionEffect, _positionInInventory /*, _roomToUse*/) constructor{
+function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionHover, _battledDescriptionEffect, _positionInInventory,_displaySpriteSubImage /*, _roomToUse*/) constructor{
 	name = _name;
 	typeOfItem = _type;
 	battleEffect = _battleEffect;
@@ -23,6 +23,7 @@ function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionH
 	battleDescriptionHover  = _battleDescriptionHover;
 	battledDescriptionEffect = _battledDescriptionEffect;
 	positionInInventory = _positionInInventory
+	displaySpriteSubImage = _displaySpriteSubImage;
 	roomToUse = [rDungeonMap]; // change later :) just for debug
 	/*
 	for(i = 0; i < array_last(_roomToUse); i++){

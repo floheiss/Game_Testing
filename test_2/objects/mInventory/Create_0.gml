@@ -75,6 +75,7 @@ function addItemToInventory(_item, _position = -1){
 				battleSprite = Bandage;
 				battleDescriptionHover = "An old Bandage that will heal body and stops bleeding";
 				battleDescriptionEffect = "heals for 15% max health, and stops any bleeding";
+				displaySpriteSubImage = 2;
 				roomToUse = ["rBattleScreen","rDungeonMap"];
 			break;
 			case itemList.healingPotion:
@@ -84,6 +85,7 @@ function addItemToInventory(_item, _position = -1){
 				battleSprite = HealingPotion;
 				battleDescriptionHover = "Produced by toe local Methhead I hope it will heal";
 				battleDescriptionEffect = "heals for 50% max health, and stops any bleeding";
+				displaySpriteSubImage = 3;
 				roomToUse = ["rBattleScreen","rDungeonMap"];
 			break;
 			
@@ -94,6 +96,7 @@ function addItemToInventory(_item, _position = -1){
 				battleSprite = LockPickSet; 
 				battleDescriptionHover = "Produced by toe local Methhead I hope it will heal";
 				battleDescriptionEffect = "heals for 50% max health, and stops any bleeding";
+				displaySpriteSubImage = 2;
 				roomToUse = ["rDungeonMap"];
 			break;
 			case itemList.rations:
@@ -103,12 +106,13 @@ function addItemToInventory(_item, _position = -1){
 				battleSprite = Rations;
 				battleDescriptionHover = "Produced by toe local Methhead I hope it will heal";
 				battleDescriptionEffect = "heals for 50% max health, and stops any bleeding";
+				displaySpriteSubImage = 2;
 				roomToUse = ["rDungeonMap"];
 			break;
 		}
 		item = new global.ItemGen.createItem(name,type,
 		battleEffect,battleSprite,battleDescriptionHover,
-		battleDescriptionEffect,position);
+		battleDescriptionEffect,position,displaySpriteSubImage);
 		global.inventory[position] = item;
 	}else{
 		show_debug_message("-------------------");
