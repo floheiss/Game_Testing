@@ -1,5 +1,5 @@
 event_inherited();
-baseTempo = 200 + irandom_range(1,10);
+tempo = 200 + irandom_range(1,10);
 
 
 
@@ -8,12 +8,14 @@ baseHealth = 60;
 currentHealth = baseHealth;
 
 class = classList.bloodMage; //NEED TO CHANGE LATER
+icon = SamuraiIcon;
+
 //dmgRedStuff
 dmgRedMelee = 0.3;
 dmgRedRange = 0.35;
 dmgRedMagic = 0.1;
 
-//doge is used for all kindes of doge (dots, stuns)
+//doge is used for all kindes of doge (dots, stuns, dots)
 doge = 0.2; // 0.2
 
 //spriteStuff
@@ -93,7 +95,6 @@ function attack1(list){
 title = "precision strike";
 describtion = "A precision strike with low penetration but high accuracy and medium damage"
 attack2 = new createAttacks(1,0.95,(15 + 7.5 * lvl),dmgType.melee, 0.9,80, title, describtion); 
-
 
 costBloodAttack2 = 55;
 canTargetAttack2 = possibleTargets.enemies;

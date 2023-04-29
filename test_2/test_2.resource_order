@@ -42,6 +42,7 @@
     {"name":"dd_backdrop_testing","order":1,"path":"sprites/dd_backdrop_testing/dd_backdrop_testing.yy",},
     {"name":"cSpawner","order":7,"path":"objects/cSpawner/cSpawner.yy",},
     {"name":"oMapEnemy","order":1,"path":"objects/oMapEnemy/oMapEnemy.yy",},
+    {"name":"TopBackBackground","order":10,"path":"sprites/TopBackBackground/TopBackBackground.yy",},
     {"name":"Hurt_Samurai","order":4,"path":"sprites/Hurt_Samurai/Hurt_Samurai.yy",},
     {"name":"oBattlePanel","order":4,"path":"objects/oBattlePanel/oBattlePanel.yy",},
     {"name":"ArmorBuffDebuff","order":1,"path":"sprites/ArmorBuffDebuff/ArmorBuffDebuff.yy",},

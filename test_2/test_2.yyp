@@ -67,6 +67,7 @@
     {"id":{"name":"dd_backdrop_testing","path":"sprites/dd_backdrop_testing/dd_backdrop_testing.yy",},},
     {"id":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},},
     {"id":{"name":"oMapEnemy","path":"objects/oMapEnemy/oMapEnemy.yy",},},
+    {"id":{"name":"TopBackBackground","path":"sprites/TopBackBackground/TopBackBackground.yy",},},
     {"id":{"name":"Hurt_Samurai","path":"sprites/Hurt_Samurai/Hurt_Samurai.yy",},},
     {"id":{"name":"oMenuScreen","path":"objects/oMenuScreen/oMenuScreen.yy",},},
     {"id":{"name":"oBattlePanel","path":"objects/oBattlePanel/oBattlePanel.yy",},},

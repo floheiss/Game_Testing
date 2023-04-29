@@ -24,9 +24,6 @@ function displayMenu(){
 		objects[|i].useHighLightHover = false;
 	}
 	
-	
-	
-	
 	drawSelf = false;
 	switch(oTown.currentMenu){
 		#region guild 
