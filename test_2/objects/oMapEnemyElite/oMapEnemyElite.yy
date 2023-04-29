@@ -6,8 +6,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Map",
-    "path": "folders/Objects/Dungeon/Map.yy",
+    "name": "mapItems",
+    "path": "folders/Objects/Dungeon/Map/mapItems.yy",
   },
   "parentObjectId": {
     "name": "pMapItem",

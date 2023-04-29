@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Dungeon",
-    "path": "folders/Objects/Dungeon.yy",
+    "name": "BattleRoom",
+    "path": "folders/Objects/Dungeon/BattleRoom.yy",
   },
   "parentObjectId": null,
   "persistent": false,
