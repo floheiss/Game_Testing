@@ -123,8 +123,6 @@ function addItemToInventory(_item, _position = -1){
 #endregion
 
 addItemToInventory(itemList.bandage);
-addItemToInventory(itemList.healingPotion, 4);
-
-
+addItemToInventory(itemList.healingPotion, 3);
 
 

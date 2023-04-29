@@ -16,11 +16,12 @@ function displayMenu(){
 	objects = findDisplayObjects();
 	
 	for(i = 0; i < ds_list_size(objects); i ++){
+		//resets all the objects so there is no leagcy for other menus
 		objects[|i].spriteToDraw = -1;
 		objects[|i].contractDispalyed = false;
 		objects[|i].itemDisplayed = false;
-		objects[|i].supportDispalyed= false;
-		//show_debug_message("DisplayObject number: " + string(i) + string(objects[|i]));
+		objects[|i].supportDispalyed = false;
+		objects[|i].useHighLightHover = false;
 	}
 	
 	
@@ -52,11 +53,12 @@ function displayMenu(){
 							xCord = 480 + 192 * other.i;
 							contractDispalyed = oGuild.contracts[other.i];
 							changeSprite(xCord,220,Contract);
+							setUseHighlightHoverImage(Contract, 1);
 						}else{
 							xCord = 480 + 192 * (other.i - 3)
 							contractDispalyed = oGuild.contracts[other.i];
 							changeSprite(xCord,220+64+50,Contract);
-							
+							setUseHighlightHoverImage(Contract, 1);
 						}
 					
 					}
