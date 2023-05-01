@@ -7,6 +7,7 @@
     {"name":"Defeat","order":1,"path":"folders/Objects/Dungeon/Defeat.yy",},
     {"name":"Buttons","order":1,"path":"folders/Objects/Dungeon/Defeat/Buttons.yy",},
     {"name":"Map","order":5,"path":"folders/Objects/Dungeon/Map.yy",},
+    {"name":"mapItems","order":6,"path":"folders/Objects/Dungeon/Map/mapItems.yy",},
     {"name":"GeneralStuff","order":1,"path":"folders/Objects/GeneralStuff.yy",},
     {"name":"Items","order":4,"path":"folders/Objects/Items.yy",},
     {"name":"Town","order":3,"path":"folders/Objects/Town.yy",},
@@ -33,7 +34,6 @@
     {"name":"MapStuff","order":8,"path":"folders/Sprites/MapStuff.yy",},
     {"name":"Town","order":6,"path":"folders/Sprites/Town.yy",},
     {"name":"UIStuffBattleScreen","order":3,"path":"folders/Sprites/UIStuffBattleScreen.yy",},
-    {"name":"mapItems","order":6,"path":"folders/Objects/Dungeon/Map/mapItems.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"MouseOverInfo","order":4,"path":"sprites/MouseOverInfo/MouseOverInfo.yy",},
@@ -84,6 +84,7 @@
     {"name":"Menu_Background_Guild","order":2,"path":"sprites/Menu_Background_Guild/Menu_Background_Guild.yy",},
     {"name":"rTown","order":4,"path":"rooms/rTown/rTown.yy",},
     {"name":"Contract","order":4,"path":"sprites/Contract/Contract.yy",},
+    {"name":"LockedOverlay","order":10,"path":"sprites/LockedOverlay/LockedOverlay.yy",},
     {"name":"uiBloodFlask","order":2,"path":"sprites/uiBloodFlask/uiBloodFlask.yy",},
     {"name":"Attack_1_Samurai_Archer_new","order":7,"path":"sprites/Attack_1_Samurai_Archer_new/Attack_1_Samurai_Archer_new.yy",},
     {"name":"oTownContractStartButton","order":5,"path":"objects/oTownContractStartButton/oTownContractStartButton.yy",},

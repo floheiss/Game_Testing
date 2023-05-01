@@ -11,14 +11,12 @@ for(i = 0; i < 4; i++){
 		if(global.playerGroup[i] != -1){
 			unit = global.playerGroup[i];
 			//not sure what doesnt work here have to debug
-			show_debug_message("unit Icon --> " + string(unit.icon));
-		
-			draw_sprite_ext(unit.icon, 0, xPos,0,0.5,0.5,0,0,0);
+			draw_sprite_ext(unit.icon, 0, xPos,5,0.5,0.5,0,c_white,100);
 		}else{
-			draw_sprite(vInventoryButton, 0, xPos, 0);
+			
 		}
 	}else{
-		draw_sprite(vInventoryButton, 2, xPos, 0);
+		draw_sprite_ext(LockedOverlay, 0, xPos,5,0.5,0.5,0,c_white,100);
 	}
 }
 

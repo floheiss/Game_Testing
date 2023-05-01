@@ -96,11 +96,11 @@ function displayMenu(){
 						show_debug_message("the item will be: " + string(other.item));
 						index = other.item != -1 ?  other.item.displaySpriteSubImage : 0;
 						changeSprite(other.xCord,other.yCord,ItemSprite, false, index);
-						
 					}
 				}else{
 					with(objects[|i]){
-						changeSprite(other.xCord,other.yCord,ItemSprite, false,1);	
+						//not sure about cal :) 
+						useLockedOverlay(other.xCord,other.yCord,ItemSprite);
 					}
 				}
 				
