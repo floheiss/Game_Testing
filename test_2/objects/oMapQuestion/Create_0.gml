@@ -6,5 +6,11 @@ function useMapNote(){
 	//generate the event 
 	//set the menu in the mDisplayManager
 		
-	
+	with(mMapDisplayManager){
+		event_user(0);
+	}
+	with(oGame){
+		event_user(0);
+		event_user(0);
+	}
 }

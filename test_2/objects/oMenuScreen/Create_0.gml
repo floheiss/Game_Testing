@@ -117,7 +117,7 @@ function displayMenu(){
 			inventory = global.inventory;
 			merchantInventory = oMerchant.merchantInventory;
 			
-			welcomeText = "Hi, need supplies again?";
+			welcomeText = "Hi, need supplies?";
 			with(objects[|0]){
 				changeSprite(228,250,Vera_Guild_girl);
 			}
@@ -134,7 +134,11 @@ function displayMenu(){
 						}else{
 							index = itemDisplayed.displaySpriteSubImage;
 						}
-						changeSprite(xCord, 220, ItemSprite, false, index);
+						if(index == 1){
+							useLockedOverlay(xCord,220,ItemSprite);
+						}else{
+							changeSprite(xCord,220,ItemSprite,false,index);
+						}
 					}else{
 						xCord = 480 + 95  * (other.i - array_length(other.merchantInventory) / 2)
 						itemDisplayed = other.merchantInventory[other.i];
@@ -144,7 +148,11 @@ function displayMenu(){
 						}else{
 							index = itemDisplayed.displaySpriteSubImage;;
 						}
-						changeSprite(xCord,220+64+50,ItemSprite,false,index);
+						if(index == 1){
+							useLockedOverlay(xCord,220+64+50,ItemSprite);
+						}else{
+							changeSprite(xCord,220+64+50,ItemSprite,false,index);
+						}
 					}
 					
 				}
@@ -182,8 +190,7 @@ function displayMenu(){
 		#endregion
 			
 	}
-	
-	
+		
 }
 
 

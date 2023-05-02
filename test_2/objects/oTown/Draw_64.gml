@@ -10,7 +10,6 @@ for(i = 0; i < 4; i++){
 	if(i < global.maxPlayGroupSize){
 		if(global.playerGroup[i] != -1){
 			unit = global.playerGroup[i];
-			//not sure what doesnt work here have to debug
 			draw_sprite_ext(unit.icon, 0, xPos,5,0.5,0.5,0,c_white,100);
 		}else{
 			
