@@ -45,26 +45,6 @@ function findActivDeBuffs(_target){
 
 #endregion
 
-//checks for hits returns a miss text if not
-//might get reworked to account for acc Buffs
-//can be given any value --> 0-1 OR 0-100
-function checkAgainstRandom100(_valueToCheck, _rerolls = 0){
-	value = _valueToCheck
-	if(value <= 1){
-		value = _valueToCheck * 10 // 0.8 *10 = 80%
-	}
-	
-	
-	number = chanceFrom100(_rerolls);
-	
-	if(number < value){
-		return true;
-	} else {
-		show_debug_message("number was not hit");
-		return false;
-	}
-}
-
 #region note 
 // new values for chars --> 
 // --> reroll doge 

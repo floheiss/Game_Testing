@@ -6,10 +6,7 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
-  "overriddenProperties": [
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pBasicButton","path":"objects/pBasicButton/pBasicButton.yy",},"propertyId":{"name":"HoverFunction","path":"objects/pBasicButton/pBasicButton.yy",},"value":"mapDisplayItemHover",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pBasicButton","path":"objects/pBasicButton/pBasicButton.yy",},"propertyId":{"name":"MainFunction","path":"objects/pBasicButton/pBasicButton.yy",},"value":"mapDisplayItemMain",},
-  ],
+  "overriddenProperties": [],
   "parent": {
     "name": "Map",
     "path": "folders/Objects/Dungeon/Map.yy",

@@ -3,7 +3,8 @@ inventoryLength = 10;
 global.inventory = array_create(inventorySlots, -1);
 
 #region general inventory managment
-//search items | find last position |
+//search items | find last position | removing form position
+//removing the the first of a given item
 
 //finds a position for an Item 
 function findOpenPositionInInventory(){
@@ -47,6 +48,22 @@ function findItemInInventory(_itemType){
 	
 	return position
 }
+
+//removes an item for the inventory on a given position
+//maybe look if uses for items (lockpick can be used 3 items, ...) are a thing ???
+function removeItemFormInventory(_position){
+	global.inventory[_position] = -1;
+}
+
+//removes the first time of a given type 
+//does nothing if there is no such item
+function removeFirstGivenItem(_itemType){
+	position = findItemInInventory(_itemType);
+	if(position != false){
+		removeItemFormInventory(position);
+	}
+}
+
 #endregion
 
 #region adding Items to Inventory at 
@@ -120,6 +137,7 @@ function addItemToInventory(_item, _position = -1){
 		show_debug_message("-------------------");
 	}
 }
+
 #endregion
 
 addItemToInventory(itemList.bandage);

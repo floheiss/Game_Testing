@@ -53,6 +53,7 @@ enum itemList{
 
 #region classes 
 
+//rework as most of them are useless/ test only :) 
 enum classList{
 	bloodMage,
 	fieldHand,
@@ -80,6 +81,7 @@ enum contracTyps{
 }
 
 //for contracts and dm generation 
+//rework as most are unfit
 enum dungeonTyps{
 	woods,
 	gravyard,
@@ -90,6 +92,7 @@ enum dungeonTyps{
 }
 
 //for contracts and dm generation 
+//rework as most are unfit ???
 enum enemyTyps{
 	goblins,
 	bandits,
@@ -116,16 +119,25 @@ enum noteTypes{
 	question,
 	elite,
 	campfire, // used to heal and manage disgust 
-	travalMerchant, // can buy items even in run (high prices)
-	roadBlock //(can be played anywhere or form question) (not sure if only question)
-	
+	travalMerchant // can buy items even in run (high prices)
 }
 
 //for map generation
-enum eventKinds{
-	good,
-	bad,
-	neutral
+//and for random events on a contract
+enum events{
+	good, //used when generating a question what kind of event it is 
+	bad,  //maybe change to just save the event in question not if good/bad/neutral ???
+	neutral,
+	
+	infection, //bad 
+	ambush,
+	poisionFood,
+	
+	campfire, //good
+	village,
+	fallenGood,
+	
+	merchant //neutral
 }
 #endregion
 
