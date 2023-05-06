@@ -5,24 +5,30 @@ event =  events.good; //rework to save the event it self in the question not if 
 
 //is used when the note is clicked on the Map
 function useMapNote(){
+	mapEventImage = 0;
+	mapOptionsArray = [];
+	
 	//generate the event 
 		//set the menu in the mDisplayManager
-		//will set the mapEventImage as the background
-		//sets the option for mapEventOptions
-		//will give them a function what will happen if clicked
-		//all funtions will be found in the mapDisplayItem
-		//will give them text to display 
-		//will give them a condition if false they will lock 
-			//condition must allways return true or false
+		//will set mapEventImage as the background
+		//will set currentEvent to this event
+		//will set the option for mapEventOptions
+			//will give them a function what will happen if clicked 
+				//returns any information need to proceed (true, [flase, "force"])
+				//uses this in the next stage of the event to make decicions
+				//all funtions will be found in the mapDisplayItem
+			//will give them text to display 
+			//will give them a condition if false they will lock 
+				//condition must allways return true or false
 	//more notes/same notes in the mMapDisplayManager
 	
 	//this is what will be left after reworking to save only event in questionmark
-	backgroundImage = 0;
-	mapOptionsArray = [];
 	switch(event){
 		#region fallenGoods
-		
+	
 		case events.fallenGood:
+			discribtionText = "your party comes across a chest, that seams to have fallen of a wagon";
+			mapEventImage = mapEventFallenGoods;//have to make main Image
 			//use a lockpick to open chest
 			mapOptionsArray[0] = mapOption("Use a Lockpick to open", 
 			openChestWithLockpick,checkIfLockPickInInventory);
@@ -37,11 +43,13 @@ function useMapNote(){
 		#endregion
 		
 		#region infection Working on
-		
+			
 		#endregion
 	}
-	
-	mMapDisplayManager.mapEventImage = backgroundImage;
+	mMapDisplayManager.currentEvent = events.fallenGood;
+	mMapDisplayManager.currentStageOfEvent = 0;
+	mMapDisplayManager.mapEventImage = mapEventImage;
+	mMapDisplayManager.discribtionText = discribtionText;
 	for(i = 0; i < array_length(mapOptionsArray); i ++){
 		mMapDisplayManager.mapEventOptions[i] = mapOptionsArray[i];
 	}
@@ -51,8 +59,36 @@ function useMapNote(){
 	displayMapEvent();
 }
 
+function updateEvent(_result){
+	
+	switch(mMapDisplayManager.currentEvent){
+		case events.fallenGood: 
+			if(stage == 1){
+				if(_result){
+					#region succsses 
+					//generates loot from the chest
+					//will give same loot for any methode
+					//have to look at how to handle loot here
+					mMapDisplayManager.currentMenu = menus.lootDisplay;
+					#endregion
+				}else {
+					#region failed
+					mapOptionsArray = [];
+					mapOptionsArray[0] = mapOption("the chest was unfaced by your action",
+					closeTheEvent,true);
+					for(i = 0; i < array_length(mapOptionsArray); i ++){
+						mMapDisplayManager.mapEventOptions[i] = mapOptionsArray[i];
+					}
+					#endregion
+				}
+			}
+			
+		break;
+	}
+}
+
 function mapOption(_text, _onClick, _condition) constructor{
-	text = _text;
+	textForDisplay = _text;
 	onClick = _onClick
 	condition = _condition;
 	locked = false; 

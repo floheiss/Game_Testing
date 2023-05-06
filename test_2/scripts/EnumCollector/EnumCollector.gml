@@ -1,13 +1,14 @@
 //menuOptions in town and others 
 enum menus{
 	guild,
-	inventory,
-	merchant, //can be used in map and in town
+	inventory, //can be used in map and town
+	merchant, //can be used in map and town
 	tavern,
 	
 	campfire, //for map
-	question //for map
+	mapEvent, //for map
 	
+	lootDisplay,//can be used any time loot is diplayed
 }
 //stats of a button used for all 
 enum buttonState{

@@ -4,6 +4,7 @@
 
 #region onClickEvents 
 
+//used for fallenGodds stage 1
 function openChestWithForce(){
 	target = 30; 
 	
@@ -13,6 +14,7 @@ function openChestWithForce(){
 	return checkAgainstRandom100(target);
 }
 
+//used for fallenGodds stage 1
 function openChestWithLockpick(){
 	target = 60;
 	
@@ -23,7 +25,11 @@ function openChestWithLockpick(){
 	return checkAgainstRandom100(target);
 }
 
-
+//like an accappt button 
+//used to simple advance the stage
+function returnTrue(){
+	return true;
+}
 
 //is used the end the event with out chancing anything
 function closeTheEvent(){
