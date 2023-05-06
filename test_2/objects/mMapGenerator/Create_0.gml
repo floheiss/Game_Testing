@@ -72,7 +72,9 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 				//have to add preNotes  i dont know the math behind it yet 
 				preNotes = [];
 				
-				//might rework later to changed spawn numbers : ) 
+				//will rework later to use tier system : ) 
+				//and encounter are given tiers --> 
+				//elits are tier 4, campfire tier 3, ...
 				encounter = random(1);
 				if(encounter < probabilityElite){
 					// here is a elite 
@@ -83,14 +85,14 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 					
 				}else if(encounter < probabilityQuestion){
 					// here is a question 
+					//when do neutrals happen ?????? have to look into later !!!!
 					spawer = objects[|currentObject];
 					if(random(1) < probabilityQuestionGood){
-						objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i], preNotes,noteTypes.question, currentObject, eventKinds.good);
+						objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i], preNotes,noteTypes.question, currentObject, generateRandomEvent(1));
 						numberObjectInCurrentColumn ++;
 						currentObject ++;
 					}else{
-						
-						objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.question, currentObject, eventKinds.bad);
+						objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.question, currentObject, generateRandomEvent(-1));
 						numberObjectInCurrentColumn ++;
 						currentObject ++;
 					}
@@ -114,6 +116,8 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 	return map;
 }
 
+//is used to display a given map 
+//is used when returning to the map 
 function displayMap(map){
 	objects = findMapObjects();
 	
@@ -138,6 +142,8 @@ function displayMap(map){
 	}
 }
 
+
+#region general funtion 
 //finds cSpawner in the Map are used to generate notes 
 function findMapObjects(){
 	list = ds_list_create();
@@ -147,6 +153,7 @@ function findMapObjects(){
 	}
 	return list;
 }
+
 
 //find a position for the given row and  number in column
 //x and y are first fixed but will be moved by a small amout 
@@ -167,7 +174,7 @@ function findPositionMap(row, numberInColumn){
 
 }
 
-
+#region constructs 
 //a strct that is a save for the map --> length, number of notes, and objects of the notes 
 //is used to generate the same map again after battle or other
 //generate Map
@@ -200,6 +207,7 @@ function mapNoteCreate(_xCord, _yCord, _preNotes,_typeOfNote, _position,_specifi
 	subImage = 0;
 }
 
+#endregion
 
 //adds all current Variabls to a MapObject 
 //position, specific and preNotes
@@ -210,6 +218,46 @@ function addVariablsToCreation(creation,currentObject, currentNote){
 	}
 }
 
+//retuns a random event for a question
+//is given 1|0|-1 for good|neutral|bad 
+function generateRandomEvent(_eventKind){
+	tierChances = [];
+	tier3 = [];
+	tier2 = [];
+	tier1 = [];
+	switch(_eventKind){
+		case 1:
+			tierChances = [-1,10,30];
+			tier3 = [events.fallenGood]; //have to make all :) 
+			tier2 = [events.campfire, events.merchant];
+			tier1 = [events.campfire, events.merchant]; //have to look what will happen here
+		
+		break;
+		case -1:
+			tierChances = [-1,10,20];
+			tier3 = [events.infection]; //have to make all :) 
+			tier2 = [events.ambush, events.poisionFood];
+			tier1 = [events.ambush, events.poisionFood]; //have to look what will happen here
+		
+		break;
+		case 0:
+			tierChances = [-1,5,20];
+			tier3 = [events.village]; //have to make all :) 
+			tier2 = [events.merchant, events.merchant];
+			tier1 = [events.merchant, events.merchant]; //have to look what will happen here
+		
+		break;
+	}
+	
+	//for all testing !! remove later
+	tier3 = [events.fallenGood];
+	tier2 = [events.fallenGood];
+	tier1 = [events.fallenGood];
+	event = generateFormTierList(tierChances,undefined, tier3,tier2, tier1);
+	
+}
+
+#endregion
 
 
 

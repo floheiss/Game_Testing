@@ -15,34 +15,6 @@ function useMapNote(){
 		//will give them a condition if false they will lock 
 			//condition must allways return true or false
 	//more notes/same notes in the mMapDisplayManager
-	tierChances = [];
-	tier3 = [];
-	tier2 = [];
-	tier1 = [];
-	switch(event){
-		case events.good:
-			tierChances = [-1,10,30];
-			tier3 = [events.fallenGood]; //have to make all :) 
-			tier2 = [events.campfire, events.merchant];
-			tier1 = [events.campfire, events.merchant]; //have to look what will happen here
-		
-		break;
-		case events.bad:
-			tierChances = [-1,10,20];
-			tier3 = [events.infection]; //have to make all :) 
-			tier2 = [events.ambush, events.poisionFood];
-			tier1 = [events.ambush, events.poisionFood]; //have to look what will happen here
-		
-		break;
-		case events.neutral:
-			tierChances = [-1,5,20];
-			tier3 = [events.village]; //have to make all :) 
-			tier2 = [events.merchant, events.merchant];
-			tier1 = [events.merchant, events.merchant]; //have to look what will happen here
-		
-		break;
-	}
-	event = generateFormTierList(tierChances,undefined, tier3,tier2, tier1);
 	
 	//this is what will be left after reworking to save only event in questionmark
 	backgroundImage = 0;
