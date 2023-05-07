@@ -2,17 +2,18 @@ currentMenu = -1
 menusUI = layer_get_id("menusUI");
 
 mapEventImage = -1;
-discribtionText = "";
+discribtionText = ""; // have to reset after every event !!!!
 mapEventOptions = []; // have to reset after every event !!!!
-currentEvent = -1;
-currentStageOfEvent = 1;
+currentEvent = -1; // have to reset after every event !!!!
+currentStageOfEvent = 1; // have to reset after every event !!!!
 
 function displayMenu(){
 	objects = findDisplayObjects();
 
 	for(i = 0; i < ds_list_size(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
-		objects[|i].spriteToDraw = -1;	
+		objects[|i].resetButton();	
+		objects[|i].savedObject = -1;
 	}
 	
 	//maybe add a general buttion to hide the event and see the map again ???	
@@ -26,9 +27,10 @@ function displayMenu(){
 			mapEventImage = Menu_Background_Inventory; //mapInventoryBG; have to make 
 			
 			for(i = 0; i < 30; i ++){
+				
+				#region calculate x/y
 				xCord = 0;
 				yCord = 0;
-				#region calculate x/y
 				
 				if(i < 10){
 					xCord = x + 25 + 4 * i + 85*i;
@@ -89,16 +91,21 @@ function displayMenu(){
 				//when are options locked (condion if they are false --> lock option)
 				//(maybe add a hover that gives more info)
 			//all of this will be set when the map icon is clicked 
-		
-			//have to adjust xCord and yCord :) 
 			//is the discribtionText --> gives text feedback ! 
+			
 			with(objects[|i + 1]){
+				//note mapOptionSprite will have origen in der topcenter
+			
+				//bottom to menu + padding + mapOptionSprite(height) * (mapEventOptions ) + i
+				xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapEventOptions) + 1);
+				yCord = 360; 
 				displayedText = discribtionText;
-				changeSprite(xCord,220,mapOptionSprite, false, 0);		
+				changeSprite(xCord, yCord,mapOptionSprite, false, 0);		
 			}
 			for(i = 0; i < array_length(mapEventOptions); i ++){
 				with(objects[|i + 2]){
-					xCord = 480 + 142 * other.i;
+					xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapEventOptions) - i );
+					yCord = 360; 
 					savedObject = mapEventOptions[other.i];
 					//should work as there is (if i think correctly) to chance the locked state while in event
 					//have to look at not sure if somethin diffrent is need when closing ???
@@ -112,10 +119,10 @@ function displayMenu(){
 					}
 					
 					displayedText = savedObject.textForDisplay;
-					if(!savedObject.locked){
-						changeSprite(xCord,220,mapOptionSprite, false, 0); //have to make mapOptionSprite
+					if(!savedObject.locked){ 
+						changeSprite(xCord, yCord,mapOptionSprite, false, 0); //have to make mapOptionSprite
 					}else {
-						useLockedOverlay(xCord, 220,mapOptionSprite);
+						useLockedOverlay(xCord, yCord,mapOptionSprite);
 					}
 				
 				}

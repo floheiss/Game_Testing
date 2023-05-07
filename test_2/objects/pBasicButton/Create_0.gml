@@ -7,6 +7,8 @@ HighLightHoverSubImage = 0;
 lockOverLayXscale = 1;
 lockOverLayYscale = 1;
 
+displayedText = "";
+
 //is used to set the button 
 //sets the x/y position of a button
 //sets the sprite and if subimages are used
@@ -36,5 +38,18 @@ function useLockedOverlay(_xCord, _yCord,_NormalSpite){
 	sprite_index = LockedOverlay;
 	lockOverLayXscale = sprite_get_height(_NormalSpite)/128;
 	lockOverLayYscale = sprite_get_width(_NormalSpite)/128;
+	
+}
+
+
+function resetButton(){
+	spriteToDraw = -1;
+	useHighLightHover = false;
+	useHighLightHoverImage = -1;
+	HighLightHoverSubImage = 0;
+	lockOverLayXscale = 1;
+	lockOverLayYscale = 1;
+
+	displayedText = "";
 	
 }

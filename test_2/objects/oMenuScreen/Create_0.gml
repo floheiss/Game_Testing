@@ -17,11 +17,12 @@ function displayMenu(){
 	
 	for(i = 0; i < ds_list_size(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
-		objects[|i].spriteToDraw = -1;
+		objects[|i].resetButton();
+		
+		//maybe later look at to make 1 var ??????????
 		objects[|i].contractDispalyed = false;
 		objects[|i].itemDisplayed = false;
 		objects[|i].supportDispalyed = false;
-		objects[|i].useHighLightHover = false;
 	}
 	
 	drawSelf = false;
