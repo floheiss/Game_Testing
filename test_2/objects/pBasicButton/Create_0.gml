@@ -1,13 +1,21 @@
 image_speed = 0;
 btnState = buttonState.active;
 spriteToDraw = -1;
+
 useHighLightHover = false;
 useHighLightHoverImage = -1;
 HighLightHoverSubImage = 0;
+
 lockOverLayXscale = 1;
 lockOverLayYscale = 1;
+locked = false; 
 
 displayedText = "";
+displayedTextxCord = 0;
+displayedTextyCord = 0;
+
+
+
 
 //is used to set the button 
 //sets the x/y position of a button
@@ -34,11 +42,22 @@ function setUseHighlightHoverImage(_HighLightHoverImage, _HighLightHoverSubImage
 function useLockedOverlay(_xCord, _yCord,_NormalSpite){
 	x = _xCord;
 	y = _yCord;
-	spriteToDraw = LockedOverlay;
-	sprite_index = LockedOverlay;
-	lockOverLayXscale = sprite_get_height(_NormalSpite)/128;
-	lockOverLayYscale = sprite_get_width(_NormalSpite)/128;
+	spriteToDraw = _NormalSpite;
+	sprite_index = _NormalSpite;
+	btnState = buttonState.disabled;
+	lockOverLayXscale = sprite_get_width(_NormalSpite)/128;
+	lockOverLayYscale = sprite_get_height(_NormalSpite)/128;
 	
+}
+
+
+//is used to displayText On the Button
+//can be given an alignment 
+//"center" | "right" | "left"
+function setDisplayedText(_displayedText, _displayedTextxCord = 0, _displayedTextyCord = 0){
+	displayedText = _displayedText;
+	displayedTextxCord = _displayedTextxCord;
+	displayedTextyCord = _displayedTextyCord;
 }
 
 
@@ -53,3 +72,5 @@ function resetButton(){
 	displayedText = "";
 	
 }
+
+

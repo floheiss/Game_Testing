@@ -42,7 +42,7 @@ function displayMenu(){
 			}else{
 				welcomeText = "Hi, need money again ?";
 				with(objects[|0]){
-					changeSprite(228,250,Vera_Guild_girl, false, 0);
+					changeSprite(200,200,Vera_Guild_girl, false, 0);
 				}
 			
 				for(i = 0; i < 6; i++){
@@ -50,12 +50,12 @@ function displayMenu(){
 						if(other.i < 3){
 							xCord = 480 + 192 * other.i;
 							contractDispalyed = oGuild.contracts[other.i];
-							changeSprite(xCord,220,Contract);
+							changeSprite(xCord,180,Contract);
 							setUseHighlightHoverImage(Contract, 1);
 						}else{
 							xCord = 480 + 192 * (other.i - 3)
 							contractDispalyed = oGuild.contracts[other.i];
-							changeSprite(xCord,220+64+50,Contract);
+							changeSprite(xCord,200+64+50,Contract);
 							setUseHighlightHoverImage(Contract, 1);
 						}
 					
@@ -168,19 +168,19 @@ function displayMenu(){
 			bg = Menu_Background_Guild;
 			welcomeText = "Need replacments ?";
 			with(objects[|0]){
-				changeSprite(228,250,Vera_Guild_girl, false, 0);
+				changeSprite(200,200,Vera_Guild_girl, false, 0);
 			}
 			for(i = 0; i < oTavern.numberOfDisplayedSupports; i++){
 				with(objects[|i + 1]){
 					if(other.i < (oTavern.numberOfDisplayedSupports / 2)){
 						xCord = 480 + 142 * other.i;
 						supportDispalyed = oTavern.supportSelection[other.i];
-						changeSprite(xCord,220,supportDispalyed.icon, false, 0);
+						changeSprite(xCord,180,supportDispalyed.icon, false, 0);
 						
 					}else{
 						xCord = 480 + 142 * (other.i - (oTavern.numberOfDisplayedSupports / 2));
 						supportDispalyed = oTavern.supportSelection[other.i];
-						changeSprite(xCord,220+64+50,supportDispalyed.icon, false, 0);
+						changeSprite(xCord,210+64+50,supportDispalyed.icon, false, 0);
 					}
 					
 				}

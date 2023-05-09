@@ -249,21 +249,21 @@ function randomMapInfo(_difficulty, _contractType){
 		case enemyDifficulty.easy:
 			mapInfo[0] = round(random_range(5, 6)); //mapLength
 			mapInfo[1] = 3;							//mapMaxNumberInColumn
-			mapInfo[2] = random_range(0.15, 0.3);	//mapProbabilityQuestion
+			mapInfo[2] = random_range(1, 0.3);	//mapProbabilityQuestion
 			mapInfo[3] = random_range(0.65, 0.8);	//mapProbabilityQuestionGood
 			mapInfo[4] = random_range(0.05, 0.15);	//mapProbabilityElite
 		break;
 		case enemyDifficulty.normal:
 			mapInfo[0] = round(random_range(6, 8));
 			mapInfo[1] = 4;
-			mapInfo[2] = random_range(0.15, 0.3);
+			mapInfo[2] = random_range(1, 0.3);
 			mapInfo[3] = random_range(0.50, 0.7);
 			mapInfo[4] = random_range(0.1, 0.2);
 		break;
 		case enemyDifficulty.hard:
 			mapInfo[0] = round(random_range(9,10));
 			mapInfo[1] = 5;
-			mapInfo[2] = random_range(0.2, 0.3);
+			mapInfo[2] = random_range(1, 0.3);
 			mapInfo[3] = random_range(0.5, 0.7);
 			mapInfo[4] = random_range(0.15, 0.3);
 		break;

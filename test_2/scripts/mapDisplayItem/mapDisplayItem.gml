@@ -16,7 +16,7 @@ function openChestWithForce(){
 
 //used for fallenGodds stage 1
 function openChestWithLockpick(){
-	target = 60;
+	target = 50;
 	
 	//add that better is some classes are in the party 
 	//like any form of graverobber
@@ -40,8 +40,6 @@ function closeTheEvent(){
 
 #region conditions
 
-
-
 function checkIfLockPickInInventory(){
 	if(mInventory.findItemInInventory(itemList.lockPickSet) != false){
 		return true;
@@ -50,4 +48,22 @@ function checkIfLockPickInInventory(){
 	}
 }
 
+
 #endregion 
+
+
+function triggerEvent(){
+	//when an event is used the stage advances 
+	//then the updateEvent (with the info what happend if needed)
+	//the updateEvent then updates the BG and options based on this
+	//repeat
+	if(savedObject.endEvent){
+		mMapDisplayManager.currentEvent = -1;
+		mMapDisplayManager.mapEventImage = -1;
+		pMapItem.displayMapEvent();
+	}else{
+		oMapQuestion.stage ++;
+		oMapQuestion.updateEvent(self.savedObject.onClick);
+	}
+	
+}

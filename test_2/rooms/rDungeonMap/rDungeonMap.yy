@@ -67,7 +67,6 @@
     {"name":"inst_1E24F4E4","path":"rooms/rDungeonMap/rDungeonMap.yy",},
     {"name":"inst_6EEEC926","path":"rooms/rDungeonMap/rDungeonMap.yy",},
     {"name":"inst_13A3963C","path":"rooms/rDungeonMap/rDungeonMap.yy",},
-    {"name":"inst_39BED5D0","path":"rooms/rDungeonMap/rDungeonMap.yy",},
     {"name":"inst_79713EE9","path":"rooms/rDungeonMap/rDungeonMap.yy",},
     {"name":"inst_741D2CD2","path":"rooms/rDungeonMap/rDungeonMap.yy",},
     {"name":"inst_736C9A1","path":"rooms/rDungeonMap/rDungeonMap.yy",},
@@ -117,11 +116,11 @@
     {"name":"inst_3ED5F19B","path":"rooms/rDungeonMap/rDungeonMap.yy",},
     {"name":"inst_20F89B9E","path":"rooms/rDungeonMap/rDungeonMap.yy",},
     {"name":"inst_2374CB2C","path":"rooms/rDungeonMap/rDungeonMap.yy",},
+    {"name":"inst_7A9CCAE6","path":"rooms/rDungeonMap/rDungeonMap.yy",},
   ],
   "isDnd": false,
   "layers": [
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"menusUI","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_39BED5D0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mMapDisplayManager","path":"objects/mMapDisplayManager/mMapDisplayManager.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":384.0,"y":160.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_79713EE9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oMapDisplayItem","path":"objects/oMapDisplayItem/oMapDisplayItem.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":416.0,"y":128.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_741D2CD2","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oMapDisplayItem","path":"objects/oMapDisplayItem/oMapDisplayItem.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":448.0,"y":160.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_736C9A1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oMapDisplayItem","path":"objects/oMapDisplayItem/oMapDisplayItem.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":480.0,"y":128.0,},
@@ -235,6 +234,7 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_C6B2F51","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mMapGenerator","path":"objects/mMapGenerator/mMapGenerator.yy",},"properties":[],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":0.0,"y":-128.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_13A3963C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oDM","path":"objects/oDM/oDM.yy",},"properties":[],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":128.0,"y":-128.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2374CB2C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oInventoryMap","path":"objects/oInventoryMap/oInventoryMap.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1152.0,"y":32.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7A9CCAE6","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mMapDisplayManager","path":"objects/mMapDisplayManager/mMapDisplayManager.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":672.0,"y":392.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","animationFPS":30.0,"animationSpeedType":0,"colour":4294967295,"depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":{"name":"BackGroundDungeonMap","path":"sprites/BackGroundDungeonMap/BackGroundDungeonMap.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],

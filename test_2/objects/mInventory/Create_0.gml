@@ -40,12 +40,13 @@ function findItemInInventory(_itemType){
 	position = false;
 	
 	for(i = 0; i < array_length(global.inventory); i++){
-		if(global.inventory[i].typeOfItem ==  _itemType){
-			position = i;
-			break;
+		if(global.inventory[i] != -1){
+			if(global.inventory[i].typeOfItem ==  _itemType){
+				position = i;
+				break;
+			}
 		}
 	}
-	
 	return position
 }
 

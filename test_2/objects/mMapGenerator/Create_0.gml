@@ -88,11 +88,14 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 					//when do neutrals happen ?????? have to look into later !!!!
 					spawer = objects[|currentObject];
 					if(random(1) < probabilityQuestionGood){
-						objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i], preNotes,noteTypes.question, currentObject, generateRandomEvent(1));
+						//objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.question, currentObject, generateRandomEvent(1));
+						objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i], preNotes,noteTypes.question, currentObject, events.fallenGood);
 						numberObjectInCurrentColumn ++;
 						currentObject ++;
 					}else{
-						objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.question, currentObject, generateRandomEvent(-1));
+						//objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.question, currentObject, generateRandomEvent(-1));
+						
+						objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.question, currentObject, events.fallenGood);
 						numberObjectInCurrentColumn ++;
 						currentObject ++;
 					}
@@ -136,7 +139,7 @@ function displayMap(map){
 			case noteTypes.question:
 				creation = instance_create_depth(currentNote.xCord, currentNote.yCord,currentNote.subImage, oMapQuestion);
 				addVariablsToCreation(creation,currentObject, currentNote);
-				creation.eventKind = currentNote.specific;
+				creation.event = currentNote.specific;
 			break;
 		}
 	}

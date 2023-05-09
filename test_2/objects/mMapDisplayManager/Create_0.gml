@@ -7,8 +7,8 @@ mapEventOptions = []; // have to reset after every event !!!!
 currentEvent = -1; // have to reset after every event !!!!
 currentStageOfEvent = 1; // have to reset after every event !!!!
 
-function displayMenu(){
-	objects = findDisplayObjects();
+function displayEvent(){
+	objects = findMapDisplayItem();
 
 	for(i = 0; i < ds_list_size(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
@@ -104,27 +104,23 @@ function displayMenu(){
 			}
 			for(i = 0; i < array_length(mapEventOptions); i ++){
 				with(objects[|i + 2]){
-					xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapEventOptions) - i );
-					yCord = 360; 
-					savedObject = mapEventOptions[other.i];
+					xCord = 640;
+					yCord = 360+ 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapEventOptions) - other.i); 
+					savedObject = other.mapEventOptions[other.i];
 					//should work as there is (if i think correctly) to chance the locked state while in event
 					//have to look at not sure if somethin diffrent is need when closing ???
-					MainFunction = function triggerEvent(){
-						//when an event is used the stage advances 
-						//then the updateEvent (with the info what happend if needed)
-						//the updateEvent then updates the BG and options based on this
-						//repeat
-						oMapQuestion.stage ++;
-						oMapQuestion.updateEvent(savedObject.onClick);
-					}
+					MainFunction = triggerEvent;
 					
-					displayedText = savedObject.textForDisplay;
-					if(!savedObject.locked){ 
+					if(savedObject.locked){ 
 						changeSprite(xCord, yCord,mapOptionSprite, false, 0); //have to make mapOptionSprite
+						
 					}else {
-						useLockedOverlay(xCord, yCord,mapOptionSprite);
+						useLockedOverlay(xCord, yCord, mapOptionSprite);
 					}
-				
+					setUseHighlightHoverImage(mapOptionSprite, 1);
+					setDisplayedText(savedObject.textForDisplay, 
+					xCord - sprite_get_xoffset(mapOptionSprite) + 20,
+					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
 				}
 			}
 			#endregion
@@ -143,5 +139,5 @@ function findMapDisplayItem(){
 		ds_list_add(list, instance);
 	}
 	return list;
-
+	
 }
