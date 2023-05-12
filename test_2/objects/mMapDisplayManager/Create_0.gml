@@ -6,6 +6,7 @@ discribtionText = ""; // have to reset after every event !!!!
 mapEventOptions = []; // have to reset after every event !!!!
 currentEvent = -1; // have to reset after every event !!!!
 currentStageOfEvent = 1; // have to reset after every event !!!!
+activeNote= -1;
 
 function displayEvent(){
 	objects = findMapDisplayItem();

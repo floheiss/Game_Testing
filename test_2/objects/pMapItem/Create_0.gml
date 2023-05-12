@@ -1,13 +1,17 @@
+event_inherited();
+
 positionInList = 0;
 preNotes = [];
+active = true;
 
-function useMapNote(){
+function mapNoteFunction(){
 		
 }
 
 function updateMapList(){
 	currentNote = global.map.objectAtNotes[positionInList];
 	currentNote.subImage = 1;
+	// currentNote.active = false;
 }
 
 function displayMapEvent(){
@@ -19,3 +23,7 @@ function displayMapEvent(){
 		event_user(0);
 	}
 }
+
+
+
+

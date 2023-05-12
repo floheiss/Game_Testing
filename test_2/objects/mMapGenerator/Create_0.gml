@@ -122,26 +122,26 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 //is used to display a given map 
 //is used when returning to the map 
 function displayMap(map){
-	objects = findMapObjects();
 	
 	for(currentObject = 0; currentObject < array_length(map.objectAtNotes); currentObject ++){
 		currentNote = map.objectAtNotes[currentObject];
 		switch(currentNote.typeOfNote){
 			case noteTypes.enemy:
-				creation = instance_create_depth(currentNote.xCord,currentNote.yCord, currentNote.subImage, oMapEnemy);
-				addVariablsToCreation(creation,currentObject, currentNote);
-				
+				creation = instance_create_depth(currentNote.xCord,currentNote.yCord, 1, oMapEnemy);
+				creation.changeSprite(currentNote.xCord, currentNote.yCord,MapItemCollision,false,false);	
 			break;
 			case noteTypes.elite:
-				creation = instance_create_depth(currentNote.xCord, currentNote.yCord, currentNote.subImage, oMapEnemyElite);
-				addVariablsToCreation(creation,currentObject, currentNote);
+				creation = instance_create_depth(currentNote.xCord, currentNote.yCord, 1, oMapEnemyElite);
+				creation.changeSprite(currentNote.xCord, currentNote.yCord,MapEnemyElite,false,false);
 			break;
 			case noteTypes.question:
-				creation = instance_create_depth(currentNote.xCord, currentNote.yCord,currentNote.subImage, oMapQuestion);
-				addVariablsToCreation(creation,currentObject, currentNote);
+				creation = instance_create_depth(currentNote.xCord, currentNote.yCord,1, oMapQuestion);
+				creation.changeSprite(currentNote.xCord, currentNote.yCord,MapQuestion,false,false);
 				creation.event = currentNote.specific;
 			break;
 		}
+		addVariablsToCreation(creation,currentObject, currentNote);
+		creation.setUseHighlightHoverImage(MapHover);
 	}
 }
 
@@ -168,8 +168,8 @@ function findPositionMap(row, numberInColumn){
 	xCords = [];
 	yCords = [];
 	for(i = 0; i < numberInColumn; i ++) {
-		xCords[i] = xRow + ceil(random_range(- 10, 10));
-		yCords[i] = yDIff * i + 64 + ceil(random_range(- 50, 50));
+		xCords[i] = xRow + ceil(random_range(- 15, 15));
+		yCords[i] = yDIff * i + 64 + ceil(random_range(- 15, 15));
 		
 	}
 	xyCords = [xCords, yCords];

@@ -1,10 +1,10 @@
 event_inherited();
 stage = 0;
-event =  events.good; //rework to save the event it self in the question not if good or bad
+event =  events.fallenGood; //rework to save the event it self in the question not if good or bad
 //should be easy but later 
 
 //is used when the note is clicked on the Map
-function useMapNote(){
+function mapNoteFunction(){
 	mapEventImage = 0;
 	mapOptionsArray = [];
 	displayText = "";
@@ -48,6 +48,7 @@ function useMapNote(){
 			
 		#endregion
 	}
+	mMapDisplayManager.activeNote = id;
 	mMapDisplayManager.currentMenu = menus.mapEvent;
 	mMapDisplayManager.currentEvent = events.fallenGood;
 	mMapDisplayManager.currentStageOfEvent = 0;
@@ -125,5 +126,5 @@ function mapOption(_text, _onClick, _condition, _endEvent = false) constructor{
 	
 	updateCondition();
 	
-	
 }
+

@@ -14,7 +14,8 @@ displayedText = "";
 displayedTextxCord = 0;
 displayedTextyCord = 0;
 
-
+drawInGui = true; //is used to draw Buttons on the gui is defualt 
+drawInMap = false; //is used to draw Buttons on a map
 
 
 //is used to set the button 

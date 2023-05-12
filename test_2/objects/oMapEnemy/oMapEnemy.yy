@@ -34,6 +34,9 @@
     "name": "MapEnemy",
     "path": "sprites/MapEnemy/MapEnemy.yy",
   },
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "MapItemCollision",
+    "path": "sprites/MapItemCollision/MapItemCollision.yy",
+  },
   "visible": true,
 }

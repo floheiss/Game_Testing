@@ -34,6 +34,9 @@
     "name": "MapQuestion",
     "path": "sprites/MapQuestion/MapQuestion.yy",
   },
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "MapItemCollision",
+    "path": "sprites/MapItemCollision/MapItemCollision.yy",
+  },
   "visible": true,
 }

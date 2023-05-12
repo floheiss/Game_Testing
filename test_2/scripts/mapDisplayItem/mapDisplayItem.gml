@@ -1,7 +1,6 @@
 //all the funtion used in the events of the map 
 //example fallen goods option when any are pressed;
 
-
 #region onClickEvents 
 
 //used for fallenGodds stage 1
@@ -57,13 +56,18 @@ function triggerEvent(){
 	//then the updateEvent (with the info what happend if needed)
 	//the updateEvent then updates the BG and options based on this
 	//repeat
+	active = mMapDisplayManager.activeNote;
 	if(savedObject.endEvent){
+		active.active = false; 
+		mMapDisplayManager.activeNote = -1;
+		mMapDisplayManager.currentMenu = -1;
 		mMapDisplayManager.currentEvent = -1;
 		mMapDisplayManager.mapEventImage = -1;
+		mMapDisplayManager.mapEventOptions = [];
 		pMapItem.displayMapEvent();
 	}else{
-		oMapQuestion.stage ++;
-		oMapQuestion.updateEvent(self.savedObject.onClick);
+		active.stage ++;
+		active.updateEvent(self.savedObject.onClick);
 	}
 	
 }

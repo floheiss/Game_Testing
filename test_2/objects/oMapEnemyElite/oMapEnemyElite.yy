@@ -32,6 +32,9 @@
     "name": "MapEnemyElite",
     "path": "sprites/MapEnemyElite/MapEnemyElite.yy",
   },
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "MapItemCollision",
+    "path": "sprites/MapItemCollision/MapItemCollision.yy",
+  },
   "visible": true,
 }

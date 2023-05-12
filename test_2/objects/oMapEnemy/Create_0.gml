@@ -1,6 +1,6 @@
 event_inherited();
 
-function useMapNote(){
+function mapNoteFunction(){
 	updateMapList();
 	oDM.generateEncounter(enemyDifficulty.normal);	
 }
