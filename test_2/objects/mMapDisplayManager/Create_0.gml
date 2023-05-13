@@ -28,7 +28,7 @@ function displayEvent(){
 			#region inventory
 			
 			inventory = global.inventory;
-			mapEventImage = Menu_Background_Inventory; //mapInventoryBG; have to make 
+			mapEventImage = Menu_Background_Inventory;
 			
 			for(i = 0; i < 30; i ++){
 				
@@ -72,11 +72,10 @@ function displayEvent(){
 		case menus.campfire:
 			#region campfire
 			
-			mapEventImage = Menu_Background_Campfire; //have to make
-		
+			
 			//have to look at player ground --> set all of them around the campfire 
 			//have to make one default seleced --> have to save in var 
-			// have to make the others selecable 
+			//have to make the others selecable 
 			//have to make a menu to use there skills
 		
 			//one of the harded ones : ) 
@@ -99,11 +98,8 @@ function displayEvent(){
 				//is the discribtionText --> gives text feedback ! 
 				#endregion
 			
-			//context Image
 			with(objects[|i + 1]){
-				//note mapOptionSprite will have origen in der topcenter
-			
-				//bottom to menu + padding + mapOptionSprite(height) * (mapOptions ) + i
+				
 				xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) + 1);
 				yCord = 360; 
 				changeSprite(xCord, yCord,mapOptionSprite, false, 0);		
@@ -144,14 +140,12 @@ function displayEvent(){
 					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) - k); 
 				
 					objectNow.savedObject = mapOptions[k];
-					//should work as there is (if i think correctly) to chance the locked state while in event
-					//have to look at not sure if somethin diffrent is need when closing ???
 					objectNow.MainFunction = triggerEvent;
 					
-					if(objectNow.savedObject.locked){ 
+					if(!objectNow.savedObject.locked){ 
 						objectNow.changeSprite(xCord, yCord,mapOptionSprite, false, 0); 
 						
-					}else {
+					}else{
 						objectNow.useLockedOverlay(xCord, yCord, mapOptionSprite);
 					}
 					objectNow.setUseHighlightHoverImage(mapOptionSprite, 1);

@@ -12,9 +12,9 @@ function mBuffCreate(_duration, _amout, _type, _target, _goodEffect) constructor
 			switch(typeOfBuff){
 				case buffTypes.tempo:
 					if(goodEffect){
-						target.bonus+= amount;
+						target.empo += amount;
 					}else{
-						target.bonus-= amount;
+						target.tempo-= amount;
 					}
 				break;
 				case buffTypes.doge:

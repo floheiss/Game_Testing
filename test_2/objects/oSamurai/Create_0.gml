@@ -1,8 +1,6 @@
 event_inherited();
 tempo = 200 + irandom_range(1,10);
 
-
-
 //healthstuffs
 baseHealth = 60; 
 currentHealth = baseHealth;
@@ -194,3 +192,10 @@ function updateTargetNumbers(){
 	}
 	
 }
+
+#region campfire Stuff
+
+campfireSkills[0] = new campfireSkill("Prepare Equipment",
+"repair any broken gear, and oil your sword", prepareEquipment,true);
+
+#endregion

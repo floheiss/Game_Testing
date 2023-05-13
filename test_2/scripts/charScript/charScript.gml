@@ -45,28 +45,35 @@ function findActivDeBuffs(_target){
 
 #endregion
 
+#region campfireSkills
+
+function prepareEquipment(){
+	//have to look at --> move mBuff and mDot into General
+	//+ make 1 global.mBuff in game so you have instace 24/7 
+	//same for inventory/ make persitent
+	support = oCampfire.selecedSupport;
+	buff = new mBuff.mBuffCreate(20,0.10,buffTypes.dmg,support.id,true);
+	support.checkIfBuffBetterAndUse(buff);
+	buff = new mBuff.mBuffCreate(20,0.08,buffTypes.dmgRed,support.id,true);
+	support.checkIfBuffBetterAndUse(buff);
+	
+}
+
+#endregion
+
 #region note 
 // new values for chars --> 
-// --> reroll doge 
-// --> reroll acc 
-// --> reroll crit
 
 //disgust --> clas based max can be improved 
 //disgustMultiplayer --> some classes are not disguasted (battleharded)
 
 // add buffs for (also debuffs)
-// --> reroll doge / acc / crit
-// --> acc / crit 
-// --> dmg --> used in general dmg calulas 
 
 // remove buffs for 
-// --> health 
-// --> blood
-
 
 // new mechanich --> disguast 
 // is used like stress --> dd 
 // works a bit diffrent 
 
-//now works on both Linux and windows
+
 #endregion

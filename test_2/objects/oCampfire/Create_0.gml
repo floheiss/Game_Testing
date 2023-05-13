@@ -2,10 +2,12 @@ event_inherited();
 
 selecedSupport = -1;
 
+targetingForSkill = false;
 
 function mapNoteFunction(){
 	playerGroup = global.playerGroup;
 	selecedSupport = playerGroup[0];
+	
 	
 	skillsOptions = changeDisplayedSkill(selecedSupport);
 	
@@ -37,7 +39,7 @@ function changeDisplayedSkill(_unit){
 		//contains at least
 		//title | what it does on click (in scribt) | condition (in scribt)
 		//(describtion) 
-	
+	//Skill and CampfireSkill are the same thing save the info 
 	for(i = 0; i < array_length(_unit.campfireSkills); i ++){
 		skill = _unit.campfireSkills[i];
 		displayedSkills[i] = new mapOption(skill.title,skill.effect,skill.condition);

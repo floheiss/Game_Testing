@@ -202,6 +202,7 @@ function checkDeath(){
 
 #region attack Stuff
 
+//probly rework Attackstrukt not happy with it now 
 title = "deafault Attack";
 describtion = "someone fucked up I guess";
 attack1 = new createAttacks(1,0.55,(30 + 10 * lvl),dmgType.melee, 0.2,100,title, describtion); ;
@@ -224,6 +225,7 @@ function updateTargetNumbers(){
 }
 
 #endregion
+
 
 //checks if the Buff is stronger 
 //the replaces / addes (if none was there) / duration ++ (if worse)
@@ -316,6 +318,7 @@ function checkIfBuffBetterAndUse(buff){
 		break;
 	}
 }
+
 
 //checks if the deBuff is stronger 
 //the replaces / addes (if none was there) / duration ++ (if worse)
@@ -410,6 +413,7 @@ function checkIfDeBuffBetterAndUse(buff){
 		
 	}
 }
+
 
 //does all the End of Turn stuff 
 //dots, check buffs, ...
@@ -528,6 +532,7 @@ function checkEndTurn(){
 	
 }
 
+
 //calcualtes the Points value for the DM
 //have to add all the new vars here
 //REWORK NOT SURE HOW !!!! :)
@@ -559,7 +564,34 @@ function lvlUp(){
 }
 
 #region campfireSkills
-campfireSkills = []
+campfireSkills = [];
+
+//the strukt that is saced for campfireskills
+//saves all info needed (maybe needs targeting/number of targets)
+function campfireSkill(_title, _description, _effect, _condition, _addInformation){
+	title = _title;
+	description= _description;
+	onClick = _effect; 
+	condition= _condition;
+	addInformation = _addInformation;
+	locked = false;
+	
+	function updateCondition(){
+		
+		if(is_bool(condition)){
+			if(!condition){
+				locked = true;
+			}
+		}else{
+			if(!script_execute(condition)){
+				locked = true;
+			}
+		}
+	}
+	
+	updateCondition();	
+	
+}
 
 #endregion
 
