@@ -5,12 +5,12 @@ mapEventImage = -1;
 discribtionText = ""; // have to reset after every event !!!!
 mapEventOptions = []; // have to reset after every event !!!!
 currentEvent = -1; // have to reset after every event !!!!
-currentStageOfEvent = 1; // have to reset after every event !!!!
 activeNote= -1;
 
-function displayEvent(){
-	objects = findMapDisplayItem();
+hoveredNote = -1; 
 
+debug = false;
+function displayEvent(){
 	for(i = 0; i < ds_list_size(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
 		objects[|i].resetButton();	
@@ -85,35 +85,43 @@ function displayEvent(){
 		
 		case menus.mapEvent:
 			#region mapEvent
-			//any other event is handel here 
-			//the event will set mapEventOptions --> 
-				//in them is save what text the options will display 
-				//what happens when clicked (saves a function in scribt)
-				//when are options locked (condion if they are false --> lock option)
-				//(maybe add a hover that gives more info)
-			//all of this will be set when the map icon is clicked 
-			//is the discribtionText --> gives text feedback ! 
+				#region notes 
+				//any other event is handel here 
+				//the event will set mapEventOptions --> 
+					//in them is save what text the options will display 
+					//what happens when clicked (saves a function in scribt)
+					//when are options locked (condion if they are false --> lock option)
+					//(maybe add a hover that gives more info)
+				//all of this will be set when the map icon is clicked 
+				//is the discribtionText --> gives text feedback ! 
+				#endregion
 			
+			//context Image
 			with(objects[|i + 1]){
 				//note mapOptionSprite will have origen in der topcenter
 			
 				//bottom to menu + padding + mapOptionSprite(height) * (mapEventOptions ) + i
 				xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapEventOptions) + 1);
 				yCord = 360; 
-				displayedText = discribtionText;
 				changeSprite(xCord, yCord,mapOptionSprite, false, 0);		
 			}
-			for(i = 0; i < array_length(mapEventOptions); i ++){
-				with(objects[|i + 2]){
+			
+					
+			for(var k = 0; k < array_length(mapEventOptions); k ++){
+				withWorked = false;
+				with(objects[|k + 2]){
+					other.withWorked = true;
+				
 					xCord = 640;
-					yCord = 360+ 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapEventOptions) - other.i); 
-					savedObject = other.mapEventOptions[other.i];
+					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapEventOptions) - k); 
+				
+					savedObject = other.mapEventOptions[k];
 					//should work as there is (if i think correctly) to chance the locked state while in event
 					//have to look at not sure if somethin diffrent is need when closing ???
 					MainFunction = triggerEvent;
 					
 					if(savedObject.locked){ 
-						changeSprite(xCord, yCord,mapOptionSprite, false, 0); //have to make mapOptionSprite
+						changeSprite(xCord, yCord,mapOptionSprite, false, 0); 
 						
 					}else {
 						useLockedOverlay(xCord, yCord, mapOptionSprite);
@@ -123,12 +131,36 @@ function displayEvent(){
 					xCord - sprite_get_xoffset(mapOptionSprite) + 20,
 					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
 				}
+				
+				if(withWorked == false){
+					show_debug_message("_________________");
+					show_debug_message("with didnt work")
+					show_debug_message("_________________");
+					objectNow = objects[|k + 2]
+					xCord = 640;
+					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapEventOptions) - k); 
+				
+					objectNow.savedObject = mapEventOptions[k];
+					//should work as there is (if i think correctly) to chance the locked state while in event
+					//have to look at not sure if somethin diffrent is need when closing ???
+					objectNow.MainFunction = triggerEvent;
+					
+					if(objectNow.savedObject.locked){ 
+						objectNow.changeSprite(xCord, yCord,mapOptionSprite, false, 0); 
+						
+					}else {
+						objectNow.useLockedOverlay(xCord, yCord, mapOptionSprite);
+					}
+					objectNow.setUseHighlightHoverImage(mapOptionSprite, 1);
+					objectNow.setDisplayedText(objectNow.savedObject.textForDisplay, 
+					xCord - sprite_get_xoffset(mapOptionSprite) + 20,
+					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
+				}
 			}
 			#endregion
 
 		break;
 	}
-	
 	
 }
 
@@ -142,3 +174,5 @@ function findMapDisplayItem(){
 	return list;
 	
 }
+
+objects = findMapDisplayItem();

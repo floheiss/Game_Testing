@@ -137,7 +137,6 @@
     {"id":{"name":"Attack_1_Samurai_Archer_new","path":"sprites/Attack_1_Samurai_Archer_new/Attack_1_Samurai_Archer_new.yy",},},
     {"id":{"name":"oTownContractStartButton","path":"objects/oTownContractStartButton/oTownContractStartButton.yy",},},
     {"id":{"name":"mInventory","path":"objects/mInventory/mInventory.yy",},},
-    {"id":{"name":"mapItem","path":"scripts/mapItem/mapItem.yy",},},
     {"id":{"name":"MonchIcon","path":"sprites/MonchIcon/MonchIcon.yy",},},
     {"id":{"name":"charScript","path":"scripts/charScript/charScript.yy",},},
     {"id":{"name":"Attack_1Samurai","path":"sprites/Attack_1Samurai/Attack_1Samurai.yy",},},

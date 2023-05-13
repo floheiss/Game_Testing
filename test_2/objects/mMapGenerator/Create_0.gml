@@ -127,21 +127,22 @@ function displayMap(map){
 		currentNote = map.objectAtNotes[currentObject];
 		switch(currentNote.typeOfNote){
 			case noteTypes.enemy:
-				creation = instance_create_depth(currentNote.xCord,currentNote.yCord, 1, oMapEnemy);
-				creation.changeSprite(currentNote.xCord, currentNote.yCord,MapItemCollision,false,false);	
+				creation = instance_create_depth(currentNote.xCord,currentNote.yCord, 0, oMapEnemy);
+				creation.changeSprite(currentNote.xCord, currentNote.yCord,MapEnemy,false,false);	
 			break;
 			case noteTypes.elite:
-				creation = instance_create_depth(currentNote.xCord, currentNote.yCord, 1, oMapEnemyElite);
+				creation = instance_create_depth(currentNote.xCord, currentNote.yCord, 0, oMapEnemyElite);
 				creation.changeSprite(currentNote.xCord, currentNote.yCord,MapEnemyElite,false,false);
 			break;
 			case noteTypes.question:
-				creation = instance_create_depth(currentNote.xCord, currentNote.yCord,1, oMapQuestion);
+				creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapQuestion);
 				creation.changeSprite(currentNote.xCord, currentNote.yCord,MapQuestion,false,false);
 				creation.event = currentNote.specific;
 			break;
 		}
 		addVariablsToCreation(creation,currentObject, currentNote);
 		creation.setUseHighlightHoverImage(MapHover);
+		
 	}
 }
 

@@ -281,8 +281,8 @@ function autoLineBreaker(_string,_maxLength,_maxWordLength){
 	repeat(string_length(text)) {
 	    if insert > argument1 {
 	        while(1) {
-	            str = string_char_at(text,go-prev)
-	            if str != " " {
+	            text2 = string_char_at(text,go-prev)
+	            if text2 != " " {
 	                prev += 1
 	            }
 	            else {

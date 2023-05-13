@@ -95,7 +95,6 @@
     {"name":"Attack_1_Samurai_Archer_new","order":7,"path":"sprites/Attack_1_Samurai_Archer_new/Attack_1_Samurai_Archer_new.yy",},
     {"name":"oTownContractStartButton","order":5,"path":"objects/oTownContractStartButton/oTownContractStartButton.yy",},
     {"name":"mInventory","order":1,"path":"objects/mInventory/mInventory.yy",},
-    {"name":"mapItem","order":4,"path":"scripts/mapItem/mapItem.yy",},
     {"name":"charScript","order":5,"path":"scripts/charScript/charScript.yy",},
     {"name":"BattleScreenButton","order":2,"path":"scripts/BattleScreenButton/BattleScreenButton.yy",},
     {"name":"vIndicator","order":1,"path":"sprites/vIndicator/vIndicator.yy",},

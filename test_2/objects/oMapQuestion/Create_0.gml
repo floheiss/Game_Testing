@@ -1,6 +1,6 @@
 event_inherited();
 stage = 0;
-event =  events.fallenGood; //rework to save the event it self in the question not if good or bad
+event = events.fallenGood; //rework to save the event it self in the question not if good or bad
 //should be easy but later 
 
 //is used when the note is clicked on the Map
@@ -32,7 +32,7 @@ function mapNoteFunction(){
 			mapEventImage = mapEventFallenGoods; //have to make main Image
 			//leave the chest alone 
 			mapOptionsArray[0] = new mapOption("Leave the chest by the wayside",
-			closeTheEvent, true);		
+			closeTheEvent, true, true);		
 			//use force to open chest 
 			mapOptionsArray[1] = new mapOption("Use your strong arms OwO >~<",
 			openChestWithForce, true);		
@@ -48,10 +48,9 @@ function mapNoteFunction(){
 			
 		#endregion
 	}
-	mMapDisplayManager.activeNote = id;
+	mMapDisplayManager.activeNote = self;
 	mMapDisplayManager.currentMenu = menus.mapEvent;
 	mMapDisplayManager.currentEvent = events.fallenGood;
-	mMapDisplayManager.currentStageOfEvent = 0;
 	mMapDisplayManager.mapEventImage = mapEventImage;
 	mMapDisplayManager.discribtionText = displayText;
 	
@@ -60,6 +59,7 @@ function mapNoteFunction(){
 	}
 	
 	mMapDisplayManager.displayEvent();
+	
 	//is used to activate the menu display 
 	displayMapEvent();
 }

@@ -50,24 +50,28 @@ function checkIfLockPickInInventory(){
 
 #endregion 
 
+function triggerMapNote(){
+	self.mapNoteFunction();
+}
 
 function triggerEvent(){
 	//when an event is used the stage advances 
 	//then the updateEvent (with the info what happend if needed)
 	//the updateEvent then updates the BG and options based on this
 	//repeat
-	active = mMapDisplayManager.activeNote;
-	if(savedObject.endEvent){
-		active.active = false; 
-		mMapDisplayManager.activeNote = -1;
-		mMapDisplayManager.currentMenu = -1;
-		mMapDisplayManager.currentEvent = -1;
-		mMapDisplayManager.mapEventImage = -1;
-		mMapDisplayManager.mapEventOptions = [];
-		pMapItem.displayMapEvent();
+	note = mMapDisplayManager.activeNote;
+	if(self.savedObject.endEvent == true){
+		mMapDisplayManager.debug = true;
+		mMapDisplayManager.mapEventOptions = [];//reset options 
+		mMapDisplayManager.activeNote = -1;//manager loss note that is used
+		mMapDisplayManager.currentMenu = -1;//manager resetes Menu 
+		mMapDisplayManager.currentEvent = -1;//restet event
+		mMapDisplayManager.mapEventImage = -1;//reset bg	
+		note.active = false; //note get deactive
+		pMapItem.displayMapEvent();//closes the view
 	}else{
-		active.stage ++;
-		active.updateEvent(self.savedObject.onClick);
+		note.stage ++;
+		note.updateEvent(self.savedObject.onClick);	
 	}
 	
 }

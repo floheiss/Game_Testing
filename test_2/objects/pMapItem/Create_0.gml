@@ -4,6 +4,9 @@ positionInList = 0;
 preNotes = [];
 active = true;
 
+drawInMap = true;
+drawInGui = false;
+
 function mapNoteFunction(){
 		
 }
@@ -20,6 +23,9 @@ function displayMapEvent(){
 	}
 	with(oGame){
 		event_user(0);
+		for(i = 0; i < 200; i ++){
+			
+		}
 		event_user(0);
 	}
 }
