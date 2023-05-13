@@ -96,6 +96,7 @@
     {"id":{"name":"mapEventBackGround","path":"sprites/mapEventBackGround/mapEventBackGround.yy",},},
     {"id":{"name":"oInventoryMap","path":"objects/oInventoryMap/oInventoryMap.yy",},},
     {"id":{"name":"sCombatAnimation","path":"sequences/sCombatAnimation/sCombatAnimation.yy",},},
+    {"id":{"name":"oCampfire","path":"objects/oCampfire/oCampfire.yy",},},
     {"id":{"name":"mBuff","path":"objects/mBuff/mBuff.yy",},},
     {"id":{"name":"MapItemCollision","path":"sprites/MapItemCollision/MapItemCollision.yy",},},
     {"id":{"name":"Attack_2Samurai","path":"sprites/Attack_2Samurai/Attack_2Samurai.yy",},},

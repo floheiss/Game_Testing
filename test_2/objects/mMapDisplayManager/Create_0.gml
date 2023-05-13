@@ -3,13 +3,16 @@ menusUI = layer_get_id("menusUI");
 
 mapEventImage = -1;
 discribtionText = ""; // have to reset after every event !!!!
-mapEventOptions = []; // have to reset after every event !!!!
+mapOptions = []; // have to reset after every event !!!!
 currentEvent = -1; // have to reset after every event !!!!
-activeNote= -1;
+activeNote = -1;
 
-hoveredNote = -1; 
+campfireDisplaySupport = [];
 
-debug = false;
+hoveredNote = -1; //for debugging
+debug = false; //?????
+
+
 function displayEvent(){
 	for(i = 0; i < ds_list_size(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
@@ -68,7 +71,7 @@ function displayEvent(){
 		
 		case menus.campfire:
 			#region campfire
-		
+			
 			mapEventImage = Menu_Background_Campfire; //have to make
 		
 			//have to look at player ground --> set all of them around the campfire 
@@ -87,7 +90,7 @@ function displayEvent(){
 			#region mapEvent
 				#region notes 
 				//any other event is handel here 
-				//the event will set mapEventOptions --> 
+				//the event will set mapOptions --> 
 					//in them is save what text the options will display 
 					//what happens when clicked (saves a function in scribt)
 					//when are options locked (condion if they are false --> lock option)
@@ -100,22 +103,22 @@ function displayEvent(){
 			with(objects[|i + 1]){
 				//note mapOptionSprite will have origen in der topcenter
 			
-				//bottom to menu + padding + mapOptionSprite(height) * (mapEventOptions ) + i
-				xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapEventOptions) + 1);
+				//bottom to menu + padding + mapOptionSprite(height) * (mapOptions ) + i
+				xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) + 1);
 				yCord = 360; 
 				changeSprite(xCord, yCord,mapOptionSprite, false, 0);		
 			}
 			
 					
-			for(var k = 0; k < array_length(mapEventOptions); k ++){
+			for(var k = 0; k < array_length(mapOptions); k ++){
 				withWorked = false;
 				with(objects[|k + 2]){
 					other.withWorked = true;
 				
 					xCord = 640;
-					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapEventOptions) - k); 
+					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapOptions) - k); 
 				
-					savedObject = other.mapEventOptions[k];
+					savedObject = other.mapOptions[k];
 					//should work as there is (if i think correctly) to chance the locked state while in event
 					//have to look at not sure if somethin diffrent is need when closing ???
 					MainFunction = triggerEvent;
@@ -138,9 +141,9 @@ function displayEvent(){
 					show_debug_message("_________________");
 					objectNow = objects[|k + 2]
 					xCord = 640;
-					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapEventOptions) - k); 
+					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) - k); 
 				
-					objectNow.savedObject = mapEventOptions[k];
+					objectNow.savedObject = mapOptions[k];
 					//should work as there is (if i think correctly) to chance the locked state while in event
 					//have to look at not sure if somethin diffrent is need when closing ???
 					objectNow.MainFunction = triggerEvent;
@@ -157,6 +160,7 @@ function displayEvent(){
 					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
 				}
 			}
+			
 			#endregion
 
 		break;

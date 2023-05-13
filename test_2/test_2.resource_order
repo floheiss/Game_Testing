@@ -61,6 +61,7 @@
     {"name":"mapEventBackGround","order":2,"path":"sprites/mapEventBackGround/mapEventBackGround.yy",},
     {"name":"oInventoryMap","order":5,"path":"objects/oInventoryMap/oInventoryMap.yy",},
     {"name":"sCombatAnimation","order":4,"path":"sequences/sCombatAnimation/sCombatAnimation.yy",},
+    {"name":"oCampfire","order":4,"path":"objects/oCampfire/oCampfire.yy",},
     {"name":"mBuff","order":4,"path":"objects/mBuff/mBuff.yy",},
     {"name":"MapItemCollision","order":5,"path":"sprites/MapItemCollision/MapItemCollision.yy",},
     {"name":"Attack_2Samurai","order":1,"path":"sprites/Attack_2Samurai/Attack_2Samurai.yy",},

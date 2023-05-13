@@ -13,7 +13,7 @@ function mapNoteFunction(){
 		//set the menu in the mDisplayManager
 		//will set mapEventImage as the background
 		//will set currentEvent to this event
-		//will set the option for mapEventOptions
+		//will set the option for mapOptions
 			//will give them a function what will happen if clicked 
 				//returns any information need to proceed (true, [flase, "force"])
 				//uses this in the next stage of the event to make decicions
@@ -55,7 +55,7 @@ function mapNoteFunction(){
 	mMapDisplayManager.discribtionText = displayText;
 	
 	for(i = 0; i < array_length(mapOptionsArray); i ++){
-		mMapDisplayManager.mapEventOptions[i] = mapOptionsArray[i];
+		mMapDisplayManager.mapOptions[i] = mapOptionsArray[i];
 	}
 	
 	mMapDisplayManager.displayEvent();
@@ -88,9 +88,9 @@ function updateEvent(_result){
 					mapOptionsArray[0] = new mapOption("the chest was unfaced by your action",
 					closeTheEvent,true, true);
 					show_debug_message("--------------> fail");
-					mMapDisplayManager.mapEventOptions = [];
+					mMapDisplayManager.mapOptions = [];
 					for(i = 0; i < array_length(mapOptionsArray); i ++){
-						mMapDisplayManager.mapEventOptions[i] = mapOptionsArray[i];
+						mMapDisplayManager.mapOptions[i] = mapOptionsArray[i];
 					}
 					#endregion
 				}
@@ -104,27 +104,4 @@ function updateEvent(_result){
 	mMapDisplayManager.displayEvent();
 }
 
-function mapOption(_text, _onClick, _condition, _endEvent = false) constructor{
-	textForDisplay = _text;
-	onClick = _onClick
-	condition = _condition;
-	locked = true; 
-	endEvent = _endEvent;
-	
-	function updateCondition(){
-		
-		if(is_bool(condition)){
-			if(!condition){
-				locked = false;
-			}
-		}else{
-			if(!script_execute(condition)){
-				locked = false;
-			}
-		}
-	}
-	
-	updateCondition();
-	
-}
 

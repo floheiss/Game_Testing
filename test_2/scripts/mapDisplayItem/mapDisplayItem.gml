@@ -62,7 +62,7 @@ function triggerEvent(){
 	note = mMapDisplayManager.activeNote;
 	if(self.savedObject.endEvent == true){
 		mMapDisplayManager.debug = true;
-		mMapDisplayManager.mapEventOptions = [];//reset options 
+		mMapDisplayManager.mapOptions = [];//reset options 
 		mMapDisplayManager.activeNote = -1;//manager loss note that is used
 		mMapDisplayManager.currentMenu = -1;//manager resetes Menu 
 		mMapDisplayManager.currentEvent = -1;//restet event

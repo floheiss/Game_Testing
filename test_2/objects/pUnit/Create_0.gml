@@ -558,10 +558,10 @@ function lvlUp(){
 
 }
 
+#region campfireSkills
+campfireSkills = []
 
-
-
-
+#endregion
 
 
 

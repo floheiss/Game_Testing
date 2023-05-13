@@ -30,6 +30,28 @@ function displayMapEvent(){
 	}
 }
 
-
+//is uses to display an Option in any given Map event OR campfire
+function mapOption(_text, _onClick, _condition, _endEvent = false) constructor{
+	textForDisplay = _text;
+	onClick = _onClick
+	condition = _condition;
+	locked = true; 
+	endEvent = _endEvent;
+	
+	function updateCondition(){
+		
+		if(is_bool(condition)){
+			if(!condition){
+				locked = false;
+			}
+		}else{
+			if(!script_execute(condition)){
+				locked = false;
+			}
+		}
+	}
+	
+	updateCondition();	
+}
 
 
