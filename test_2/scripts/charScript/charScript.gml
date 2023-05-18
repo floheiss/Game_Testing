@@ -45,12 +45,14 @@ function findActivDeBuffs(_target){
 
 #endregion
 
-#region campfireSkills
+#region skill
 
 function prepareEquipment(){
 	//have to look at --> move mBuff and mDot into General
 	//+ make 1 global.mBuff in game so you have instace 24/7 
 	//same for inventory/ make persitent
+	
+	//have to rename a lot of things :) 
 	support = oCampfire.selecedSupport;
 	buff = new mBuff.mBuffCreate(20,0.10,buffTypes.dmg,support.id,true);
 	support.checkIfBuffBetterAndUse(buff);

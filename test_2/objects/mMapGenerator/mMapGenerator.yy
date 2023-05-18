@@ -8,8 +8,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Map",
-    "path": "folders/Objects/Dungeon/Map.yy",
+    "name": "Dungeon",
+    "path": "folders/Objects/Dungeon.yy",
   },
   "parentObjectId": null,
   "persistent": false,

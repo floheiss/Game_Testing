@@ -1,12 +1,12 @@
 event_inherited();
-tempo = 200 + irandom_range(1,10);
+tempo = 260;
 
 //healthstuffs
 baseHealth = 60; 
 currentHealth = baseHealth;
 
 class = classList.bloodMage; //NEED TO CHANGE LATER
-icon = SamuraiIcon;
+
 
 //dmgRedStuff
 dmgRedMelee = 0.3;
@@ -15,6 +15,9 @@ dmgRedMagic = 0.1;
 
 //doge is used for all kindes of doge (dots, stuns, dots)
 doge = 0.2; // 0.2
+
+#region spriteVars
+icon = SamuraiIcon;
 
 //spriteStuff
 idleStart = 0;
@@ -35,7 +38,7 @@ hurtEnd = 65;
 
 deathStart = 66;
 deathEnd = 80;
-
+#endregion
 
 // overhead attack 
 // acc --> 0.55 high dmg high pen

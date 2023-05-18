@@ -75,3 +75,11 @@ function triggerEvent(){
 	}
 	
 }
+
+function triggerCampfireSkill(){
+	self.savedObject.onClick();
+}
+
+function changeSelecedSupportMapOption(){
+	oMapCampfire.updateSelecedSupport(self);	
+}

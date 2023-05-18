@@ -71,15 +71,60 @@ function displayEvent(){
 		
 		case menus.campfire:
 			#region campfire
-			
-			
 			//have to look at player ground --> set all of them around the campfire 
 			//have to make one default seleced --> have to save in var 
 			//have to make the others selecable 
 			//have to make a menu to use there skills
 		
 			//one of the harded ones : ) 
+			
 			//will make at the end
+			for(var i = 0; i < array_length(campfireDisplaySupport); i++){
+				withWored = false;
+				with(objects[|i + 1]){
+					//have to look at x and y cord 
+					xCord = 360 + 150 * i;
+					yCord = 360; 
+					if(i == 0){
+						seleced = true;
+					}
+					
+					savedObject = other.campfireDisplaySupport[i];
+					MainFunction = changeSelecedSupportMapOption;
+					
+					changeSprite(xCord, yCord, savedObject.campFireSprite, false, 0);
+					if(i == 0){
+						oMapCampfire.updateSelecedSupport(self);
+					}
+				}
+			}
+				
+			
+			for(var k = 0; k < array_length(mapOptions); k ++){
+				withWorked = false;
+				with(objects[|k + 5]){
+					other.withWorked = true;
+				
+					xCord = 640;
+					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapOptions) - k); 
+				
+					savedObject = other.mapOptions[k];
+					//should work as there is (if i think correctly) to chance the locked state while in event
+					//have to look at not sure if somethin diffrent is need when closing ???
+					MainFunction = triggerCampfireSkill;
+					
+					if(savedObject.locked){ 
+						changeSprite(xCord, yCord,mapOptionSprite, false, 0); 
+						
+					}else {
+						useLockedOverlay(xCord, yCord, mapOptionSprite);
+					}
+					setUseHighlightHoverImage(mapOptionSprite, 1);
+					setDisplayedText(savedObject.textForDisplay, 
+					xCord - sprite_get_xoffset(mapOptionSprite) + 20,
+					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
+				}
+			}
 		
 			#endregion
 	

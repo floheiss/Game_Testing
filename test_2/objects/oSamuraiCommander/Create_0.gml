@@ -1,17 +1,15 @@
 event_inherited();
 
+#region Var Stuff
+
 unitSequence = layer_sequence_create("Squences", x, y, sSamuraiCommander);
 
+baseTempo = 250;
 
-maxActionsInTurn = 1;
-
-baseTempo = 300 + irandom_range(1,10);
-bonusTempo = 0;
 currentTempo = baseTempo + bonusTempo;
 
 //healthstuffs
 baseHealth = 200;//55
-bonusHealth = 0;
 maxHealth = baseHealth + bonusHealth;
 currentHealth = maxHealth;
 
@@ -21,8 +19,8 @@ dmgRedRange = 0.33;
 dmgRedMagic = 0.2;
 
 doge = 0.15;
-currentdoge = doge + bonusDoge;
 
+#region spriteStuff
 //spriteStuff
 idleStart = 0;
 idleEnd = 9;
@@ -45,8 +43,9 @@ deathEnd = 63;
 protectStart = 64;
 protectEnd =73;
 
+#endregion
 
-
+#endregion
 //same as samurai at moment
 
 // overhead attack 

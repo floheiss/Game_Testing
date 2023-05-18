@@ -8,7 +8,6 @@ class = 0;//has to be set in class
 state = states.IDLE;
 unitSequence = 0; //has to be set in class 
 //REWORK HOW VISUALS WORK FOR BETTER TRANSPORT
-icon = 0;//has to be set in class 
 
 
 actionsInTurn = 0; 
@@ -26,7 +25,13 @@ spriteHeight = 128;
 spriteWidth = 128;
 #endregion
 
-maxActionsInTurn = 1;
+#region spritestuff
+icon = 0;//has to be set in class 
+campFireSprite = 0; //has to be set in class 
+
+#endregion
+
+maxActionsInTurn = 1; //most classes should only have 1 attack per turn 
 
 critMultiplier = 2.0;
 buffCritMultiplier = false; // have to add in buff list and below
@@ -56,7 +61,7 @@ dmgRedMagic = 0; //les then 1
 buffDmgRed= false;
 deBuffDmgRed = false;
 
-//Strukt that saves the Bleeds and Posion 
+
 bleedDot = false;
 poisonDot = false;
 //not sure ends 
