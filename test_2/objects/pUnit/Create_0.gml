@@ -573,7 +573,7 @@ campfireSkills = [];
 
 //the strukt that is saced for campfireskills
 //saves all info needed (maybe needs targeting/number of targets)
-function campfireSkill(_title, _description, _effect, _condition, _addInformation){
+function campfireSkill(_title, _description, _effect, _condition, _addInformation) constructor{
 	title = _title;
 	description= _description;
 	onClick = _effect; 

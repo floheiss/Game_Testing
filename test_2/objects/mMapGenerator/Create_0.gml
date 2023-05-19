@@ -83,7 +83,7 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 					numberObjectInCurrentColumn ++;
 					currentObject ++;
 					
-				}else if(encounter < probabilityQuestion){
+				}else if((encounter * 2 )< probabilityQuestion){
 					// here is a question 
 					//when do neutrals happen ?????? have to look into later !!!!
 					spawer = objects[|currentObject];
@@ -103,8 +103,15 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 		
 				}else{
 					//here is a enemy 
+					/*
 					spawer = objects[|currentObject];
 					objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.enemy,currentObject);
+					numberObjectInCurrentColumn ++;
+					currentObject ++;
+					*/
+					//testcode 
+					spawer = objects[|currentObject];
+					objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.campfire,currentObject);
 					numberObjectInCurrentColumn ++;
 					currentObject ++;
 					
@@ -138,6 +145,10 @@ function displayMap(map){
 				creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapQuestion);
 				creation.changeSprite(currentNote.xCord, currentNote.yCord,MapQuestion,false,false);
 				creation.event = currentNote.specific;
+			break;
+			case noteTypes.campfire:
+				creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapCampfire);
+				creation.changeSprite(currentNote.xCord, currentNote.yCord,MapCampfire,false,false);
 			break;
 		}
 		addVariablsToCreation(creation,currentObject, currentNote);
