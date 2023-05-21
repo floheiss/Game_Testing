@@ -18,6 +18,7 @@ doge = 0.2; // 0.2
 
 #region spriteVars
 icon = SamuraiIcon;
+campFireSprite = 0; 
 
 //spriteStuff
 idleStart = 0;

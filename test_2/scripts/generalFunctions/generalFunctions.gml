@@ -1,12 +1,12 @@
 //sorts a given list 
 // might rework later --> for diffrent sort function
- function bubble_sort(list){
-    list_size = ds_list_size(list);
+ function bubble_sort(_list){
+    var list_size = ds_list_size(_list);
     for (var i = 0; i < list_size; i++) {
         for (var j = 0; j < list_size - i - 1; j++) {
-            if (list[|j].currentTempo < list[|j+1].currentTempo) {
+            if (list[|j].currentTempo < _list[|j+1].currentTempo) {
                 var swapped = list[|j];
-                list[|j] = list[|j+1];
+                list[|j] = _list[|j+1];
                 list[|j+1] = swapped;
             }
         }
@@ -155,12 +155,12 @@ function findPosition(sizeOfTeam, team){
 //--> rework systems to use this 
 function chanceFrom100(_rerolls){
 	randomize();
-	number = round(random_range(0,99));
+	var number = round(random_range(0,99));
 	//rerolls
 	//note should (????) be usefull anywhere as small amouts are always better
 	if(_rerolls != 0){
 		if(_rerolls < 0){
-			for(i = 0; i < abs(_rerolls); i++){
+			for(var i = 0; i < abs(_rerolls); i++){
 				number = max(number, random_range(0,99));
 			}
 		}
@@ -177,13 +177,13 @@ function chanceFrom100(_rerolls){
 //might get reworked to account for acc Buffs
 //can be given any value --> 0-1 OR 0-100
 function checkAgainstRandom100(_valueToCheck, _rerolls = 0){
-	value = _valueToCheck
+	var value = _valueToCheck
 	if(value <= 1){
 		value = _valueToCheck * 10 // 0.8 *10 = 80%
 	}
 	
 	
-	number = chanceFrom100(_rerolls);
+	var number = chanceFrom100(_rerolls);
 	
 	if(number < value){
 		return true;
@@ -274,10 +274,10 @@ function findRandomItemInArray(_arrayToFindIn){
 #region autoLineBreaker
 
 function autoLineBreaker(_string,_maxLength,_maxWordLength){
-	insert = 0;
-	go = 0;
-	prev = 0;
-	text = argument0;
+	var insert = 0;
+	var go = 0;
+	var prev = 0;
+	var text = argument0;
 	repeat(string_length(text)) {
 	    if insert > argument1 {
 	        while(1) {

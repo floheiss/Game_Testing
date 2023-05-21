@@ -29,6 +29,28 @@ spriteWidth = 128;
 icon = 0;//has to be set in class 
 campFireSprite = 0; //has to be set in class 
 
+
+//spriteStuff
+idleStart = 0;
+idleEnd = 11;
+
+
+attack1Start = 12;
+attack1End = 24;
+
+attack2Start = 26;
+attack2End = 42;
+
+attack3Start = 43;
+attack3End = 54;
+
+hurtStart = 56;
+hurtEnd = 65;
+
+deathStart = 66;
+deathEnd = 80;
+
+
 #endregion
 
 maxActionsInTurn = 1; //most classes should only have 1 attack per turn 
@@ -64,7 +86,9 @@ deBuffDmgRed = false;
 
 bleedDot = false;
 poisonDot = false;
-//not sure ends 
+
+stuned = false;
+stunResist = [0,0];
 
 doge = 0.0; //les then 1 
 buffDoge = false;
@@ -80,33 +104,18 @@ expToNextLvl = 100; //later calculae after lvl up
 
 #endregion
 
-#region attackStrukt
 
-function createAttacks(_targetNumber, _acc, _dmg, _dmgType, _pen,_pointValue, _title,_describtion, _bloodCost = 0) constructor{
-	numberTarget = _targetNumber;
-	acc = _acc;
-	dmg = _dmg;
-	dmgTypeAttack = _dmgType;
-	pen = _pen;
-	title = _title;
-	describtion = _describtion;
-	bloodCost = _bloodCost;
-	pointValue = _pointValue;
-}
-
-#endregion
-
-function damageUnit(dmgNumber, dmgType, armorPen){
+function damageUnit(_dmgNumber, _dmgType, _armorPen){
 	if(doge > 0.95){
-		dogeCal = 0.95;
+		var dogeCal = 0.95;
 	}else{
 		dogeCal = doge;
 	}
  	if(checkAgainstRandom100(dogeCal, reRollDoge)){
 		show_debug_message("Doged");
 	} else {
-		dmgRedction = 0;
-		switch(dmgType){
+		var dmgRedction = 0;
+		switch(_dmgType){
 			case dmgType.melee: 
 				dmgRedction = dmgRedMelee;
 			break;
@@ -117,17 +126,17 @@ function damageUnit(dmgNumber, dmgType, armorPen){
 				dmgRedction = dmgRedMagic;
 			break;
 		}
-		dmgRedction -= armorPen;
+		dmgRedction -= _armorPen;
 		
 		if(dmgRedction < 0){
 			dmgRedction = 0;
 		}
-		if(dmgRedction > 0.85){
-			dmgRedction = 0.85;
+		if(dmgRedction > 0.9){
+			dmgRedction = 0.9;
 		}
 		
 		// - for even more dmg ??? 
-		amountDamaged = dmgNumber - (dmgNumber*dmgRedction);
+		var amountDamaged = _dmgNumber - (_dmgNumber*dmgRedction);
 		amountDamaged = ceil(amountDamaged);
 		currentHealth -=  amountDamaged;
 		 
@@ -139,22 +148,35 @@ function damageUnit(dmgNumber, dmgType, armorPen){
 	checkDeath();
 }
 
-function applyDot(dot){
+function stunUnit(_acc, _accReroll,_stunResistAfter){
+	if(!checkAgainstRandom100(doge, reRollDoge)){
+		var accCal = max(_acc - stunResist[0], 0.1);
+		if(checkAgainstRandom100(accCal, _accReroll)){
+			var newResist = stunResist[0] + _stunResistAfter;
+			stunResist = [newResist, 3];
+			stuned = true;
+			return true;
+		}
+	}
+	return false;
+}
+
+function applyDot(_dot){
 	if(doge > 0.95){
-		dogeCal = 0.95;
+		var dogeCal = 0.95;
 	}else{
-		dogeCal = doge;
+		var dogeCal = doge;
 	}
 	if(checkAgainstRandom100(dogeCal, reRollDoge)){
-		show_debug_message("i doged the dot (i am the funny : ) )");
+		show_debug_message("i doged the dot (i am the funny :) )");
 	}else{
-		switch(dot.typeOfDot){
+		switch(_dot.typeOfDot){
 			case dotTypes.poison: 
 				if(poisonDot != false ){
-					if(poisonDot.amount < dot.amount){
-						poisonDot = dot;
+					if(poisonDot.amount < _dot.amount){
+						poisonDot = _dot;
 						poisonDot.effect();
-					}else if(poisonDot.amount > dot.amount){
+					}else if(poisonDot.amount > _dot.amount){
 						poisonDot.duration ++;
 					}else{
 						poisonDot = dot;
@@ -164,13 +186,13 @@ function applyDot(dot){
 			break;
 		case dotTypes.bleed:		
 			if(bleedDot != false ){
-				if(bleedDot.amount < dot.amount){
-					bleedDot = dot;
+				if(bleedDot.amount < _dot.amount){
+					bleedDot = _dot;
 					bleedDot.effect();
-				}else if(bleedDot.amount > dot.amount){
+				}else if(bleedDot.amount > _dot.amount){
 					bleedDot.duration ++;
 				}else{
-					bleedDot = dot;
+					bleedDot = _dot;
 					bleedDot.effect();
 				}
 			}	
@@ -179,14 +201,22 @@ function applyDot(dot){
 	
 }
 
-function healUnit(heal){ 
-	if(currentHealth + heal < maxHealth){
-		currentHealth += heal;
+function applieDotsToTargets(_targets, _dot){
+	for(var i = 0; i < ds_list_size(_targets); i++){
+		var target = _list[|i];
+		_dot.target = target
+		target.applyDot(_dot);
+	}
+}
+
+function healUnit(_heal){ 
+	if(currentHealth + hea_heall < baseHealth){
+		currentHealth += _heal;
 	} else {
 		currentHealth = baseHealth;
 	}
 	show_debug_message("i have " + string(currentHealth) );
-	show_debug_message("i heal for " + string(heal));
+	show_debug_message("i heal for " + string(_heal));
 	show_debug_message("i have " + string(currentHealth) );
 }
 
@@ -207,73 +237,113 @@ function checkDeath(){
 
 #region attack Stuff
 
-//probly rework Attackstrukt not happy with it now 
-title = "deafault Attack";
-describtion = "someone fucked up I guess";
-attack1 = new createAttacks(1,0.55,(30 + 10 * lvl),dmgType.melee, 0.2,100,title, describtion); ;
-numberTargetAttack1 = 1;
-canTargetAttack1 = possibleTargets.enemies;
-function attack1(list){}
+var title = "deafault Attack";
+var describtion = "someone fucked up I guess";
+attack1 = new attacksDesribtion(0.55,15, 10,dmgType.melee, 0.2,0.3,
+title, describtion,1, 100);
+function attack1(_list){}
 
-attack2 = false;
-numberTargetAttack2 = 1; 
-canTargetAttack2 = possibleTargets.enemies;
-function attack2(list){}
+attack2 = new attacksDesribtion(0.55,15, 10,dmgType.melee, 0.2,0.3,
+title, describtion,1, 100);
+function attack2(_list){}
 
-attack3 = false;
-numberTargetAttack3 = 1; 
-canTargetAttack3 = possibleTargets.enemies;
-function attack3(list){}
+attack3 = new attacksDesribtion(0.55,15, 10,dmgType.melee, 0.2,0.3,
+title, describtion,1, 100);
+function attack3(_list){}
+
+function basicDmgAttack(_targets, _attackStruc, _actionTaken){
+	var attackStru = _attackStruc;
+	var accuracy = attackStru.acc;
+	var dmg = attackStru.dmg; 
+	var type = attackStru.dmgTypeAttack;
+	var pen = attackStru.pen;
+	var critC = attackStru.critChance;
+	var returnBool = true;
+	
+	var attackList = ds_list_create();
+	for(var i = 0; i <  ds_list_size(_targets);i ++){
+		ds_list_add(attackList, _targets[| i]);
+		//show_debug_message("i attacked: " + string(attackList[|i]));
+	}
+	
+	for (var i = 0;	i < ds_list_size(attackList); i++) {
+	    if(checkAgainstRandom100(accuracy, 
+		(attackStru.owner.reRollAcc + attackStru.rerolls))){
+			var target = attackList[|i];
+			
+			if(checkAgainstRandom100(critC, attackStru.owner.reRollCrit)){
+				dmg = dmg * attackStru.owner.critMultiplier;
+			}
+			target.damageUnit(dmg, type, pen);
+			show_debug_message("hit for: " + string(dmg));
+				
+		} else{
+			show_debug_message("miss");
+		}
+	}
+	
+	//have to add animations :) 
+	
+	
+	ds_list_destroy(attackList);
+	prozessFinished = true;
+	turnFinished = true; 
+	actionsInTurn ++;
+}
 
 function updateTargetNumbers(){
-
+	attack1Stru.updateTargetNumbers();
+	attack2Stru.updateTargetNumbers();
+	attack3Stru.updateTargetNumbers();
 }
 
 #endregion
 
 
+#region checkIfBuffDeBuffBetter
+
 //checks if the Buff is stronger 
 //the replaces / addes (if none was there) / duration ++ (if worse)
-function checkIfBuffBetterAndUse(buff){
-	switch(buff.typeOfBuff){
+function checkIfBuffBetterAndUse(_buff){
+	switch(_buff.typeOfBuff){
 		case buffTypes.tempo:
 			if(buffTempo != false){
-				if(buffTempo.amount < buff.amount){
-					buffTempo = buff;
+				if(buffTempo.amount < _buff.amount){
+					buffTempo = _buff;
 					buffTempo.effect();
 				}else {
 					buffTempo.duration ++;
 				}
 			}else{ 
-				buffTempo = buff;
+				buffTempo = _buff;
 				buffTempo.effect();
 			}
 		break;
 		
 		case buffTypes.doge:
 			if(buffDoge!= false){
-				if(buffDoge.amount < buff.amount){
-					buffDoge = buff;
+				if(buffDoge.amount < _buff.amount){
+					buffDoge = _buff;
 					buffDoge.effect();
 				}else {
 					buffDoge.duration ++;
 				}
 			}else{ 
-				buffDoge = buff;
+				buffDoge = _buff;
 				buffDoge.effect();
 			}
 		break;
 		
 		case buffTypes.dmgRed:
 			if(buffDmgRed != false){
-				if(buffDmgRed.amount < buff.amount){
-					buffDmgRed = buff;
+				if(buffDmgRed.amount < _buff.amount){
+					buffDmgRed = _buff;
 					buffDmgRed.effect();
 				}else {
 					buffDmgRed.duration ++;
 				}
 			}else{ 
-				buffDmgRed = buff;
+				buffDmgRed = _buff;
 				buffDmgRed.effect();
 			}
 		break;
@@ -282,42 +352,42 @@ function checkIfBuffBetterAndUse(buff){
 		//have to add --> var for it to save
 		case buffTypes.reRollAcc:
 			if(buffReRollAcc!= false){
-				if(buffReRollAcc.amount < buff.amount){
-					buffReRollAcc = buff;
+				if(buffReRollAcc.amount < _buff.amount){
+					buffReRollAcc = _buff;
 					buffReRollAcc.effect();
 				}else {
 					buffReRollAcc.duration ++;
 				}
 			}else{ 
-				buffReRollAcc = buff;
+				buffReRollAcc = _buff;
 				buffReRollAcc.effect();
 			}
 		break;
 		
 		case buffTypes.reRollCrit:
 			if(buffReRollCrit!= false){
-				if(buffReRollCrit.amount < buff.amount){
-					buffReRollCrit = buff;
+				if(buffReRollCrit.amount < _buff.amount){
+					buffReRollCrit = _buff;
 					buffReRollCrit.effect();
 				}else {
 					buffReRollCrit.duration ++;
 				}
 			}else{ 
-				buffReRollCrit= buff;
+				buffReRollCrit = _buff;
 				buffReRollCrit.effect();
 			}
 		break;
 		
 		case buffTypes.reRollDoge:
 			if(buffReRollDoge != false){
-				if(buffReRollDoge.amount < buff.amount){
-					buffReRollDoge = buff;
+				if(buffReRollDoge.amount < _buff.amount){
+					buffReRollDoge = _buff;
 					buffReRollDoge.effect();
 				}else {
 					buffReRollDoge.duration ++;
 				}
 			}else{ 
-				buffReRollDoge = buff;
+				buffReRollDoge = _buff;
 				buffReRollDoge.effect();
 			}
 		break;
@@ -327,7 +397,8 @@ function checkIfBuffBetterAndUse(buff){
 
 //checks if the deBuff is stronger 
 //the replaces / addes (if none was there) / duration ++ (if worse)
-function checkIfDeBuffBetterAndUse(buff){
+function checkIfDeBuffBetterAndUse(_buff){
+	var buff = _buff;
 	switch(buff.typeOfBuff){
 		case buffTypes.tempo:
 			if(deBuffTempo != false){
@@ -419,6 +490,7 @@ function checkIfDeBuffBetterAndUse(buff){
 	}
 }
 
+#endregion
 
 //does all the End of Turn stuff 
 //dots, check buffs, ...
@@ -519,6 +591,8 @@ function checkEndTurn(){
 	}
 	#endregion
 	
+	#region DOT
+	
 	if(poisonDot != false){
 		if(poisonDot.duration <= 0){
 			poisonDot.removeEffect();
@@ -535,6 +609,21 @@ function checkEndTurn(){
 		}
 	}
 	
+	#endregion
+	
+	#region stun
+	
+	if(stuned){
+		if(stunResist[1] > 1){
+			stunResist[1] --;
+		}else{
+			stuned = false;
+			stunResist = [0,0];
+		}
+	}
+	
+	#endregion
+	
 }
 
 
@@ -542,7 +631,7 @@ function checkEndTurn(){
 //have to add all the new vars here
 //REWORK NOT SURE HOW !!!! :)
 function calculatePointsValue(){
-	value = 0;
+	var value = 0;
 	
 	value += baseHealth; //50
 	
@@ -577,7 +666,7 @@ function campfireSkill(_title, _description, _effect, _condition, _addInformatio
 	title = _title;
 	description= _description;
 	onClick = _effect; 
-	condition= _condition;
+	condition = _condition;
 	addInformation = _addInformation;
 	locked = false;
 	
