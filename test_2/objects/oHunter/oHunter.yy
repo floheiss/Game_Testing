@@ -1,15 +1,15 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oSamurai",
+  "name": "oHunter",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "old",
-    "path": "folders/Objects/Char/old.yy",
+    "name": "Char",
+    "path": "folders/Objects/Char.yy",
   },
   "parentObjectId": {
     "name": "pUnit",
@@ -26,19 +26,11 @@
   "physicsRestitution": 0.1,
   "physicsSensor": false,
   "physicsShape": 1,
-  "physicsShapePoints": [
-    {"x":0.0,"y":0.0,},
-    {"x":32.0,"y":0.0,},
-    {"x":32.0,"y":32.0,},
-    {"x":0.0,"y":32.0,},
-  ],
+  "physicsShapePoints": [],
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
   "spriteId": null,
-  "spriteMaskId": {
-    "name": "vTargeting",
-    "path": "sprites/vTargeting/vTargeting.yy",
-  },
+  "spriteMaskId": null,
   "visible": true,
 }

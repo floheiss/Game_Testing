@@ -33,9 +33,9 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 			notesInColumns[currentRow] = numberInCulumn;
 				
 			//finds position XY and splits them for X and Y
-			xyCords = findPositionMap(currentRow, notesInColumns[currentRow]);
-			positonsXCords = [];
-			positonsYCords = [];
+			var xyCords = findPositionMap(currentRow, notesInColumns[currentRow]);
+			var positonsXCords = [];
+			var positonsYCords = [];
 			for(var j = 0; j < numberInCulumn; j ++){
 				positonsXCords[j] = xyCords[0][j];
 				positonsYCords[j] = xyCords[1][j];
@@ -75,7 +75,7 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 				//will rework later to use tier system : ) 
 				//and encounter are given tiers --> 
 				//elits are tier 4, campfire tier 3, ...
-				encounter = random(1);
+				var encounter = random(1);
 				if(encounter < probabilityElite){
 					// here is a elite 
 					spawer = objects[|currentObject];

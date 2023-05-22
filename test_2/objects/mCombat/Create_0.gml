@@ -37,7 +37,7 @@ function init(team0Array, team1Array){
 
 	
 	for(var i = 0; i < instance_number(cSpawner);i ++){
-		instance = instance_find(cSpawner, i);
+		var instance = instance_find(cSpawner, i);
 		if(i < array_length(team0Array)){
 			ds_list_add(cSpawerTeam0, instance);
 		}else if(i < (sizeTeam0 + sizeTeam1)){

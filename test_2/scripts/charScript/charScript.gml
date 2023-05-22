@@ -1,4 +1,4 @@
-#region skill
+#region skills (campfire and others) 
 
 function prepareEquipment(){
 	//have to look at --> move mBuff and mDot into General
@@ -14,15 +14,19 @@ function prepareEquipment(){
 	
 }
 
+function reloadGun(){
+	
+}
+
 #endregion
 
 #region conditions
 
 function checkReloded(_unit){
-	if(_unit.relod){
-		return true;
-	}else{
+	if(_unit.reloaded){
 		return false;
+	}else{
+		return true;
 	}
 }
 
@@ -50,6 +54,14 @@ function checkDefensiveStance(_unit){
 	}else{
 		return true;
 	}
+}
+
+function checkAimTaken(_unit){
+	return !_unit.aimTaken;
+}
+
+function checkOnlyOneEnemy(_unit){
+	return ds_list_size(mCombat.team1) < 1? true: false;
 }
 
 #endregion
@@ -137,7 +149,6 @@ _rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCos
 
 #endregion
 
-
 #region note 
 // new values for chars --> 
 
@@ -151,6 +162,5 @@ _rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCos
 // new mechanich --> disguast 
 // is used like stress --> dd 
 // works a bit diffrent 
-
 
 #endregion

@@ -80,7 +80,7 @@ currentBloodLvL = bloodMeter;
 dmgRedMelee = 0; //les then 1 
 dmgRedRange = 0; //les then 1 
 dmgRedMagic = 0; //les then 1 
-buffDmgRed= false;
+buffDmgRed = false;
 deBuffDmgRed = false;
 
 
@@ -104,8 +104,10 @@ expToNextLvl = 100; //later calculae after lvl up
 
 #endregion
 
+#region dmg and heal
 
 function damageUnit(_dmgNumber, _dmgType, _armorPen){
+	var result = true;
 	if(doge > 0.95){
 		var dogeCal = 0.95;
 	}else{
@@ -113,6 +115,7 @@ function damageUnit(_dmgNumber, _dmgType, _armorPen){
 	}
  	if(checkAgainstRandom100(dogeCal, reRollDoge)){
 		show_debug_message("Doged");
+		result = false;
 	} else {
 		var dmgRedction = 0;
 		switch(_dmgType){
@@ -146,7 +149,36 @@ function damageUnit(_dmgNumber, _dmgType, _armorPen){
 		show_debug_message("i have " + string(currentHealth));
 	}	
 	checkDeath();
+	return result; 
 }
+
+function healUnit(_heal){ 
+	if(currentHealth + hea_heall < baseHealth){
+		currentHealth += _heal;
+	} else {
+		currentHealth = baseHealth;
+	}
+	show_debug_message("i have " + string(currentHealth) );
+	show_debug_message("i heal for " + string(_heal));
+	show_debug_message("i have " + string(currentHealth) );
+}
+
+function checkDeath(){
+		if(currentHealth <= 0){
+			show_debug_message("i am dead");
+		if(team == 0){
+			ds_list_delete(mCombat.team0, ds_list_find_index(mCombat.team0, id));
+		} 
+		if(team == 1){
+			ds_list_delete(mCombat.team1, ds_list_find_index(mCombat.team1, id));
+		}
+		layer_sequence_headpos(unitSequence, deathStart);
+		ds_list_delete(mCombat.units, ds_list_find_index(mCombat.units, id));
+		state = states.DEATH;
+	}
+}
+
+#endregion
 
 function stunUnit(_acc, _accReroll,_stunResistAfter){
 	if(!checkAgainstRandom100(doge, reRollDoge)){
@@ -160,6 +192,8 @@ function stunUnit(_acc, _accReroll,_stunResistAfter){
 	}
 	return false;
 }
+
+#region Dots
 
 function applyDot(_dot){
 	if(doge > 0.95){
@@ -209,31 +243,7 @@ function applieDotsToTargets(_targets, _dot){
 	}
 }
 
-function healUnit(_heal){ 
-	if(currentHealth + hea_heall < baseHealth){
-		currentHealth += _heal;
-	} else {
-		currentHealth = baseHealth;
-	}
-	show_debug_message("i have " + string(currentHealth) );
-	show_debug_message("i heal for " + string(_heal));
-	show_debug_message("i have " + string(currentHealth) );
-}
-
-function checkDeath(){
-		if(currentHealth <= 0){
-			show_debug_message("i am dead");
-		if(team == 0){
-			ds_list_delete(mCombat.team0, ds_list_find_index(mCombat.team0, id));
-		} 
-		if(team == 1){
-			ds_list_delete(mCombat.team1, ds_list_find_index(mCombat.team1, id));
-		}
-		layer_sequence_headpos(unitSequence, deathStart);
-		ds_list_delete(mCombat.units, ds_list_find_index(mCombat.units, id));
-		state = states.DEATH;
-	}
-}
+#endregion
 
 #region attack Stuff
 
@@ -258,7 +268,7 @@ function basicDmgAttack(_targets, _attackStruc, _actionTaken){
 	var type = attackStru.dmgTypeAttack;
 	var pen = attackStru.pen;
 	var critC = attackStru.critChance;
-	var returnBool = true;
+	var result = false;
 	
 	var attackList = ds_list_create();
 	for(var i = 0; i <  ds_list_size(_targets);i ++){
@@ -274,11 +284,11 @@ function basicDmgAttack(_targets, _attackStruc, _actionTaken){
 			if(checkAgainstRandom100(critC, attackStru.owner.reRollCrit)){
 				dmg = dmg * attackStru.owner.critMultiplier;
 			}
-			target.damageUnit(dmg, type, pen);
+			result = target.damageUnit(dmg, type, pen);
 			show_debug_message("hit for: " + string(dmg));
-				
 		} else{
 			show_debug_message("miss");
+			result = false;
 		}
 	}
 	
@@ -289,6 +299,7 @@ function basicDmgAttack(_targets, _attackStruc, _actionTaken){
 	prozessFinished = true;
 	turnFinished = true; 
 	actionsInTurn ++;
+	return result;
 }
 
 function updateTargetNumbers(){
@@ -627,6 +638,8 @@ function checkEndTurn(){
 }
 
 
+#region lvl Up and points 
+
 //calcualtes the Points value for the DM
 //have to add all the new vars here
 //REWORK NOT SURE HOW !!!! :)
@@ -656,6 +669,9 @@ function calculatePointsValue(){
 function lvlUp(){
 
 }
+
+#endregion
+
 
 #region campfireSkills
 campfireSkills = [];

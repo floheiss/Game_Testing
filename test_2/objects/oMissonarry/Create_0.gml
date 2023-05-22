@@ -2,24 +2,24 @@ event_inherited();
 
 #region varStuff
 
-tempo = 210;
+tempo = 165;
 
 //healthstuffs
-baseHealth = 50; 
+baseHealth = 65; 
 currentHealth = baseHealth;
 
 //dmgRedStuff
-dmgRedMelee = 0.05;
-dmgRedRange = 0.15;
+dmgRedMelee = 0.08;
+dmgRedRange = 0.1;
 dmgRedMagic = 0.25;
 
 //doge is used for all kindes of doge (dots, stuns, dots)
-doge = 0.08; 
+doge = 0.04; 
 
 //has bad crit mulit as fokus on raw dmg 
 critMultiplier = 2.3;
 
-mericalsLeft = 3; 
+
 
 #region spriteVars
 icon = SamuraiIcon;
@@ -52,16 +52,6 @@ deathEnd = 80;
 
 #region attacks 
 
-/*
-note maybe needed later for duals (all need some basic melee attack)
-var title = "Meager Fists";
-var describtion = "Hit someone with your fists";
-attack3Stru = new attacksDesribtion(0.25, 10, 5, dmgType.melee, 0.0, 0.1,
-title, describtion, 1, 100); 
-function attack3(_list){
-	basicDmgAttack(_list, attack3Stru, actions.attack3);
-}
-*/
 
 
 var title = "Call for a merical of sloth";
@@ -69,28 +59,17 @@ var describtion = "Call on GOD to break the will of an enemie";
 attack1Stru = new attacksDesribtion(0.6, 20, 10, dmgType.magic, 0.1, 0.15,
 title, describtion, 1, 250, 0, undefined, checkMericals); 
 function attack1(_list){
-	var attackStru = attack1Stru;
-	var accuracy = attackStru.acc;
-	var nEC = attackStru.pen; //negativeEffectChance
-	var critC = attackStru.critChance;
 	
-	var attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(_list);i ++){
-		ds_list_add(attackList, _list[| i]);
-		//show_debug_message("i attacked: " + string(attackList[|i]));
-	}
-	
-	for (i = 0;	i < ds_list_size(attackList); i++) {
-		checkAgainstRandom100(accuracy){
+	checkAgainstRandom100(attack1Stru.acc){
 			var deBuffAcc = 1;
-			var deBuffDmgRed = 0.15;
-			var deBuffDoge = 1;
-			if(checkAgainstRandom100(critC, reRollCrit)){
+			var deBuffDmgRed = 0.09;
+			var deBuffTempo = 80;
+			if(checkAgainstRandom100(attack1Stru.critChance, reRollCrit)){
 				deBuffAcc = 2;
-				deBuffDmgRed = 0.45;
-				deBuffDoge = 2;
+				deBuffDmgRed = 0.2;
+				deBuffTempo = 100;
 			}
-			var target = attackList[|i];
+			var target = _list[|i];
 			
 			var deBuff = new buffDeBuff(3,deBuffAcc,buffTypes.reRollAcc,target,false);
 			target.checkIfDeBuffBetterAndUse(deBuff);
@@ -98,19 +77,17 @@ function attack1(_list){
 			deBuff = new buffDeBuff(3,deBuffDmgRed,buffTypes.dmgRed,target,false);
 			target.checkIfDeBuffBetterAndUse(deBuff);
 			
-			deBuff = new buffDeBuff(3, deBuffDoge,buffTypes.reRollDoge,target,false);
+			deBuff = new buffDeBuff(3, deBuffTempo,buffTypes.tempo,target,false);
 			target.checkIfDeBuffBetterAndUse(deBuff);
 		}
 	
-	}
-	
-	if(checkAgainstRandom100(nEC)){
+	if(checkAgainstRandom100(attack1Stru.pen)){
 		//if you hit the 10% nEC --> you take 75% of currentHP dmg
 		self.damageUnit(currentHealth * 0.75, dmgType.magic, 2);
 	}
 	
 
-	ds_list_destroy(attackList);
+	ds_list_destroy(_list);
 	prozessFinished = true;
 	turnFinished = true; 
 	actionsInTurn ++;	
@@ -118,7 +95,7 @@ function attack1(_list){
 }
 
 
-title = "Call for a merical of charity";
+title = "Call for a merical of glottony";
 describtion = "Call on GOD to heal you and your team in this time of need";
 attack2Stru = new attacksDesribtion(0.7, 20, 10, dmgType.ranged, 0.1, 0.3,
 title, describtion, 10, 300, 0, possibleTargets.allies, checkMericals); 
@@ -129,28 +106,30 @@ function attack2(_list){
 	var nEC = attackStru.pen; //negativeEffectChance
 	var critC = attackStru.critChance;
 	
-	var attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(_list);i ++){
-		ds_list_add(attackList, _list[| i]);
-		//show_debug_message("i attacked: " + string(attackList[|i]));
-	}
 	
-	for (i = 0;	i < ds_list_size(attackList); i++) {
-		checkAgainstRandom100(accuracy){
+	var deBuff = new buffDeBuff(3,0.05,buffTypes.doge,self,false);
+	
+	checkIfDeBuffBetterAndUse(deBuff);
+	healUnit(attack2Stru.dmg);
+	
+	for (var i = 0;	i < ds_list_size(_list); i++) {
+		checkAgainstRandom100(attack2Stru.acc, reRollAcc){
 			var target = attackList[|i];
-			target.healUnit(heal);
+			target.healUnit(attack2Stru.dmg);
+			deBuff.target = target;
+			target.checkIfDeBuffBetterAndUse(deBuff);
 		}
 	
 	}
-	healUnit(heal);
 	
-	if(checkAgainstRandom100(nEC)){
+	
+	if(checkAgainstRandom100(attack2Stru.pen)){
 		//if you hit the 10% nEC --> you take 75% of currentHP dmg
 		self.damageUnit(currentHealth * 0.75, dmgType.magic, 2);
 	}
 	
 
-	ds_list_destroy(attackList);
+	ds_list_destroy(_list);
 	prozessFinished = true;
 	turnFinished = true; 
 	actionsInTurn ++;	
@@ -159,8 +138,8 @@ function attack2(_list){
 
 
 title = "Call for a merical of warth";
-describtion = "Cut into one enemy from the outside to the inside"
-attack3Stru = new attacksDesribtion(0.75, 15, 7, dmgType.melee, 0.15, 0.2,
+describtion = "Call on GOD to have 2 enemies fight";
+attack3Stru = new attacksDesribtion(0.7, 15, 7, dmgType.melee, 0.1, 0.08,
 title, describtion, 2, 100, 0, possibleTargets.enemies, checkMericalsAND2Enemies); 
 function attack3(_list){
 	
@@ -172,4 +151,12 @@ function attack3(_list){
 
 #endregion
 
+#region regain mericals 
 
+mericalsMAX = 3;
+mericalsLeft = mericalsMAX; 
+ 
+//will be reset / filled with skill 
+
+
+#endregion

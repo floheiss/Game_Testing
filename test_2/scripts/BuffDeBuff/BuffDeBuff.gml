@@ -113,7 +113,7 @@ function buffDeBuff(_duration, _amout, _type, _target, _goodEffect, _removeEffec
 						target.buffReRollCrit = false;
 					}else{
 						target.reRollCrit += amount;
-						target.deBuffReRollCirt= false;
+						target.deBuffReRollCrit = false;
 					}
 				break;
 				case buffTypes.reRollDoge:

@@ -5,18 +5,18 @@ event_inherited();
 tempo = 190;
 
 //healthstuffs
-baseHealth = 80; 
+baseHealth = 85; 
 currentHealth = baseHealth;
 
 
 
 //dmgRedStuff
-dmgRedMelee = 0.5;
-dmgRedRange = 0.3;
-dmgRedMagic = 0.2;
+dmgRedMelee = 0.15;
+dmgRedRange = 0.2;
+dmgRedMagic = 0.1;
 
 //doge is used for all kindes of doge (dots, stuns, dots)
-doge = 0.35; 
+doge = 0.09; 
 
 //has bad crit mulit as fokus on raw dmg 
 critMultiplier = 2.3;
@@ -52,9 +52,9 @@ deathEnd = 80;
 
 #region attacks 
 
-var title = "";
-var describtion = ""
-attack1Stru = new attacksDesribtion(0.65, 25, 8, dmgType.melee, 0.7, 0.45,
+var title = "Swing";
+var describtion = "Swing your weapon at an enemy"
+attack1Stru = new attacksDesribtion(0.75, 30, 10, dmgType.melee, 0.15, 0.11,
 title, describtion, 1, 100); 
 function attack1(_list){
 	basicDmgAttack(_list, attack1Stru, actions.attack1);
@@ -62,33 +62,32 @@ function attack1(_list){
 
 title = "Hit the head";
 describtion = "Aim for the head to make the target unconscious";
-//have to look how thing work when no target needed ???
-//if self / all full team 
-attack2Stru = new attacksDesribtion(0.8, 15, 8, dmgType.melee, 0.35, 0.25,
+attack2Stru = new attacksDesribtion(0.8, 10, 5, dmgType.melee, 0.08, 0.08,
 title, describtion, 1, 300, 1); 
 function attack2(_list){
-	basicDmgAttack(_list, attack2Stru, actions.attack2);
-	
-	var target =_list[|0];
-	var _stun = target.stunUnit(attack2Stru.acc, 1, 0.75);
-	if(_stun){
-		var deBuff = new buffDeBuff(2, 0.3, buffTypes.doge,target, false);
-		target.checkIfDeBuffBetterAndUse(deBuff);
-	}	
+	var result = basicDmgAttack(_list, attack2Stru, actions.attack2);
+	if(result){
+		var target =_list[|0];
+		var stunResult = target.stunUnit(attack2Stru.acc, reRollAcc, 0.45);
+		if(stunResult){
+			var deBuff = new buffDeBuff(2, 0.05, buffTypes.doge,target, false);
+			target.checkIfDeBuffBetterAndUse(deBuff);
+		}
+	}
 }
 
 
 title = "Bola throw";
-describtion = "Throw a bola at 2 enemies";
-attack3Stru = new attacksDesribtion(0.75, 5, 3, dmgType.ranged, 0.2, 0.3,
+describtion = "Throw a bolas at 2 enemies";
+attack3Stru = new attacksDesribtion(0.8, 5, 2, dmgType.ranged, 0.0, 0.07,
 title, describtion, 2, 300); 
 function attack3(_list){
 	basicDmgAttack(_list, attack3Stru, actions.attack3);
 	for(i = 0; i < ds_list_size(_list); i ++){
 		var target = _list[|i];
-		var _stun = target.stunUnit(0.75, 0.3);
+		var _stun = target.stunUnit(0.8, reRollAcc + 1, 0.3);
 		if(_stun){
-			var deBuff = new buffDeBuff(3, 0.2,buffTypes.doge,target, false);
+			var deBuff = new buffDeBuff(3, 0.09, buffTypes.doge, target, false);
 			target.checkIfDeBuffBetterAndUse(deBuff);
 		}	
 	}

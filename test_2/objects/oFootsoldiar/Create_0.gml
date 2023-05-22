@@ -2,21 +2,21 @@ event_inherited();
 
 #region varStuff
 
-tempo = 180;
+tempo = 185;
 
 //healthstuffs
-baseHealth = 70; 
+baseHealth = 90; 
 currentHealth = baseHealth;
 
 
 
 //dmgRedStuff
-dmgRedMelee = 0.3;
-dmgRedRange = 0.25;
-dmgRedMagic = 0.08;
+dmgRedMelee = 0.2;
+dmgRedRange = 0.15;
+dmgRedMagic = 0.03;
 
 //doge is used for all kindes of doge (dots, stuns, dots)
-doge = 0.35; 
+doge = 0.06; 
 
 //has bad crit mulit as fokus on raw dmg 
 critMultiplier = 2.25;
@@ -54,17 +54,15 @@ deathEnd = 80;
 
 var title = "Lunge";
 var describtion = "Lung at someone with your spear"
-attack1Stru = new attacksDesribtion(0.55, 25, 8, dmgType.melee, 0.4, 0.45,
+attack1Stru = new attacksDesribtion(0.75, 22, 6, dmgType.melee, 0.1, 0.06,
 title, describtion, 1, 250); 
 function attack1(_list){
 	basicDmgAttack(_list, attack1Stru, actions.attack1);
 }
 
-defensiveStance = false;
+//HAVE TO REWORK
 title = "Take defensive stance";
 describtion = "Take a more defence position";
-//have to look how thing work when no target needed ???
-//if self / all full team 
 attack2Stru = new attacksDesribtion(0.9, 20, 10, dmgType.melee, 0.45, 0.15,
 title, describtion, 10, 500, 0, checkDefensiveStance); 
 function attack2(_list){
@@ -74,10 +72,11 @@ function attack2(_list){
 	defensiveStance = true;
 }
 
-
+//have to look how thing work when no target needed ???
+//if self / all full team 
 title = "Round Sweep";
 describtion = "Sweep all Enemies with your spear";
-attack3Stru = new attacksDesribtion(0.55, 20, 8, dmgType.melee, 0.2, 0.3,
+attack3Stru = new attacksDesribtion(0.45, 12, 4, dmgType.melee, 0.04, 0.04,
 title, describtion, 10, 250); 
 function attack3(_list){
 	basicDmgAttack(_list, attack3Stru, actions.attack3);
@@ -85,4 +84,11 @@ function attack3(_list){
 
 #endregion
 
+#region defensiveStance
+
+//will be rework into a skill
+//like all other add on skill
+defensiveStance = false;
+
+#endregion
 

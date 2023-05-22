@@ -13,8 +13,6 @@
     }
 }
 
-
-
 #region mCombat move later
 
 //plays userevents in mCombat --> need to delete later 
@@ -160,12 +158,12 @@ function chanceFrom100(_rerolls){
 	//note should (????) be usefull anywhere as small amouts are always better
 	if(_rerolls != 0){
 		if(_rerolls < 0){
-			for(var i = 0; i < abs(_rerolls); i++){
+			for(var i = 0; i < (_rerolls * -1); i++){
 				number = max(number, random_range(0,99));
 			}
 		}
 		if(_rerolls > 0){
-			for(i = 0; i < abs(_rerolls); i++){
+			for(i = 0; i < _rerolls; i++){
 				number = min(number, random_range(0,99));
 			}
 		}
@@ -177,9 +175,9 @@ function chanceFrom100(_rerolls){
 //might get reworked to account for acc Buffs
 //can be given any value --> 0-1 OR 0-100
 function checkAgainstRandom100(_valueToCheck, _rerolls = 0){
-	var value = _valueToCheck
+	var value = _valueToCheck;
 	if(value <= 1){
-		value = _valueToCheck * 10 // 0.8 *10 = 80%
+		value = _valueToCheck * 10 // 1 * 10 = 80%
 	}
 	
 	
@@ -189,6 +187,7 @@ function checkAgainstRandom100(_valueToCheck, _rerolls = 0){
 		return true;
 	} else {
 		show_debug_message("number was not hit");
+		show_debug_message("number: " + string(number) + " | value: " + string(value));
 		return false;
 	}
 }
@@ -207,8 +206,8 @@ _resultsTier3 = [],
 _resultsTier2 = [],
 _resultsTier1,
 _rerolls = 0){
-	number = chanceFrom100(_rerolls);
-	procentChances = [];
+	var number = chanceFrom100(_rerolls);
+	var procentChances = [];
 	
 
 	#region change chances to fit better 
@@ -258,13 +257,17 @@ _rerolls = 0){
 //returns a random item in an given array 
 function findRandomItemInArray(_arrayToFindIn){
 	//have to check math :) 
-	lengthResult = array_length(_arrayToFindIn);
-	resultNumer = chanceFrom100(); 
-	amountPerPosition = round(100/lengthResult);
-	position =  floor(resultNumer /amountPerPosition);
-	if(resultNumer == 99 && amountPerPosition == 33 && position == 3){
-		position = 2; //fixes a very special case : ) 
-	}
+	var lengthResult = array_length(_arrayToFindIn);
+	var resultNumer = chanceFrom100(); 
+	var amountPerPosition = round(100/lengthResult);
+	var position =  floor(resultNumer /amountPerPosition);
+	
+	#region special cases (so far only 1 error found)
+		if(resultNumer == 99 && amountPerPosition == 33 && position == 3){
+			position = 2; 
+		}
+	#endregion
+	
 	return _arrayToFindIn[position];
 }
 

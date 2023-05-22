@@ -8,8 +8,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Char",
-    "path": "folders/Objects/Char.yy",
+    "name": "old",
+    "path": "folders/Objects/Char/old.yy",
   },
   "parentObjectId": {
     "name": "pUnit",

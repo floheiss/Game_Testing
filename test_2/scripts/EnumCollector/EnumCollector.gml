@@ -57,9 +57,17 @@ enum itemList{
 //rework as most of them are useless/ test only :) 
 enum classList{
 	bloodMage,
+	conquistador, //will stay
+	footsoldiar, //will stay
+	missonarry, //will stay
+	eagleWarrior, //will stay
+	jaguarWarrior, //will stay
+	hunter, //will stay
+	nobal, //will stay
+	witchhunter, //will stay
+	
 	fieldHand, //remove later
 	berserker, //remove later
-	witchhunter, //remove later
 	disownedNobal, //remove later
 	butcher, //remove later
 	monch, //remove later
@@ -67,11 +75,6 @@ enum classList{
 	huntsMan, //remove later
 	gunSlinger, //remove later
 	peasent, //remove later
-	
-	conquistador, //will stay
-	footsoldiar, //will stay
-	missonarry, //will stay
-	eagleWarrior, //will stay
 }
 
 #endregion
