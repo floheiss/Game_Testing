@@ -5,9 +5,14 @@ switch(combatPhase){
 		layer_set_visible(baseUI, false);
 		//team0Array = global.playerGroup;
 		//team1Array = global.enemies;
+		for(var i = 0; i < array_length(global.playerGroup); i ++){
+			team0Array[i] = global.playerGroup[i]
+		}
 		team0Array = [oSamuraiArcher, oSamuraiCommander];
 		//team0Array[0].currentHealth = maxHealth/2;
-		
+		for(var i = 0; i < array_length(global.playerGroup); i ++){
+			team1Array[i] = global.enemies[i];
+		}
 		team1Array = [oSamurai];
 		init(team0Array,team1Array);
 		
