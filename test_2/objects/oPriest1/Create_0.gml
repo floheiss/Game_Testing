@@ -56,7 +56,7 @@ deathEnd = 80;
 
 var title = "";
 var describtion = ""
-attack1Stru = new attacksDesribtion(0.55, 30, 10, dmgType.melee, 0.25, 0.3,
+attack1Stru = new attacksDesribtion(self, 0.55, 30, 10, dmgType.melee, 0.25, 0.3,
 title, describtion, 1, 250); 
 function attack1(_list){
 	basicDmgAttack(_list, attack1Stru, actions.attack1);
@@ -67,7 +67,7 @@ function attack1(_list){
 
 title = "";
 describtion = "";
-attack2Stru = new attacksDesribtion(0.5, 50, 20, dmgType.ranged, 0.45, 0.15,
+attack2Stru = new attacksDesribtion(self, 0.5, 50, 20, dmgType.ranged, 0.45, 0.15,
 title, describtion, 1, 500, -1, checkReloded); 
 function attack2(_list){
 	basicDmgAttack(_list, attack2Stru, actions.attack2);
@@ -80,7 +80,7 @@ function attack2(_list){
 
 title = "";
 describtion = ""
-attack3Stru = new attacksDesribtion(0.75, 15, 7, dmgType.melee, 0.15, 0.2,
+attack3Stru = new attacksDesribtion(self, 0.75, 15, 7, dmgType.melee, 0.15, 0.2,
 title, describtion, 1, 100); 
 function attack3(_list){
 	basicDmgAttack(_list, attack3Stru, actions.attack2);

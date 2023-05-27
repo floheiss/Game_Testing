@@ -12,7 +12,6 @@ campfireDisplaySupport = [];
 hoveredNote = -1; //for debugging
 debug = false; //?????
 
-
 function displayEvent(){
 	for(i = 0; i < ds_list_size(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
@@ -75,35 +74,49 @@ function displayEvent(){
 			//have to make one default seleced --> have to save in var 
 			//have to make the others selecable 
 			//have to make a menu to use there skills
-		
-			//one of the harded ones : ) 
-			
-			//will make at the end
+
 			for(var i = 0; i < array_length(campfireDisplaySupport); i++){
-				withWored = false;
 				with(objects[|i + 1]){
 					//have to look at x and y cord 
-					xCord = 360 + 150 * i;
-					yCord = 360; 
-					if(i == 0){
-						seleced = true;
-					}
+					var xCord = 260 + 150 * i;
+					var yCord = 260; 
 					
 					savedObject = other.campfireDisplaySupport[i];
 					MainFunction = changeSelecedSupportMapOption;
-					
-					changeSprite(xCord, yCord, savedObject.campFireSprite, false, 0);
+				
+					changeSprite(xCord, yCord, savedObject.icon, false, 0);
 					if(i == 0){
 						oMapCampfire.updateSelecedSupport(self);
 					}
 				}
-			}
 				
+			}
+			#region non with Code (Debug / linux bubuggieness)
+			/*
+			if(!withWored){
+
+				for(var i = 0; i < array_length(campfireDisplaySupport); i++){
+					var object = objects[|i + 1];
+
+					//have to look at x and y cord 
+					xCord = 260 + 150 * i;
+					yCord = 260; 
+					
+					object.savedObject = campfireDisplaySupport[i];
+					object.MainFunction = changeSelecedSupportMapOption;
+					object.changeSprite(xCord, yCord, savedObject.icon, false, 0);
+					if(i == 0){
+						oMapCampfire.updateSelecedSupport(object);
+					}
+
+						
+				}
+			}	
+			*/
+			#endregion
 			
 			for(var k = 0; k < array_length(mapOptions); k ++){
-				withWorked = false;
 				with(objects[|k + 5]){
-					other.withWorked = true;
 				
 					xCord = 640;
 					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapOptions) - k); 
@@ -112,20 +125,42 @@ function displayEvent(){
 					//should work as there is (if i think correctly) to chance the locked state while in event
 					//have to look at not sure if somethin diffrent is need when closing ???
 					MainFunction = triggerCampfireSkill;
-					
-					if(savedObject.locked){ 
-						changeSprite(xCord, yCord,mapOptionSprite, false, 0); 
-						
-					}else {
-						useLockedOverlay(xCord, yCord, mapOptionSprite);
-					}
-					setUseHighlightHoverImage(mapOptionSprite, 1);
+					setConditionForLocking(savedObject.condition);
+					changeSprite(xCord,yCord,mapOptionSprite, false);
 					setDisplayedText(savedObject.textForDisplay, 
 					xCord - sprite_get_xoffset(mapOptionSprite) + 20,
 					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
+					setUseHighlightHoverImage(mapOptionSprite, 1);
 				}
 			}
-		
+			
+			#region non with Code (Debug / linux bubuggieness)
+			/*
+			if(!withWored){
+				show_debug_message("the 2 with was not triggered ");
+				for(var i = 0; i < array_length(mapOptions); i++){
+					show_debug_message("the skills will be drawn");
+					var object = objects[|i + 5];
+					xCord = 800;
+					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) - i); 
+				
+					object.savedObject = mapOptions[i];
+					//should work as there is (if i think correctly) to chance the locked state while in event
+					//have to look at not sure if somethin diffrent is need when closing ???
+					object.MainFunction = triggerCampfireSkill;
+					
+					object.setConditionForLocking(savedObject.condition);
+					
+					object.changeSprite(xCord,yCord,mapOptionSprite, false);
+					object.setUseHighlightHoverImage(mapOptionSprite, 1);
+					object.setDisplayedText(savedObject.textForDisplay, 
+					xCord - sprite_get_xoffset(mapOptionSprite) + 20,
+					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
+				}
+			}	
+			*/
+			#endregion
+			
 			#endregion
 	
 		break;
@@ -144,17 +179,13 @@ function displayEvent(){
 				#endregion
 			
 			with(objects[|i + 1]){
-				
 				xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) + 1);
 				yCord = 360; 
 				changeSprite(xCord, yCord,mapOptionSprite, false, 0);		
 			}
 			
-					
 			for(var k = 0; k < array_length(mapOptions); k ++){
-				withWorked = false;
 				with(objects[|k + 2]){
-					other.withWorked = true;
 				
 					xCord = 640;
 					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapOptions) - k); 
@@ -164,18 +195,16 @@ function displayEvent(){
 					//have to look at not sure if somethin diffrent is need when closing ???
 					MainFunction = triggerEvent;
 					
-					if(savedObject.locked){ 
-						changeSprite(xCord, yCord,mapOptionSprite, false, 0); 
-						
-					}else {
-						useLockedOverlay(xCord, yCord, mapOptionSprite);
-					}
+					setConditionForLocking(savedObject.condition);
+					changeSprite(xCord,yCord,mapOptionSprite, false);
 					setUseHighlightHoverImage(mapOptionSprite, 1);
 					setDisplayedText(savedObject.textForDisplay, 
 					xCord - sprite_get_xoffset(mapOptionSprite) + 20,
 					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
 				}
 				
+				#region  non with Code (Debug / linux bubuggieness)
+				/*
 				if(withWorked == false){
 					show_debug_message("_________________");
 					show_debug_message("with didnt work")
@@ -183,21 +212,19 @@ function displayEvent(){
 					objectNow = objects[|k + 2]
 					xCord = 640;
 					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) - k); 
-				
 					objectNow.savedObject = mapOptions[k];
 					objectNow.MainFunction = triggerEvent;
-					
-					if(!objectNow.savedObject.locked){ 
-						objectNow.changeSprite(xCord, yCord,mapOptionSprite, false, 0); 
-						
-					}else{
-						objectNow.useLockedOverlay(xCord, yCord, mapOptionSprite);
-					}
+
+					object.changeSprite(xCord,yCord,mapOptionSprite, false);
 					objectNow.setUseHighlightHoverImage(mapOptionSprite, 1);
 					objectNow.setDisplayedText(objectNow.savedObject.textForDisplay, 
 					xCord - sprite_get_xoffset(mapOptionSprite) + 20,
 					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
+					setConditionForLocking(savedObject.condition);
 				}
+				*/
+				#endregion
+				
 			}
 			
 			#endregion

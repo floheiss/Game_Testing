@@ -56,7 +56,7 @@ deathEnd = 80;
 
 var title = "Call for a merical of sloth";
 var describtion = "Call on GOD to break the will of an enemie";
-attack1Stru = new attacksDesribtion(0.6, 20, 10, dmgType.magic, 0.1, 0.15,
+attack1Stru = new attacksDesribtion(self, 0.6, 20, 10, dmgType.magic, 0.1, 0.15,
 title, describtion, 1, 250, 0, undefined, checkMericals); 
 function attack1(_list){
 	
@@ -97,7 +97,7 @@ function attack1(_list){
 
 title = "Call for a merical of glottony";
 describtion = "Call on GOD to heal you and your team in this time of need";
-attack2Stru = new attacksDesribtion(0.7, 20, 10, dmgType.ranged, 0.1, 0.3,
+attack2Stru = new attacksDesribtion(self, 0.7, 20, 10, dmgType.ranged, 0.1, 0.3,
 title, describtion, 10, 300, 0, possibleTargets.allies, checkMericals); 
 function attack2(_list){
 	var attackStru = attack2Stru;
@@ -139,7 +139,7 @@ function attack2(_list){
 
 title = "Call for a merical of warth";
 describtion = "Call on GOD to have 2 enemies fight";
-attack3Stru = new attacksDesribtion(0.7, 15, 7, dmgType.melee, 0.1, 0.08,
+attack3Stru = new attacksDesribtion(self, 0.7, 15, 7, dmgType.melee, 0.1, 0.08,
 title, describtion, 2, 100, 0, possibleTargets.enemies, checkMericalsAND2Enemies); 
 function attack3(_list){
 	

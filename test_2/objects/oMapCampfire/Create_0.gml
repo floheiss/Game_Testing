@@ -1,19 +1,18 @@
 event_inherited();
 
-selecedSupport = -1;
+selecedSupport = [-1,0];
 
 targetingForSkill = false;
 
 function mapNoteFunction(){
-	
+	var playerGroup = [];
 	for(i = 0; i < array_length(global.playerGroup); i ++){
 		playerGroup[i] = global.playerGroup[i];
 	}
 
-	
-	for(i = 0; i < array_last(playerGroup);i++){
+	mMapDisplayManager.campfireDisplaySupport = []; 
+	for(i = 0; i < array_length(playerGroup);i++){
 		if(playerGroup[i] != -1){
-			mMapDisplayManager.campfireDisplaySupport = []; 
 			mMapDisplayManager.campfireDisplaySupport[i] = playerGroup[i];
 		}
 		
@@ -39,24 +38,23 @@ function updateSkillOptions(_unit){
 		//title | what it does on click (in scribt) | condition (in scribt)
 		//(describtion) 
 	//Skill and CampfireSkill are the same thing save the info 
-	for(i = 0; i < array_length(_unit.campfireSkills); i ++){
+	for(var i = 0; i < array_length(_unit.campfireSkills); i ++){
 		skill = _unit.campfireSkills[i];
 		displayedSkills[i] = new mapOption(skill.title,skill.onClick,skill.condition);
 	}
 	
-	for(i = 0; i < array_last(displayedSkills);i++){
-		mMapDisplayManager.mapOptions[i] = skillsOptions[i];
+	for(var k = 0; k < array_length(displayedSkills); k ++){
+		mMapDisplayManager.mapOptions[k] = displayedSkills[k];
 	}
 }
 
 
 //is use the change the seleced Support 
 function updateSelecedSupport(_mapOption){
-	if(selecedSupport != -1){
+	if(selecedSupport[0] != -1){
 		selecedSupport[0].seleced = false;
 	}
 	selecedSupport = [_mapOption, _mapOption.savedObject];
 	_mapOption.seleced = true;
-	updateSkillOptions(selecedSupport[1]);
-	
+	updateSkillOptions(selecedSupport[1]);	
 }

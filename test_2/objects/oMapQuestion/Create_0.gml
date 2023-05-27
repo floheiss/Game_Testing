@@ -38,7 +38,7 @@ function mapNoteFunction(){
 			openChestWithForce, true);		
 			//use a lockpick to open chest
 			mapOptionsArray[2] = new mapOption("Use a Lockpick to open", 
-			openChestWithLockpick,checkIfLockPickInInventory);
+			openChestWithLockpick, checkIventroyForLockPick);
 			
 		break;
 		
@@ -86,7 +86,7 @@ function updateEvent(_result){
 					mapOptionsArray = [];
 					
 					mapOptionsArray[0] = new mapOption("the chest was unfaced by your action",
-					closeTheEvent,true, true);
+					closeTheEvent, true, true);
 					show_debug_message("--------------> fail");
 					mMapDisplayManager.mapOptions = [];
 					for(i = 0; i < array_length(mapOptionsArray); i ++){

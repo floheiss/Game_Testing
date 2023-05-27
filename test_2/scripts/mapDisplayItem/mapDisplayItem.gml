@@ -39,11 +39,11 @@ function closeTheEvent(){
 
 #region conditions
 
-function checkIfLockPickInInventory(){
+function checkIventroyForLockPick(_item){
 	if(mInventory.findItemInInventory(itemList.lockPickSet) != false){
-		return true;
-	}else {
 		return false;
+	}else {
+		return true;
 	}
 }
 

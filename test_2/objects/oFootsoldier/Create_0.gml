@@ -54,7 +54,7 @@ deathEnd = 80;
 
 var title = "Lunge";
 var describtion = "Lung at someone with your spear"
-attack1Stru = new attacksDesribtion(0.75, 22, 6, dmgType.melee, 0.1, 0.06,
+attack1Stru = new attacksDesribtion(self, 0.75, 22, 6, dmgType.melee, 0.1, 0.06,
 title, describtion, 1, 250); 
 function attack1(_list){
 	basicDmgAttack(_list, attack1Stru, actions.attack1);
@@ -63,7 +63,7 @@ function attack1(_list){
 //HAVE TO REWORK
 title = "Take defensive stance";
 describtion = "Take a more defence position";
-attack2Stru = new attacksDesribtion(0.9, 20, 10, dmgType.melee, 0.45, 0.15,
+attack2Stru = new attacksDesribtion(self, 0.9, 20, 10, dmgType.melee, 0.45, 0.15,
 title, describtion, 10, 500, 0, checkDefensiveStance); 
 function attack2(_list){
 	var buff = buffDeBuff(3,0.2,buffTypes.dmgRed,self,true, checkDefensiveStance);
@@ -76,7 +76,7 @@ function attack2(_list){
 //if self / all full team 
 title = "Round Sweep";
 describtion = "Sweep all Enemies with your spear";
-attack3Stru = new attacksDesribtion(0.45, 12, 4, dmgType.melee, 0.04, 0.04,
+attack3Stru = new attacksDesribtion(self, 0.45, 12, 4, dmgType.melee, 0.04, 0.04,
 title, describtion, 10, 250); 
 function attack3(_list){
 	basicDmgAttack(_list, attack3Stru, actions.attack3);

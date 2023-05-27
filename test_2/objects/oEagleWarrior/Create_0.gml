@@ -54,7 +54,7 @@ deathEnd = 80;
 
 var title = "Swing";
 var describtion = "Swing your weapon at an enemy"
-attack1Stru = new attacksDesribtion(0.75, 30, 10, dmgType.melee, 0.15, 0.11,
+attack1Stru = new attacksDesribtion(self, 0.75, 30, 10, dmgType.melee, 0.15, 0.11,
 title, describtion, 1, 100); 
 function attack1(_list){
 	basicDmgAttack(_list, attack1Stru, actions.attack1);
@@ -62,7 +62,7 @@ function attack1(_list){
 
 title = "Hit the head";
 describtion = "Aim for the head to make the target unconscious";
-attack2Stru = new attacksDesribtion(0.8, 10, 5, dmgType.melee, 0.08, 0.08,
+attack2Stru = new attacksDesribtion(self, 0.8, 10, 5, dmgType.melee, 0.08, 0.08,
 title, describtion, 1, 300, 1); 
 function attack2(_list){
 	var result = basicDmgAttack(_list, attack2Stru, actions.attack2);
@@ -79,7 +79,7 @@ function attack2(_list){
 
 title = "Bola throw";
 describtion = "Throw a bolas at 2 enemies";
-attack3Stru = new attacksDesribtion(0.8, 5, 2, dmgType.ranged, 0.0, 0.07,
+attack3Stru = new attacksDesribtion(self, 0.8, 5, 2, dmgType.ranged, 0.0, 0.07,
 title, describtion, 2, 300); 
 function attack3(_list){
 	basicDmgAttack(_list, attack3Stru, actions.attack3);

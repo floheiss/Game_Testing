@@ -4,12 +4,12 @@ function prepareEquipment(){
 	//have to look at --> move mBuff and mDot into General
 	//+ make 1 global.mBuff in game so you have instace 24/7 
 	//same for inventory/ make persitent
-	
 	//have to rename a lot of things :) 
-	support = oCampfire.selecedSupport;
-	buff = new mBuff.mBuffCreate(20,0.10,buffTypes.dmg,support.id,true);
+	
+	support = oMapCampfire.selecedSupport;
+	buff = new buffDeBuff(20,0.10,buffTypes.dmg,support.id,true);
 	support.checkIfBuffBetterAndUse(buff);
-	buff = new mBuff.mBuffCreate(20,0.08,buffTypes.dmgRed,support.id,true);
+	buff = new buffDeBuff(20,0.08,buffTypes.dmgRed,support.id,true);
 	support.checkIfBuffBetterAndUse(buff);
 	
 }
@@ -69,14 +69,16 @@ function checkOnlyOneEnemy(_unit){
 #region attackStrukt
 
 //maybe _owner dosnt work --> self ref to scribt 
-function attacksDesribtion( _acc, _dmgBase, _dmgLvl, _dmgType, _pen, _critChance,  
+function attacksDesribtion(_owner ,_acc, _dmgBase, _dmgLvl, _dmgType, _pen, _critChance,  
 _title, _describtion, _targetNumber, _pointValue,
-_rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCost = 0, _owner = self) constructor{
+_rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCost = 0) constructor{
 	
 	acc = _acc;
 	dmgTypeAttack = _dmgType;
 	pen = _pen;
 	critChance = _critChance;
+	dmgBase = _dmgBase;
+	dmgLvL= _dmgLvl;
 	
 	condition = _condition
 	locked = false;
@@ -91,8 +93,8 @@ _rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCos
 	rerolls = _rerolls;
 	bloodCost = _bloodCost;
 	pointValue = _pointValue;
-	owner = _owner
-	
+	owner = _owner;
+
 	function updateCondition(){
 		
 		if(is_bool(condition)){
@@ -108,7 +110,7 @@ _rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCos
 	
 	function calDmg(){
 		//any gear is added here
-		var dmgCal = round(_dmgBase + _dmgLvl * owner.lvl)
+		var dmgCal = round(dmgBase + dmgLvL * owner.lvl);
 		return dmgCal;
 	}
 	

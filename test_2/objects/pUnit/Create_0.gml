@@ -249,15 +249,15 @@ function applieDotsToTargets(_targets, _dot){
 
 var title = "deafault Attack";
 var describtion = "someone fucked up I guess";
-attack1 = new attacksDesribtion(0.55,15, 10,dmgType.melee, 0.2,0.3,
+attack1 = new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
 title, describtion,1, 100);
 function attack1(_list){}
 
-attack2 = new attacksDesribtion(0.55,15, 10,dmgType.melee, 0.2,0.3,
+attack2 = new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
 title, describtion,1, 100);
 function attack2(_list){}
 
-attack3 = new attacksDesribtion(0.55,15, 10,dmgType.melee, 0.2,0.3,
+attack3 = new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
 title, describtion,1, 100);
 function attack3(_list){}
 
@@ -674,33 +674,17 @@ function lvlUp(){
 
 
 #region campfireSkills
+
 campfireSkills = [];
 
 //the strukt that is saced for campfireskills
 //saves all info needed (maybe needs targeting/number of targets)
-function campfireSkill(_title, _description, _effect, _condition, _addInformation) constructor{
+function campfireSkill(_title, _description, _effect, _condition, _addInformation = -1) constructor{
 	title = _title;
 	description= _description;
 	onClick = _effect; 
 	condition = _condition;
 	addInformation = _addInformation;
-	locked = false;
-	
-	function updateCondition(){
-		
-		if(is_bool(condition)){
-			if(!condition){
-				locked = true;
-			}
-		}else{
-			if(!script_execute(condition)){
-				locked = true;
-			}
-		}
-	}
-	
-	updateCondition();	
-	
 }
 
 #endregion

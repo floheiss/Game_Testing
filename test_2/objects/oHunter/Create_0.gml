@@ -57,7 +57,7 @@ aimTaken = false;
 
 var title = "Sharp throw";
 var describtion = "Hit an enemy wil a well aimed javelin"
-attack1Stru = new attacksDesribtion(0.65, 23, 7, dmgType.melee, 0.08, 0.1,
+attack1Stru = new attacksDesribtion(self, 0.65, 23, 7, dmgType.melee, 0.08, 0.1,
 title, describtion, 1, 250); 
 function attack1(_list){
 	if(aimTaken){
@@ -74,7 +74,7 @@ function attack1(_list){
 
 title = "Aim for the shoulder";
 describtion = "Try to hit an enemy in the shoudler to stop them attacking";
-attack2Stru = new attacksDesribtion(0.45, 10, 3, dmgType.ranged, 0.11, 0.08,
+attack2Stru = new attacksDesribtion(self, 0.45, 10, 3, dmgType.ranged, 0.11, 0.08,
 title, describtion, 1, 350); 
 function attack2(_list){
 	if(aimTaken){
@@ -97,7 +97,7 @@ function attack2(_list){
 
 title = "Javelin rain";
 describtion = "Fill the sky with javelins that rain on enemies";
-attack3Stru = new attacksDesribtion(0.35, 5, 2, dmgType.ranged, 0.05, 0.06,
+attack3Stru = new attacksDesribtion(self, 0.35, 5, 2, dmgType.ranged, 0.05, 0.06,
 title, describtion, 10, 150); 
 function attack3(_list){
 	if(aimTaken){

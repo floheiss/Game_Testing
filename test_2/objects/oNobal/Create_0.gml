@@ -56,7 +56,7 @@ deathEnd = 80;
 
 var title = "Passata Sotto";
 var describtion = "Drop below an enemy and attack him";
-attack1Stru = new attacksDesribtion(0.75, 18, 7, dmgType.melee, 0.1, 0.12,
+attack1Stru = new attacksDesribtion(self, 0.75, 18, 7, dmgType.melee, 0.1, 0.12,
 title, describtion, 1, 250); 
 function attack1(_list){
 	basicDmgAttack(_list, attack1Stru, actions.attack1);
@@ -67,7 +67,7 @@ function attack1(_list){
 
 title = "Flunge";
 describtion = "Jump towards an enemy and attack him ";
-attack2Stru = new attacksDesribtion(0.8, 25, 9, dmgType.melee, 0.09, 0.1,
+attack2Stru = new attacksDesribtion(self, 0.8, 25, 9, dmgType.melee, 0.09, 0.1,
 title, describtion, 1, 150); 
 function attack2(_list){
 	basicDmgAttack(_list, attack2Stru, actions.attack2);
@@ -76,7 +76,7 @@ function attack2(_list){
 
 title = "Call for a merical of envy";
 describtion = "Call on GOD to smite your enmies "
-attack3Stru = new attacksDesribtion(0.85, 18, 5, dmgType.magic, 0.0, 0.1,
+attack3Stru = new attacksDesribtion(self, 0.85, 18, 5, dmgType.magic, 0.0, 0.1,
 title, describtion, 1, 100); 
 function attack3(_list){
 	basicDmgAttack(_list, attack3Stru, actions.attack3);

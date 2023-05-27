@@ -35,23 +35,7 @@ function mapOption(_text, _onClick, _condition, _endEvent = false) constructor{
 	textForDisplay = _text;
 	onClick = _onClick
 	condition = _condition;
-	locked = false; 
 	endEvent = _endEvent;
-	
-	function updateCondition(){
-		
-		if(is_bool(condition)){
-			if(!condition){
-				locked = true;
-			}
-		}else{
-			if(!script_execute(condition)){
-				locked = true;
-			}
-		}
-	}
-	
-	updateCondition();	
 }
 
 

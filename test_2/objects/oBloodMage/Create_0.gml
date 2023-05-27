@@ -22,9 +22,9 @@ doge = 0.07;
 critMultiplier = 1.7;
 
 #region spriteVars
-icon = SamuraiIcon;
+icon = BloodMageIcon;
 
-class = classList.conquistador; 
+class = classList.bloodMage; 
 
 //spriteStuff
 idleStart = 0;
@@ -94,4 +94,15 @@ function attack3(_list){
 
 #endregion
 
+#region campfireSkills
 
+campfireSkills = [];
+
+var title = "Prepare equipment";
+var describtion = "Sit by the campfire and prepare your weapon and armor for the next combat";
+var effectCampFire = prepareEquipment;
+var condition = true;
+
+campfireSkills[0] = new campfireSkill(title, describtion, effectCampFire, true);
+
+#endregion
