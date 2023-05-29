@@ -249,15 +249,15 @@ function applieDotsToTargets(_targets, _dot){
 
 var title = "deafault Attack";
 var describtion = "someone fucked up I guess";
-attack1 = new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
+attack1Stru= new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
 title, describtion,1, 100);
 function attack1(_list){}
 
-attack2 = new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
+attack2Stru = new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
 title, describtion,1, 100);
 function attack2(_list){}
 
-attack3 = new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
+attack3Stru = new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
 title, describtion,1, 100);
 function attack3(_list){}
 
@@ -308,8 +308,12 @@ function updateTargetNumbers(){
 	attack3Stru.updateTargetNumbers();
 }
 
-#endregion
+//the basicAttackStruct is used when asked for a attack 
+//example: DUEL / wrath (current form :) )
+basicAttackStruct = new attacksDesribtion(self, 0.55,15, 10,dmgType.melee, 0.2,0.3,
+title, describtion,1, 100);
 
+#endregion
 
 #region checkIfBuffDeBuffBetter
 

@@ -10,8 +10,8 @@
 global.map = false; //default false
 global.contract = false; //default false
 
-
-
+global.drawPartyInfo = true;
+global.room = roomList.town;
 
 global.maxInventorySize = 12;
 global.inventory = []; //default []
@@ -25,7 +25,7 @@ global.enemies[0] = instance_create_depth(0,0,0,oConquistador);
 
 global.ItemGen = instance_create_depth(0,0,0,mItem); //fk items 
 
-allowInput = true;
+global.allowInput = true;
 
 //retuns the instance of the BM in the Party
 function getPlayerInfo(){
@@ -40,8 +40,24 @@ function getPlayerInfo(){
 //is used to transition rooms 
 //as some things have to be done befor and after
 function transitionRoom(_roomToGoTO){
+	switch(_roomToGoTO){
+		case "rTown":
+			global.room = roomList.town;
+		break;
+		case "rBattleScreen":
+			global.room = roomList.battle;
+		break;
+		case "rDefeat":
+			global.room = roomList.defeat;
+		break;
+		case "rDungeonMap":
+			global.room = roomList.map;
+		break;
+		
+	}
 	room_goto(_roomToGoTO);
-	for(i = 0; i < array_length(global.inventory); i ++){
+	
+	for(var i = 0; i < array_length(global.inventory); i ++){
 		if(global.inventory[i] != -1){
 			global.inventory[i].updateCanBeUsed();
 		}

@@ -1,10 +1,8 @@
-if(oTown.currentMenu == -1 && oTown.allowInputs && position_meeting(MOUSEGUI_X,MOUSEGUI_Y, id)){
-	oTown.currentMenu = menus.inventory;
+if(oTown.currentMenu == -1 && global.allowInput && position_meeting(MOUSEGUI_X,MOUSEGUI_Y, id)){
 	with(oTown){
-		event_user(0);
-		event_user(1);
-		event_user(0);
+		currentMenu = menus.inventory;
+		displayMenuInTown();
 	}
-
-	oMenuScreen.displayMenu();
 }
+
+

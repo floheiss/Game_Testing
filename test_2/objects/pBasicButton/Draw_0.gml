@@ -1,14 +1,18 @@
 if(drawInMap){
-	if(spriteToDraw != -1){
-		draw_self();
+	if(spriteToDraw != -1 or lockWithOutImageFlag != -1){
+		if(spriteToDraw != -1){
+			draw_self();
+		}
 	
 		if(btnState == buttonState.disabled){
-			var lockOverLayXscale = sprite_get_width(spriteToDraw)/128;
-			var lockOverLayYscale = sprite_get_height(spriteToDraw)/128;
+			//maybe error
+			var spriteUsed = (spriteToDraw != -1) ? spriteToDraw : lockWithOutImageFlag;
+			var lockOverLayXscale = sprite_get_width(spriteUsed)/128;
+			var lockOverLayYscale = sprite_get_height(spriteUsed)/128;
 			draw_sprite_ext(LockedOverlay, 0,
 			x - sprite_get_xoffset(spriteToDraw), 
 			y - sprite_get_yoffset(spriteToDraw),
-			lockOverLayXscale,lockOverLayYscale,0,c_white,1); 
+			lockOverLayXscale,lockOverLayYscale, 0, c_white, 1); 
 		}
 	
 	}

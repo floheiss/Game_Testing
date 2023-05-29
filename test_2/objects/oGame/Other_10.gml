@@ -1,1 +1,1 @@
-allowInput = !allowInput;
+global.allowInput = !global.allowInput;

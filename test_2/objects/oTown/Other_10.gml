@@ -1,1 +1,0 @@
-allowInputs = !allowInputs;

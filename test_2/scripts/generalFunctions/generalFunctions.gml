@@ -151,7 +151,7 @@ function findPosition(sizeOfTeam, team){
 	//- makes worse  rolls 
 	//+ makes better rolls 
 //--> rework systems to use this 
-function chanceFrom100(_rerolls){
+function chanceFrom100(_rerolls = 0){
 	randomize();
 	var number = round(random_range(0,99));
 	//rerolls
@@ -211,7 +211,6 @@ _rerolls = 0){
 	
 
 	#region change chances to fit better 
-	
 	if(_tierChances[0] == -1){
 		procentChances[0] = -1;
 	}else{

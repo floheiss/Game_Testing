@@ -17,6 +17,9 @@ condition = -1; //saves a condition to check for
 //when the condition returns true the button is not locked
 conditionParamArray = []; //saves any number of params for the condition
 locked = false; //false is default and means the button can beused
+lockWithOutImageFlag = false;
+
+savedObject = -1;
 
 //is used to set the button 
 //sets the x/y position of a button
@@ -63,7 +66,7 @@ function setConditionForLocking(_condition, _conditionParamArray = []){
 		if(is_bool(condition)){
 			locked = !condition;
 		}else if(is_method(condition)){
-			locked = method_call(condition,conditionParamArray);
+			locked = condition(conditionParamArray);
 		}else{
 			locked = script_execute(condition, conditionParamArray);
 		}
@@ -73,7 +76,13 @@ function setConditionForLocking(_condition, _conditionParamArray = []){
 	}
 }
 
-
+function lockWithOutImage(_xCord,_yCord, _normalImage){
+	x = _xCord;
+	y = _yCord;
+	lockWithOutImageFlag = _normalImage;
+	locked = true;
+	btnState = buttonState.disabled;
+}
 
 
 function resetButton(){
@@ -89,4 +98,5 @@ function resetButton(){
 	locked = false;
 	condition = -1;
 	conditionParamArray = [];
+	lockWithOutImageFlag = false;
 }

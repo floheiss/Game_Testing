@@ -22,7 +22,7 @@ doge = 0.07;
 critMultiplier = 1.7;
 
 #region spriteVars
-icon = BloodMageIcon;
+icon = BloodMage_Icon;
 
 class = classList.bloodMage; 
 

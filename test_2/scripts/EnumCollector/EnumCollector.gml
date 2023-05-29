@@ -3,13 +3,15 @@ enum menus{
 	guild,
 	inventory, //can be used in map and town
 	merchant, //can be used in map and town
-		tavern,
+	tavern,
+	partyInfo, //is used to display info for the partyMembers 
 	
 	campfire, //for map
 	mapEvent, //for map
 	
 	lootDisplay,//can be used any time loot is diplayed
 }
+
 //stats of a button used for all 
 enum buttonState{
 	active,
@@ -198,7 +200,6 @@ enum states{
 	PROTECT 
 }
 
-
 //for mDot type of dot
 enum dotTypes{
 	poison,
@@ -224,6 +225,17 @@ enum dmgType{
 	melee,
 	ranged,
 	magic
+}
+
+//all the prios an enemy can have 
+enum attackPrios{
+	highes, //most HP
+	lowest, //lowest HP
+	storngest,//most points
+	weakest, //lowest points
+	mostResilient, //most armor
+	leastResilient, //lowest armor
+	bloodMage,
 }
 
 #endregion

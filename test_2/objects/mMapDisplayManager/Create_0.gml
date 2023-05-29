@@ -7,12 +7,26 @@ mapOptions = []; // have to reset after every event !!!!
 currentEvent = -1; // have to reset after every event !!!!
 activeNote = -1;
 
-campfireDisplaySupport = [];
+campfireDisplaySupport = [];//is used for campfire
+
+currentDisplayedSupport = -1;//is used for the info screen 
 
 hoveredNote = -1; //for debugging
 debug = false; //?????
 
 function displayEvent(){
+	
+	var findMapDisplayItem = function(){
+		list = ds_list_create();
+		for(i = 0; i < instance_number(oMapDisplayItem);i ++){
+			instance = instance_find(oMapDisplayItem, i);
+			ds_list_add(list, instance);
+		}
+		return list;
+	}
+
+	var objects = findMapDisplayItem();
+	
 	for(i = 0; i < ds_list_size(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
 		objects[|i].resetButton();	
@@ -235,14 +249,4 @@ function displayEvent(){
 }
 
 
-function findMapDisplayItem(){
-	list = ds_list_create();
-	for(i = 0; i < instance_number(oMapDisplayItem);i ++){
-		instance = instance_find(oMapDisplayItem, i);
-		ds_list_add(list, instance);
-	}
-	return list;
-	
-}
 
-objects = findMapDisplayItem();
