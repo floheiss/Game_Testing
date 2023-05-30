@@ -1,5 +1,10 @@
+event_inherited();
+
+drawInGui = false;
+drawInMap = true;
+changeSprite(x,y,sprite_index);
+
 supportSelection = [];
-numberOfDisplayedSupports = 8;
 
 
 #region define all support choices 
@@ -19,7 +24,7 @@ function createSaleSupport(_class, _cost, _hoverText, _icon) constructor{
 	function generateLvL(){
 		if(useLvLbasedOnBM){
 			randomize();
-			bmLvL = oGame.getPlayerInfo().lvl;
+			var bmLvL = oGame.getPlayerInfo().lvl;
 	
 			if(1 < bmLvL <= 5){
 				lvl = bmLvL + round(random_range(-1, 1));
@@ -48,10 +53,10 @@ function createSaleSupport(_class, _cost, _hoverText, _icon) constructor{
 	// adjustCost(); for late when worked on 
 }
 
-class = 0;
-cost = 0;
-hoverText = "something went wrong";
-icon = 0;
+var class = 0;
+var cost = 0;
+var hoverText = "something went wrong";
+var icon = 0;
 
 class = classList.fieldHand;
 cost = 150;
@@ -115,121 +120,139 @@ gunSlinger = new createSaleSupport(class, cost, hoverText, icon);
 
 #endregion
 
-//is used to fill the supportSelection
-// generates numberOfDisplayedSupports
-//uses the tier system 
-//LvL of the Supps is always based on PlayerLvL
-function generateSupportSelection(){
-	//1 is a high tier support 
-	//3 3 tier
-	//4 2/1 tier
-	//rest filled with tier 1 
-	//ON AVARAGE
-	number = round( random_range(1, 2));
-	if(number == 1){
-		supportSelection[0] = witchHunter;
-	}else{
-		supportSelection[0] = samurai;
-	}
+MainFunction = function(){
+	
+	if(oTown.currentMenu == -1){
+		if(array_length(supportSelection) == 0){
+			//is used to fill the supportSelection
+			// generates numberOfDisplayedSupports
+			//uses the tier system 
+			//LvL of the Supps is always based on PlayerLvL
+			
+			 var generateSupportSelection = function(){
+				var numberOfDisplayedSupports = 8;
+				//1 is a high tier support 
+				//3 3 tier
+				//4 2/1 tier
+				//rest filled with tier 1 
+				//ON AVARAGE
+				var number = round( random_range(1, 2));
+				if(number == 1){
+					supportSelection[0] = witchHunter;
+				}else{
+					supportSelection[0] = samurai;
+				}
 
-	//very unsure about this 
-	tier1 = [fieldHand, peasent, butcher, monch];  
-	tier2 = [huntsMan, gunSlinger, berserker]; 
-	tier3 = [disownedNobal];
+				//very unsure about this 
+				var tier1 = [fieldHand, peasent, butcher, monch];  
+				var tier2 = [huntsMan, gunSlinger, berserker]; 
+				var tier3 = [disownedNobal];
 	
 	
-	for(i = 1; i < 4; i ++){
-		supportSelection[i] = generateFormTierList(
-		[-1,20,50],
-		undefined,
-		tier3,
-		tier2,
-		tier1);
-	}
+				for(var i = 1; i < 4; i ++){
+					supportSelection[i] = generateFormTierList(
+					[-1,20,50],
+					undefined,
+					tier3,
+					tier2,
+					tier1);
+				}
 	
-	for(j = 4; j < 8; j ++){
-		supportSelection[j] = generateFormTierList(
-		[-1,10,30],
-		undefined,
-		tier3,
-		tier2,
-		tier1,
-		-1);
-	}
+				for(j = 4; j < 8; j ++){
+					supportSelection[j] = generateFormTierList(
+					[-1,10,30],
+					undefined,
+					tier3,
+					tier2,
+					tier1,
+					-1);
+				}
 		
-	if(numberOfDisplayedSupports  > 8){
-		for(k = 8; k < numberOfDisplayedSupports; k ++){
-			supportSelection[k] = generateFormTierList(
-			[-1,5,25],
-			undefined,
-			tier3,
-			tier2,
-			tier1,
-			-1);
+				if(numberOfDisplayedSupports  > 8){
+					for(k = 8; k < numberOfDisplayedSupports; k ++){
+						supportSelection[k] = generateFormTierList(
+						[-1,5,25],
+						undefined,
+						tier3,
+						tier2,
+						tier1,
+						-1);
+					}
+				}
+			}
+
+			 var convertSaleSupportIntoPlayGroup = function(_class, _lvl){
+				support = false;
+				position = oGame.findOpenSlotInPlayGroup();
+				if(position == -1){
+					show_debug_message("there are no open Slots for teammates");
+					return 0;
+				}
+	
+				switch(_class){
+					case classList.berserker:
+						support = instance_create_depth(0,0,0,oSamurai);
+						support.class = classList.berserker; //remove later:) 
+			
+					break;
+					case classList.butcher:
+						support = instance_create_depth(0,0,0,oSamurai);
+						support.class = classList.butcher;
+			
+					break;
+					case classList.disownedNobal:
+						support = instance_create_depth(0,0,0,oSamuraiCommander);
+						support.class = classList.disownedNobal;
+					break;
+					case classList.fieldHand:
+						support = instance_create_depth(0,0,0,oSamurai);
+						support.class = classList.fieldHand;
+			
+					break;
+					case classList.gunSlinger:			
+						support = instance_create_depth(0,0,0,oSamuraiArcher);
+						support.class = classList.gunSlinger;
+			
+					break;
+					case classList.huntsMan:
+						support = instance_create_depth(0,0,0,oSamuraiArcher);
+						support.class = classList.huntsMan;
+					break;
+					case classList.monch:
+						support = instance_create_depth(0,0,0,oSamuraiCommander);
+						support.class = classList.monch;
+					break;
+					case classList.peasent:
+						support = instance_create_depth(0,0,0,oSamurai);
+						support.class = classList.peasent;
+					break;
+					case classList.samurai:
+						support = instance_create_depth(0,0,0,oSamurai);
+						support.class = classList.samurai;
+					break;
+					case classList.witchhunter:
+						support = instance_create_depth(0,0,0,oSamuraiCommander);
+						support.class = classList.witchhunter;
+					break;
+				}
+	
+				support.lvl = _lvl;
+				//i = 1000 !!!!!!!!!!!
+				for(i = 1000; i < support.lvl; i++){
+					support.lvlUp(); // have to make 
+				}
+	
+				global.playerGroup[position] = support;
+			}
+
+			generateSupportSelection();
 		}
+		with(oTown){
+			currentMenu = menus.tavern;
+			displayMenuInTown();
+		}
+	
 	}
+
 }
 
-function convertSaleSupportIntoPlayGroup(_class, _lvl){
-	support = false;
-	position = oGame.findOpenSlotInPlayGroup();
-	if(position == -1){
-		show_debug_message("there are no open Slots for teammates");
-		return 0;
-	}
-	
-	switch(_class){
-		case classList.berserker:
-			support = instance_create_depth(0,0,0,oSamurai);
-			support.class = classList.berserker; //remove later:) 
-			
-		break;
-		case classList.butcher:
-			support = instance_create_depth(0,0,0,oSamurai);
-			support.class = classList.butcher;
-			
-		break;
-		case classList.disownedNobal:
-			support = instance_create_depth(0,0,0,oSamuraiCommander);
-			support.class = classList.disownedNobal;
-		break;
-		case classList.fieldHand:
-			support = instance_create_depth(0,0,0,oSamurai);
-			support.class = classList.fieldHand;
-			
-		break;
-		case classList.gunSlinger:			
-			support = instance_create_depth(0,0,0,oSamuraiArcher);
-			support.class = classList.gunSlinger;
-			
-		break;
-		case classList.huntsMan:
-			support = instance_create_depth(0,0,0,oSamuraiArcher);
-			support.class = classList.huntsMan;
-		break;
-		case classList.monch:
-			support = instance_create_depth(0,0,0,oSamuraiCommander);
-			support.class = classList.monch;
-		break;
-		case classList.peasent:
-			support = instance_create_depth(0,0,0,oSamurai);
-			support.class = classList.peasent;
-		break;
-		case classList.samurai:
-			support = instance_create_depth(0,0,0,oSamurai);
-			support.class = classList.samurai;
-		break;
-		case classList.witchhunter:
-			support = instance_create_depth(0,0,0,oSamuraiCommander);
-			support.class = classList.witchhunter;
-		break;
-	}
-	
-	support.lvl = _lvl;
-	//i = 1000 !!!!!!!!!!!
-	for(i = 1000; i < support.lvl; i++){
-		support.lvlUp(); // have to make 
-	}
-	
-	global.playerGroup[position] = support;
-}

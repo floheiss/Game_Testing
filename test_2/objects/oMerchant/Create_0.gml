@@ -1,52 +1,24 @@
-merchantInventory = [];
-maxItems = 8;
+event_inherited();
 
-function  generateInventory(){
-	
-	for(i = 0; i < maxItems; i ++){
-		merchantInventory[i] = generateRandomSaleItem();
-	}
-	merchantInventory  = array_shuffle(merchantInventory);
-}
+drawInGui = false;
+drawInMap = true;
+
+changeSprite(x,y,sprite_index);
+
+
+merchantInventory = [];
 
 
 //reworked in LINUX to use (NEW LINUX) generateFormTierList
 //generates a random SaleItem 
-function generateRandomSaleItem(_tierChances = [-1, 15, 35],
-_tier3Items = -1, _tier2Items = -1,_tier1Items  = -1){
-	tier3Items = [healPot]; //[bloodFlask]
-	tier2Items = [healPot, healPot]; //[lockPickSet, posionOFX, shovel]
-	tier1Items = [bandage, bandage , bandage]; //[bandage, healPot , rations, fieldMedicalSupply, rations,antiPosion]
-	#region changes the default arrays to para []
-		if(_tier3Items  != -1 and is_array(_tier3Items)){
-			tier3Items = _tier3Items;
-		}
-		if(_tier2Items  != -1 and is_array(_tier2Items)){
-			tier2Items = _tier2Items;
-		}
-		if(_tier1Items  != -1 and is_array(_tier1Items)){
-			tier1Items = _tier1Items;
-		}
-	#endregion
-	
-	item = generateFormTierList(
-		_tierChances,
-		undefined,
-		tier3Items,
-		tier2Items,
-		tier1Items
-	);
-	
-	return item;
-}
 
 #region define Items to sale
 
-name = "";
-type = 0;
-merchantText = "";
-displaySpriteSubImage = 0;
-cost = 0;
+var name = "";
+var type = 0;
+var merchantText = "";
+var displaySpriteSubImage = 0;
+var cost = 0;
 	
 name = "Bandage";
 type = itemList.bandage;
@@ -114,3 +86,56 @@ fieldMedicalSupply = new global.ItemGen.createSaleItem(name, type, merchantText,
 #endregion
 
 
+MainFunction = function(){
+	if(oTown.currentMenu == -1){
+		if(array_length(merchantInventory) == 0){
+			
+			
+			var generateInventory = function(){
+			
+				var maxItems = 8;
+	
+				var generateRandomSaleItem = function(_tierChances = [-1, 15, 35],
+				_tier3Items = -1, _tier2Items = -1,_tier1Items  = -1){
+					var tier3Items = [healPot]; //[bloodFlask]
+					var tier2Items = [healPot, healPot]; //[lockPickSet, posionOFX, shovel]
+					var tier1Items = [bandage, bandage , bandage]; //[bandage, healPot , rations, fieldMedicalSupply, rations,antiPosion]
+					#region changes the default arrays to para []
+						if(_tier3Items  != -1 and is_array(_tier3Items)){
+							tier3Items = _tier3Items;
+						}
+						if(_tier2Items  != -1 and is_array(_tier2Items)){
+							tier2Items = _tier2Items;
+						}
+						if(_tier1Items  != -1 and is_array(_tier1Items)){
+							tier1Items = _tier1Items;
+						}
+					#endregion
+	
+					item = generateFormTierList(
+						_tierChances,
+						undefined,
+						tier3Items,
+						tier2Items,
+						tier1Items
+					);
+	
+					return item;
+				}
+
+				for(var i = 0; i < maxItems; i ++){
+					merchantInventory[i] = generateRandomSaleItem();
+				}
+				merchantInventory  = array_shuffle(merchantInventory);
+			}
+
+			generateInventory();
+		}
+		with(oTown){
+			currentMenu = menus.merchant;
+			displayMenuInTown();
+		}
+	
+	}
+	
+}

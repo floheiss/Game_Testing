@@ -15,7 +15,6 @@ if(global.drawPartyInfo){
 					changeSprite(xCord, yCord,savedObject.icon,false,0);
 					setUseHighlightHoverImage(Basic_HomeLess_Icon,1);
 					var fun = function(){
-							var roomName = room_get_name(room);
 							switch(global.room){
 								case roomList.town: 
 									oMenuScreen.currentDisplayedSupport = savedObject;

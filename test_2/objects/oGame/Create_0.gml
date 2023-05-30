@@ -15,6 +15,8 @@ global.room = roomList.town;
 
 global.maxInventorySize = 12;
 global.inventory = []; //default []
+global.inventory = array_create(global.maxInventorySize, -1);
+
 global.maxPlayGroupSize = 2; //default 2
 global.gold = 1000; //gold of the player 
 
@@ -29,8 +31,9 @@ global.allowInput = true;
 
 //retuns the instance of the BM in the Party
 function getPlayerInfo(){
-	for(i = 0; i < array_length(global.playerGroup); i ++){
-		unit = global.playerGroup[i];
+
+	for(var i = 0; i < array_length(global.playerGroup); i ++){
+		var unit = global.playerGroup[i];
 		if(unit.class == classList.bloodMage){
 			return global.playerGroup[i];
 		}
@@ -68,9 +71,9 @@ function transitionRoom(_roomToGoTO){
 //returns a open position in the player Group
 // returns -1 if there are none 
 function findOpenSlotInPlayGroup(){
-	position = -1;
+	var position = -1;
 
-	for(i = 0; i < array_length(global.playerGroup); i ++){
+	for(var i = 0; i < array_length(global.playerGroup); i ++){
 		if(global.playerGroup[i] == -1){
 			position = i;
 			break;

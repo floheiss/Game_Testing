@@ -24,7 +24,31 @@ if(HoverFunction != noone &&
 		}
 }
 
+if(drawCondition != -1){
+	if(is_bool(drawCondition)){
+		getsDraw = condition;
+	}else if(is_method(drawCondition)){
+		getsDraw = drawCondition();
+	}else{
+		getsDraw = script_execute(drawCondition);
+	}
+}
 
+if(lockCondition != -1){
+	if(is_bool(lockCondition)){
+		locked = lockCondition;
+	}else if(is_method(lockCondition)){
+		locked = lockCondition(lockConditionParamArray);
+	}else{
+		locked = script_execute(lockCondition, lockConditionParamArray);
+	}
+}
 
+if(!locked){
+	btnState = buttonState.active;
+}
 
+if(locked){
+	btnState = buttonState.disabled;
+}	
 

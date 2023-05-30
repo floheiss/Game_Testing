@@ -1,3 +1,5 @@
+#region var Stuff
+
 image_speed = 0;
 bg = false;
 bgSubimage = 0;
@@ -11,23 +13,22 @@ memberSequence = -1;
 
 welcomeText = "";
 
+#endregion
 
 function displayMenu(){
 	
 	#region finds all objects in the MenuScree + reset
 	var findDisplayObjects = function(){
-		list = ds_list_create();
+		var list = ds_list_create();
 		for(var i = 0; i < instance_number(oDisplaySprite);i ++){
-			instance = instance_find(oDisplaySprite, i);
+			var instance = instance_find(oDisplaySprite, i);
 			ds_list_add(list, instance);
 		}
 		return list;
 	}
 
 	objects = findDisplayObjects();
-	
-
-	
+		
 	for(i = 0; i < ds_list_size(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
 		objects[|i].resetButton();
@@ -44,6 +45,7 @@ function displayMenu(){
 	memberSequence = -1;
 	
 	switch(oTown.currentMenu){
+	
 		#region guild 
 		case menus.guild:
 			currentDisplayedContrat = false;
@@ -108,6 +110,9 @@ function displayMenu(){
 				
 				#endregion
 				
+				addItemToInventory(itemList.bandage);
+				addItemToInventory(itemList.healingPotion, 3);
+				
 				if(i < global.maxInventorySize){
 					var item = global.inventory[i];
 					with(objects[|i]){
@@ -143,7 +148,7 @@ function displayMenu(){
 			for(var i = 0; i < array_length(merchantInventory); i++){
 				
 				with(objects[|i + 1]){
-					if(other.i < array_length(other.merchantInventory) /2){
+					if(i < array_length(merchantInventory) /2){
 						var xCord = 480 + 95 * i;
 						itemDisplayed = merchantInventory[i];
 						var position = i;
@@ -187,15 +192,16 @@ function displayMenu(){
 			with(objects[|0]){
 				changeSprite(200,200,Vera_Guild_girl, false, 0);
 			}
-			for(var i = 0; i < oTavern.numberOfDisplayedSupports; i++){
+			var numberOfDisplayedSupports = array_length(oTavern.supportSelection);
+			for(var i = 0; i < numberOfDisplayedSupports; i++){
 				with(objects[|i + 1]){
-					if(other.i < (oTavern.numberOfDisplayedSupports / 2)){
-						var xCord = 480 + 142 * other.i;
+					if(i < (numberOfDisplayedSupports / 2)){
+						var xCord = 480 + 142 * i;
 						supportDispalyed = oTavern.supportSelection[i];
 						changeSprite(xCord,180,supportDispalyed.icon, false, 0);
 						
 					}else{
-						var xCord = 480 + 142 * (other.i - (oTavern.numberOfDisplayedSupports / 2));
+						var xCord = 480 + 142 * (i - (numberOfDisplayedSupports / 2));
 						supportDispalyed = oTavern.supportSelection[i];
 						changeSprite(xCord,210+64+50,supportDispalyed.icon, false, 0);
 					}
@@ -219,8 +225,10 @@ function displayMenu(){
 		break;
 				
 		#endregion
-	}
 		
+	}
+	
+	
 }
 
 

@@ -33,12 +33,16 @@ function createItem(_name, _type,_battleEffect,_battleSprite,_battleDescriptionH
 	
 	function effect(){
 		if(canBeUsed){
-			script_execute(battleEffect);
+			if(is_method(battleEffect)){
+				battleEffect();
+			}else{
+				script_execute(battleEffect);
+			}
 		}
 	}
 	
 	function updateCanBeUsed(){
-		for(i = 0; i < array_length(roomToUse); i++){
+		for(var i = 0; i < array_length(roomToUse); i++){
 			if(room_get_name(room) == roomToUse[i]){
 				canBeUsed = true;
 			}else if(room_get_name(room) != roomToUse[i]){

@@ -1,4 +1,4 @@
-if(drawInMap){
+if(drawInMap && getsDraw){
 	if(spriteToDraw != -1 or lockWithOutImageFlag != -1){
 		if(spriteToDraw != -1){
 			draw_self();

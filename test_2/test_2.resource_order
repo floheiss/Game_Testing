@@ -100,6 +100,7 @@
     {"name":"oTown","order":1,"path":"objects/oTown/oTown.yy",},
     {"name":"rBattleScreen","order":1,"path":"rooms/rBattleScreen/rBattleScreen.yy",},
     {"name":"dd_backdrop_testing_merchant","order":9,"path":"sprites/dd_backdrop_testing_merchant/dd_backdrop_testing_merchant.yy",},
+    {"name":"Script10","order":3,"path":"scripts/Script10/Script10.yy",},
     {"name":"BloodMage_Attack_3","order":5,"path":"sprites/BloodMage_Attack_3/BloodMage_Attack_3.yy",},
     {"name":"BloodMage_Idle","order":1,"path":"sprites/BloodMage_Idle/BloodMage_Idle.yy",},
     {"name":"Protect_Samurai_Commander","order":6,"path":"sprites/Protect_Samurai_Commander/Protect_Samurai_Commander.yy",},

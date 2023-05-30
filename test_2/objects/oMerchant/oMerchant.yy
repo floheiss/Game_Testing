@@ -3,7 +3,6 @@
   "resourceVersion": "1.0",
   "name": "oMerchant",
   "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":7,"eventType":6,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
@@ -12,7 +11,10 @@
     "name": "Town",
     "path": "folders/Objects/Town.yy",
   },
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "pBasicButton",
+    "path": "objects/pBasicButton/pBasicButton.yy",
+  },
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,

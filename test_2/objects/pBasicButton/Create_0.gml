@@ -1,6 +1,7 @@
 image_speed = 0;
 btnState = buttonState.active;
 spriteToDraw = -1;
+getsDraw = true;
 
 useHighLightHover = false;
 useHighLightHoverImage = -1;
@@ -13,11 +14,13 @@ displayedTextyCord = 0;
 drawInGui = true; //is used to draw Buttons on the gui is defualt 
 drawInMap = false; //is used to draw Buttons on a map
 
-condition = -1; //saves a condition to check for 
+lockCondition = -1; //saves a condition to check for 
 //when the condition returns true the button is not locked
-conditionParamArray = []; //saves any number of params for the condition
+lockConditionParamArray = []; //saves any number of params for the condition
 locked = false; //false is default and means the button can beused
 lockWithOutImageFlag = false;
+
+drawCondition = -1; //saves a condition for when to draw the button 
 
 savedObject = -1;
 
@@ -54,24 +57,24 @@ function setDisplayedText(_displayedText, _displayedTextxCord = 0, _displayedTex
 
 //is used to update the locked condition of the button 
 function setConditionForLocking(_condition, _conditionParamArray = []){
-	condition = _condition;
+	lockCondition = _condition;
 	if(!is_array(_conditionParamArray)){
-		conditionParamArray[0] = _conditionParamArray;
+		lockConditionParamArray[0] = _conditionParamArray;
 	}else{
 		for(var i = 0; i < array_length(_conditionParamArray); i ++){
-			conditionParamArray[i] = _conditionParamArray[i];
+			lockConditionParamArray[i] = _conditionParamArray[i];
 		}
 	}
-	if(condition != -1){
-		if(is_bool(condition)){
-			locked = !condition;
-		}else if(is_method(condition)){
-			locked = condition(conditionParamArray);
+	if(lockCondition != -1){
+		if(is_bool(lockCondition)){
+			locked = lockCondition;
+		}else if(is_method(lockCondition)){
+			locked = lockCondition(lockConditionParamArray);
 		}else{
-			locked = script_execute(condition, conditionParamArray);
+			locked = script_execute(lockCondition, lockConditionParamArray);
 		}
 	}
-	if(locked == true){
+	if(locked){
 		btnState = buttonState.disabled;
 	}
 }
@@ -84,6 +87,20 @@ function lockWithOutImage(_xCord,_yCord, _normalImage){
 	btnState = buttonState.disabled;
 }
 
+//a condition for when to draw the button :) 
+//accualy usefull i hope 
+function setConditionForDrawing(_condition){
+	drawCondition = _condition;
+	if(drawCondition != -1){
+		if(is_bool(drawCondition)){
+			getsDraw = condition;
+		}else if(is_method(drawCondition)){
+			getsDraw = drawCondition();
+		}else{
+			getsDraw = script_execute(drawCondition);
+		}
+	}
+}
 
 function resetButton(){
 	spriteToDraw = -1;

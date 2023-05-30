@@ -1,19 +1,3 @@
-function CancelButtonTown(){
-	oTown.currentMenu = -1;
-	objects = oMenuScreen.findDisplayObjects();
-	//not sure if here or in oMenuScreen
-	for(i = 0; i < ds_list_size(objects); i ++){
-		objects[|i].spriteToDraw = -1;
-	}
-	//have to change so oGame allowInputs is used 
-	with(oTown){
-		event_user(0);
-		event_user(1);
-		event_user(0);
-	}
-	
-}
-
 function DisplayHover(){
 	
 	#region guild
@@ -41,15 +25,15 @@ function DisplayHover(){
 	#region Tavern
 	
 	if(self.supportDispalyed != false){
-		numberInParty = 0;
-		for(i = 0; i < array_length(global.playerGroup); i ++){
+		var numberInParty = 0;
+		for(var i = 0; i < array_length(global.playerGroup); i ++){
 			if(global.playerGroup[i] != -1){
 				numberInParty ++;
 			}
 		}
-		show_debug_message("support cost: " + string(self.supportDispalyed.cost));
+		show_debug_message("member cost: " + string(self.supportDispalyed.cost));
 		show_debug_message("--------------------");
-		show_debug_message( "all gold: " +string(global.gold));
+		show_debug_message( "global gold: " + string(global.gold));
 		if(global.maxPlayGroupSize <= numberInParty){
 			oMenuScreen.welcomeText = "Sorry the people here dont trust you enough to come in higher numbers";
 		} else if(global.gold < self.supportDispalyed.cost){
@@ -61,31 +45,33 @@ function DisplayHover(){
 	}
 	
 	#endregion
+
 }
 
 function DisplayMain(){
 	
 	switch(oTown.currentMenu){
 		#region guild
+		
 		case menus.guild:
 			global.contract = oMenuScreen.currentDisplayedContrat;
-			oTown.currentMenu = -1;
 			with(oTown){
-				event_user(0);
-				event_user(1);
-				event_user(0);
+				currentMenu = -1;
+				displayMenuInTown();
 			}
 		break;
+		
 		#endregion 
 		
 		#region tavern
+		
 		case menus.tavern:
-			support = oMenuScreen.currentDisplayedSupport;
-			if(support != false){
-				support.sold = true;
-				global.gold -= support.cost;
-				class = support.class;
-				lvl = support.lvl;
+			var member = oMenuScreen.currentDisplayedSupport;
+			if(member != false){
+				member.sold = true;
+				global.gold -= member.cost;
+				class = member.class;
+				lvl = member.lvl;
 				oTavern.convertSaleSupportIntoPlayGroup(class, lvl);
 			}
 			oMenuScreen.currentDisplayedSupport = false;
@@ -94,8 +80,9 @@ function DisplayMain(){
 		#endregion
 		
 		#region merchant
+		
 		case menus.merchant:
-			toBuyItem = oMenuScreen.currentDisplayedItem;
+			var toBuyItem = oMenuScreen.currentDisplayedItem;
 			
 			if(global.gold >= toBuyItem.cost && 
 			!oMerchant.merchantInventory[self.position].sold &&
@@ -105,14 +92,18 @@ function DisplayMain(){
 				mInventory.addItemToInventory(toBuyItem.typeOfItem);
 				self.image_index = 1;
 				//have to change as now oGame handels allowInput !!!
-				with(oTown){
+				with(oGame){
 					event_user(0);
+					for(var i = 0; i < 100; i ++){
+						//passes for some time to stop any wierd inputs 
+					}
 					event_user(0);
 				}
 				oMenuScreen.currentDisplayedItem = false;
 			}
 
 		break;
+		
 		#endregion
 	}
 	

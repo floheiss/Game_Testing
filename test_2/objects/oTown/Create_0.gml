@@ -3,7 +3,6 @@ menusUI = layer_get_id("menusUI");
 
 
 function displayMenuInTown(){
-	
 	with(oGame){
 		event_user(0);
 	}
@@ -12,5 +11,4 @@ function displayMenuInTown(){
 	with(oGame){
 		event_user(0);
 	}
-	
 }

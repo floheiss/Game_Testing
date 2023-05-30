@@ -1,4 +1,4 @@
-if(drawInGui){
+if(drawInGui && getsDraw){
 	if(spriteToDraw != -1 or lockWithOutImageFlag != -1){
 		if(spriteToDraw != -1){
 			draw_self();
@@ -31,8 +31,8 @@ if(drawInGui){
 
 	if(displayedText != ""){
 		displayedText = autoLineBreaker(displayedText, sprite_get_width(sprite_index) - 20, 30);
-		xCord = x;
-		yCord = y;
+		var xCord = x;
+		var yCord = y;
 		if(displayedTextxCord != 0){
 			xCord = displayedTextxCord;
 		}
@@ -43,7 +43,6 @@ if(drawInGui){
 	}
 
 	#endregion
-
 
 }
 

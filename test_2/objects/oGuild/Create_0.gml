@@ -1,8 +1,16 @@
+event_inherited();
+
 contracts = [];
 
+drawInGui = false;
+drawInMap = true;
+
+changeSprite(x,y,sprite_index);
+
 //generatesContracts for the display in Guild
-//
-function generateContracts(){
+MainFunction = function(){
+	
+	var generateContracts = function(){
 	randomize();
 	contracts = [];
 	
@@ -424,14 +432,17 @@ function generateContracts(){
 	
 }
 
+	if(oTown.currentMenu == -1){
+		if(global.contract != false or array_length(contracts) < 6){
+		generateContracts();
+	}
+		with(oTown){
+			currentMenu = menus.guild;
+			displayMenuInTown();
+		}	
 
-
-
-
-
-
-
-
+	}
+}
 
 
 

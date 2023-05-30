@@ -143,6 +143,7 @@
     {"id":{"name":"oTown","path":"objects/oTown/oTown.yy",},},
     {"id":{"name":"rBattleScreen","path":"rooms/rBattleScreen/rBattleScreen.yy",},},
     {"id":{"name":"dd_backdrop_testing_merchant","path":"sprites/dd_backdrop_testing_merchant/dd_backdrop_testing_merchant.yy",},},
+    {"id":{"name":"Script10","path":"scripts/Script10/Script10.yy",},},
     {"id":{"name":"BloodMage_Attack_3","path":"sprites/BloodMage_Attack_3/BloodMage_Attack_3.yy",},},
     {"id":{"name":"BloodMage_Idle","path":"sprites/BloodMage_Idle/BloodMage_Idle.yy",},},
     {"id":{"name":"sSamurai","path":"sequences/sSamurai/sSamurai.yy",},},

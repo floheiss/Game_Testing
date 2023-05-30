@@ -1,6 +1,3 @@
-inventoryLength = 10;
-global.inventory = array_create(global.maxInventorySize, -1);
-
 #region general inventory managment
 //search items | find last position | removing form position
 //removing the the first of a given item
@@ -150,8 +147,4 @@ function addItemToInventory(_item, _position = -1){
 }
 
 #endregion
-
-addItemToInventory(itemList.bandage);
-addItemToInventory(itemList.healingPotion, 3);
-
 
