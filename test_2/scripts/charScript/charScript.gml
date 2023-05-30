@@ -39,7 +39,7 @@ function checkMericals(_unit){
 }
 
 function checkMericalsAND2Enemies(_unit){
-	if(ds_list_size(mCombat.team1) < 2){
+	if(array_length(mCombat.team1) < 2){
 		return false; 
 	}else {
 		return checkMericals(_unit);
@@ -61,7 +61,7 @@ function checkAimTaken(_unit){
 }
 
 function checkOnlyOneEnemy(_unit){
-	return ds_list_size(mCombat.team1) < 1? true: false;
+	return array_length(mCombat.team1) < 1? true: false;
 }
 
 #endregion
@@ -118,13 +118,13 @@ _rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCos
 		if(canTarget == possibleTargets.enemies){
 			switch(owner.team){
 				case 0:
-					if(ds_list_size(mCombat.team1) < targetNumberBase){
-						targetNumber = ds_list_size(mCombat.team1) ;
+					if(array_length(mCombat.team1) < targetNumberBase){
+						targetNumber = array_length(mCombat.team1) ;
 					}
 				break;
 				case 1:
-					if(ds_list_size(mCombat.team0) < targetNumberBase){
-						targetNumber = ds_list_size(mCombat.team0) ;
+					if(array_length(mCombat.team0) < targetNumberBase){
+						targetNumber = array_length(mCombat.team0) ;
 					}
 				break;
 			}
@@ -132,13 +132,13 @@ _rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCos
 		if(canTarget == possibleTargets.allies){
 			switch(owner.team){
 				case 0:
-					if(ds_list_size(mCombat.team0) < targetNumberBase){
-						targetNumber = ds_list_size(mCombat.team0) ;
+					if(array_length(mCombat.team0) < targetNumberBase){
+						targetNumber = array_length(mCombat.team0) ;
 					}
 				break;
 				case 1:
-					if(ds_list_size(mCombat.team1) < targetNumberBase){
-						targetNumber = ds_list_size(mCombat.team1) ;
+					if(array_length(mCombat.team1) < targetNumberBase){
+						targetNumber = array_length(mCombat.team1) ;
 					}
 				break;
 			}

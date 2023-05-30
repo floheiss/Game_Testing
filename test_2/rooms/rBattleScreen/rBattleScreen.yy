@@ -8,87 +8,33 @@
   "inheritLayers": false,
   "instanceCreationOrder": [
     {"name":"inst_34042E0","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_796F9AAB","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_4135E46","path":"rooms/rBattleScreen/rBattleScreen.yy",},
     {"name":"inst_5FE1A82C","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_2C9F7638","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_6BBBC89D","path":"rooms/rBattleScreen/rBattleScreen.yy",},
     {"name":"inst_4FEA6EE0","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_6AD8A148","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_2C4AFBD5","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_43A4B2BD","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_76631D03","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_600AE559","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_76CEBD94","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_27A9B74D","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_521939AE","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_66AAC4CF","path":"rooms/rBattleScreen/rBattleScreen.yy",},
-    {"name":"inst_2539A0FA","path":"rooms/rBattleScreen/rBattleScreen.yy",},
     {"name":"inst_40418FF2","path":"rooms/rBattleScreen/rBattleScreen.yy",},
+    {"name":"inst_3F690FA6","path":"rooms/rBattleScreen/rBattleScreen.yy",},
+    {"name":"inst_5D34ADC","path":"rooms/rBattleScreen/rBattleScreen.yy",},
+    {"name":"inst_4407F008","path":"rooms/rBattleScreen/rBattleScreen.yy",},
+    {"name":"inst_50C1DE04","path":"rooms/rBattleScreen/rBattleScreen.yy",},
   ],
   "isDnd": false,
   "layers": [
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"TargetingUI","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4135E46","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oButtonGeneric","path":"objects/oButtonGeneric/oButtonGeneric.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"Label","path":"objects/pButton/pButton.yy",},"value":"Cancel",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"MainFunction","path":"objects/pButton/pButton.yy",},"value":"CancelButton",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1184.0,"y":576.0,},
-      ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":false,},
-    {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"BaseUI","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_796F9AAB","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oButtonGeneric","path":"objects/oButtonGeneric/oButtonGeneric.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"Label","path":"objects/pButton/pButton.yy",},"value":"Attack1",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"MainFunction","path":"objects/pButton/pButton.yy",},"value":"Attack1Button",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"HoverFunction","path":"objects/pButton/pButton.yy",},"value":"HoverAttack1",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":32.0,"y":576.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2C9F7638","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oButtonGeneric","path":"objects/oButtonGeneric/oButtonGeneric.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"Label","path":"objects/pButton/pButton.yy",},"value":"Attack2",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"MainFunction","path":"objects/pButton/pButton.yy",},"value":"Attack2Button",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"HoverFunction","path":"objects/pButton/pButton.yy",},"value":"HoverAttack2",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":128.0,"y":576.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_6BBBC89D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oButtonGeneric","path":"objects/oButtonGeneric/oButtonGeneric.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"Label","path":"objects/pButton/pButton.yy",},"value":"Attack3",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"MainFunction","path":"objects/pButton/pButton.yy",},"value":"Attack3Button",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pButton","path":"objects/pButton/pButton.yy",},"propertyId":{"name":"HoverFunction","path":"objects/pButton/pButton.yy",},"value":"HoverAttack3",},
-          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":224.0,"y":576.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_50C1DE04","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oCancelButtonCombat","path":"objects/oCancelButtonCombat/oCancelButtonCombat.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1184.0,"y":576.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
+    {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"BaseUI","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3F690FA6","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oSkillButton","path":"objects/oSkillButton/oSkillButton.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oSkillButton","path":"objects/oSkillButton/oSkillButton.yy",},"propertyId":{"name":"actionOfButton","path":"objects/oSkillButton/oSkillButton.yy",},"value":"actions.attack1",},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":32.0,"y":576.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_5D34ADC","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oSkillButton","path":"objects/oSkillButton/oSkillButton.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oSkillButton","path":"objects/oSkillButton/oSkillButton.yy",},"propertyId":{"name":"actionOfButton","path":"objects/oSkillButton/oSkillButton.yy",},"value":"actions.attack2",},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":128.0,"y":576.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4407F008","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oSkillButton","path":"objects/oSkillButton/oSkillButton.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"oSkillButton","path":"objects/oSkillButton/oSkillButton.yy",},"propertyId":{"name":"actionOfButton","path":"objects/oSkillButton/oSkillButton.yy",},"value":"actions.attack3",},
+          ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":224.0,"y":576.0,},
+      ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":false,},
     {"resourceType":"GMRAssetLayer","resourceVersion":"1.0","name":"Squences","assets":[],"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Instances","depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_6AD8A148","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"position","path":"objects/cSpawner/cSpawner.yy",},"value":"1",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"team","path":"objects/cSpawner/cSpawner.yy",},"value":"0",},
-          ],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":352.0,"y":96.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2C4AFBD5","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"position","path":"objects/cSpawner/cSpawner.yy",},"value":"3",},
-          ],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":352.0,"y":320.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_43A4B2BD","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"position","path":"objects/cSpawner/cSpawner.yy",},"value":"1",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"team","path":"objects/cSpawner/cSpawner.yy",},"value":"1",},
-          ],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":800.0,"y":320.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_76631D03","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"team","path":"objects/cSpawner/cSpawner.yy",},"value":"1",},
-          ],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":800.0,"y":96.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_76CEBD94","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"position","path":"objects/cSpawner/cSpawner.yy",},"value":"2",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"team","path":"objects/cSpawner/cSpawner.yy",},"value":"1",},
-          ],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":1024.0,"y":32.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_27A9B74D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"team","path":"objects/cSpawner/cSpawner.yy",},"value":"1",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"position","path":"objects/cSpawner/cSpawner.yy",},"value":"3",},
-          ],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":1024.0,"y":192.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_521939AE","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"team","path":"objects/cSpawner/cSpawner.yy",},"value":"1",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"position","path":"objects/cSpawner/cSpawner.yy",},"value":"4",},
-          ],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":1024.0,"y":352.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_66AAC4CF","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"position","path":"objects/cSpawner/cSpawner.yy",},"value":"0",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"team","path":"objects/cSpawner/cSpawner.yy",},"value":"0",},
-          ],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":96.0,"y":96.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2539A0FA","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"properties":[
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"position","path":"objects/cSpawner/cSpawner.yy",},"value":"2",},
-            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"cSpawner","path":"objects/cSpawner/cSpawner.yy",},"propertyId":{"name":"team","path":"objects/cSpawner/cSpawner.yy",},"value":"0",},
-          ],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":96.0,"y":320.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4FEA6EE0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mInfoboxes","path":"objects/mInfoboxes/mInfoboxes.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":960.0,"y":32.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_600AE559","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mBuff","path":"objects/mBuff/mBuff.yy",},"properties":[],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":256.0,"y":-128.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_5FE1A82C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mSequence","path":"objects/mSequence/mSequence.yy",},"properties":[],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":384.0,"y":-128.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_34042E0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"mCombat","path":"objects/mCombat/mCombat.yy",},"properties":[],"rotation":0.0,"scaleX":7.0,"scaleY":7.0,"x":128.0,"y":-128.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_40418FF2","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oBattlePanel","path":"objects/oBattlePanel/oBattlePanel.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":544.0,},

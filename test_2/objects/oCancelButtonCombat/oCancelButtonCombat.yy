@@ -1,17 +1,19 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oButtonInventory",
-  "eventList": [],
+  "name": "oCancelButtonCombat",
+  "eventList": [
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
+  ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Button",
-    "path": "folders/Objects/Dungeon/BattleRoom/Button.yy",
+    "name": "Buttons",
+    "path": "folders/Objects/Dungeon/BattleRoom/Buttons.yy",
   },
   "parentObjectId": {
-    "name": "pButton",
-    "path": "objects/pButton/pButton.yy",
+    "name": "pBasicButton",
+    "path": "objects/pBasicButton/pBasicButton.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,
@@ -29,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "vInventoryButton",
-    "path": "sprites/vInventoryButton/vInventoryButton.yy",
+    "name": "vButton",
+    "path": "sprites/vButton/vButton.yy",
   },
   "spriteMaskId": null,
   "visible": true,

@@ -5,8 +5,8 @@ event_inherited();
 tempo = 200;
 
 //healthstuffs
-baseHealth = 75; 
-currentHealth = baseHealth;
+maxHealth = 75; 
+currentHealth = maxHealth;
 
 reRollCrit = 1;
 reRollCrit = 1;
@@ -122,7 +122,7 @@ function damageUnit(_dmgNumber, _dmgType, _armorPen){
 		amountDamaged = ceil(amountDamaged);
 		currentHealth -=  amountDamaged;
 		if(reposting && _dmgType == dmgType.melee){
-			var target = ds_list_create();
+			var target = [];
 			ds_list_add(target,mCombat.selectedUnit);
 			var repostAttack = new attacksDesribtion(0.5,15,5,dmgType.melee,0.2,0.08,"","",1);
 			basicDmgAttack(target,repostAttack , actions.attack1);

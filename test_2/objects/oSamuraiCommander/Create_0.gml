@@ -9,8 +9,8 @@ baseTempo = 250;
 currentTempo = baseTempo + bonusTempo;
 
 //healthstuffs
-baseHealth = 200;//55
-maxHealth = baseHealth + bonusHealth;
+maxHealth = 200;//55
+maxHealth = maxHealth + bonusHealth;
 currentHealth = maxHealth;
 
 //dmgRedStuff
@@ -58,15 +58,15 @@ function attack1(list){
 	type = dmgType.melee;
 	pen = 0.1;
 	
-	attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(list);i ++){
-		ds_list_add(attackList, list[| i]);
-		show_debug_message("i attacked: " + string(attackList[|i]));
+	attackList = [];
+	for(var i = 0; i <  array_length(list);i ++){
+		ds_list_add(attackList, list[ i]);
+		show_debug_message("i attacked: " + string(attackList[i]));
 	}
 	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
+	for (var i = 0;	i < array_length(attackList); i++) {
 	    if(checkForHit(accuracy)){
-			var target = attackList[|i];
+			var target = attackList[i];
 			target.damageUnit(dmg, type, pen);
 			show_debug_message("hit for: " + string(dmg));
 		} else{
@@ -74,8 +74,8 @@ function attack1(list){
 		}
 	}
 	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
-	   with(attackList[|i]){
+	for (var i = 0;	i < array_length(attackList); i++) {
+	   with(attackList[i]){
 		   mSequence.playBattleAnimations(actions.attack1, mCombat.selectedUnit, list);	
 	   }
 	}
@@ -96,15 +96,15 @@ function attack2(list){
 	type = dmgType.melee;
 	pen = 0.9;
 	
-	attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(list);i ++){
-		ds_list_add(attackList, list[| i]);
-		show_debug_message("i attacked: " + string(attackList[|i]));
+	attackList = [];
+	for(var i = 0; i <  array_length(list);i ++){
+		ds_list_add(attackList, list[ i]);
+		show_debug_message("i attacked: " + string(attackList[i]));
 	}
 	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
+	for (var i = 0;	i < array_length(attackList); i++) {
 	    if(checkForHit(accuracy)){
-			var target = attackList[|i];
+			var target = attackList[i];
 			target.damageUnit(dmg, type, pen);
 			show_debug_message("hit for: " + string(dmg));
 		} else{
@@ -129,10 +129,10 @@ function attack3(list){
 	accuracy = 1;
 	healAmount = 10 + 5* lvl; //+ any Gear (not yet)
 	
-	attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(list);i ++){
-		ds_list_add(attackList, list[| i]);
-		show_debug_message("i will heal: " + string(attackList[|i]));
+	attackList = [];
+	for(var i = 0; i <  array_length(list);i ++){
+		ds_list_add(attackList, list[ i]);
+		show_debug_message("i will heal: " + string(attackList[i]));
 	}
 	
 	
@@ -148,8 +148,8 @@ function attack3(list){
 	}
 	
 	//allies
-	for (var i = 0;	i < ds_list_size(attackList); i++) {	
-		var target = attackList[|i];
+	for (var i = 0;	i < array_length(attackList); i++) {	
+		var target = attackList[i];
 		target.healAmount = healAmount;
 		
 	   
@@ -185,10 +185,10 @@ function updateTargetNumbers(){
 	
 	switch(team){
 		case 0:
-			numberTargetAttack3 = ds_list_size(mCombat.team0) - 1;
+			numberTargetAttack3 = array_length(mCombat.team0) - 1;
 		break;
 		case 1:
-			numberTargetAttack3 = ds_list_size(mCombat.team1) - 1;
+			numberTargetAttack3 = array_length(mCombat.team1) - 1;
 		break;
 	}
 }

@@ -51,8 +51,8 @@ function playBattleAnimations(attackAnimation, leftChar, rightChar){
 
 
 function playHurt(list){
-	for(i = 0; i < ds_list_size(list); i++){
-		with(list[|i]){
+	for(i = 0; i < array_length(list); i++){
+		with(list[i]){
 			state = states.HURT;
 			layer_sequence_headpos(unitSequence, hurtStart);
 		}

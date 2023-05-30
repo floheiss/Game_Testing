@@ -7,8 +7,7 @@ class = 0;//has to be set in class
 
 state = states.IDLE;
 unitSequence = 0; //has to be set in class 
-//REWORK HOW VISUALS WORK FOR BETTER TRANSPORT
-
+sequenceExists = false;
 
 actionsInTurn = 0; 
 selected = false;
@@ -28,21 +27,21 @@ spriteWidth = 128;
 #region spritestuff
 icon = 0;//has to be set in class 
 campFireSprite = 0; //has to be set in class 
-
+sequenceName = 0;
 
 //spriteStuff
 idleStart = 0;
-idleEnd = 11;
+idleEnd = 5;
 
 
-attack1Start = 12;
-attack1End = 24;
+attack1Start = 6;
+attack1End = 10;
 
-attack2Start = 26;
-attack2End = 42;
+attack2Start = 11;
+attack2End = 15;
 
-attack3Start = 43;
-attack3End = 54;
+attack3Start = 16;
+attack3End = 20;
 
 hurtStart = 56;
 hurtEnd = 65;
@@ -69,10 +68,10 @@ deBuffReRollDoge = false;
 
 reRollAcc = 0;
 buffReRollAcc = false;
-deBuffReRollDoge = false;
+deBuffReRollAcc = false;
 
-baseHealth = 0;
-currentHealth = baseHealth;
+maxHealth = 0;
+currentHealth = maxHealth;
 
 bloodMeter = 0;
 currentBloodLvL = bloodMeter;
@@ -115,6 +114,7 @@ function damageUnit(_dmgNumber, _dmgType, _armorPen){
 	}
  	if(checkAgainstRandom100(dogeCal, reRollDoge)){
 		show_debug_message("Doged");
+		show_debug_message("Doged");
 		result = false;
 	} else {
 		var dmgRedction = 0;
@@ -142,21 +142,19 @@ function damageUnit(_dmgNumber, _dmgType, _armorPen){
 		var amountDamaged = _dmgNumber - (_dmgNumber*dmgRedction);
 		amountDamaged = ceil(amountDamaged);
 		currentHealth -=  amountDamaged;
+		show_debug_message("hit for: " + string(amountDamaged));
 		 
 		
-		show_debug_message("i have " + string(currentHealth));
-		show_debug_message("i take " + string(amountDamaged) + " dmg");
-		show_debug_message("i have " + string(currentHealth));
 	}	
 	checkDeath();
 	return result; 
 }
 
 function healUnit(_heal){ 
-	if(currentHealth + hea_heall < baseHealth){
+	if(currentHealth + hea_heall < maxHealth){
 		currentHealth += _heal;
 	} else {
-		currentHealth = baseHealth;
+		currentHealth = maxHealth;
 	}
 	show_debug_message("i have " + string(currentHealth) );
 	show_debug_message("i heal for " + string(_heal));
@@ -164,17 +162,19 @@ function healUnit(_heal){
 }
 
 function checkDeath(){
+		var arrayToUse = (team == 0) ? mCombat.team0 : mCombat.team1;
+		var _pre = function(_vaule){
+			return _vaule == id;
+		}
+		var posTeam = array_find_index(arrayToUse, _pre);
+		var posUnit = array_find_index(mCombat.units, _pre);
 		if(currentHealth <= 0){
 			show_debug_message("i am dead");
-		if(team == 0){
-			ds_list_delete(mCombat.team0, ds_list_find_index(mCombat.team0, id));
-		} 
-		if(team == 1){
-			ds_list_delete(mCombat.team1, ds_list_find_index(mCombat.team1, id));
-		}
+			array_delete(arrayToUse, posTeam, 1);
+			array_delete(mCombat.units, posUnit, 1);
 		layer_sequence_headpos(unitSequence, deathStart);
-		ds_list_delete(mCombat.units, ds_list_find_index(mCombat.units, id));
 		state = states.DEATH;
+		instance_destroy(self);
 	}
 }
 
@@ -236,9 +236,9 @@ function applyDot(_dot){
 }
 
 function applieDotsToTargets(_targets, _dot){
-	for(var i = 0; i < ds_list_size(_targets); i++){
-		var target = _list[|i];
-		_dot.target = target
+	for(var i = 0; i < array_length(_targets); i ++){
+		var target = _targets[i];
+		_dot.target = target;
 		target.applyDot(_dot);
 	}
 }
@@ -262,6 +262,7 @@ title, describtion,1, 100);
 function attack3(_list){}
 
 function basicDmgAttack(_targets, _attackStruc, _actionTaken){
+	show_debug_message("i was used by: " + string(id));
 	var attackStru = _attackStruc;
 	var accuracy = attackStru.acc;
 	var dmg = attackStru.dmg; 
@@ -269,23 +270,17 @@ function basicDmgAttack(_targets, _attackStruc, _actionTaken){
 	var pen = attackStru.pen;
 	var critC = attackStru.critChance;
 	var result = false;
+
 	
-	var attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(_targets);i ++){
-		ds_list_add(attackList, _targets[| i]);
-		//show_debug_message("i attacked: " + string(attackList[|i]));
-	}
-	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
-	    if(checkAgainstRandom100(accuracy, 
-		(attackStru.owner.reRollAcc + attackStru.rerolls))){
-			var target = attackList[|i];
+	for (var i = 0;	i < array_length(_targets); i++) {
+	    if(checkAgainstRandom100(accuracy, (attackStru.owner.reRollAcc + attackStru.rerolls))){
+			var target = _targets[i];
 			
 			if(checkAgainstRandom100(critC, attackStru.owner.reRollCrit)){
 				dmg = dmg * attackStru.owner.critMultiplier;
 			}
+			
 			result = target.damageUnit(dmg, type, pen);
-			show_debug_message("hit for: " + string(dmg));
 		} else{
 			show_debug_message("miss");
 			result = false;
@@ -293,13 +288,12 @@ function basicDmgAttack(_targets, _attackStruc, _actionTaken){
 	}
 	
 	//have to add animations :) 
-	
-	
-	ds_list_destroy(attackList);
+
 	prozessFinished = true;
 	turnFinished = true; 
 	actionsInTurn ++;
 	return result;
+	
 }
 
 function updateTargetNumbers(){
@@ -650,7 +644,7 @@ function checkEndTurn(){
 function calculatePointsValue(){
 	var value = 0;
 	
-	value += baseHealth; //50
+	value += maxHealth; //50
 	
 	value += bloodMeter * 7; //10 //70
 	

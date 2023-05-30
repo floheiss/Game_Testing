@@ -23,7 +23,7 @@ global.gold = 1000; //gold of the player
 global.playerGroup = array_create(global.maxPlayGroupSize, -1); //default -1 for all slots
 global.playerGroup[0] = instance_create_depth(0,0,0,oBloodMage);
 global.enemies = []; //default []
-global.enemies[0] = instance_create_depth(0,0,0,oConquistador);
+global.enemies[0] = instance_create_depth(0,0,0,oBandit);
 
 global.allowInput = true;
 
@@ -42,20 +42,21 @@ function getPlayerInfo(){
 //as some things have to be done befor and after
 function transitionRoom(_roomToGoTO){
 	switch(_roomToGoTO){
-		case "rTown":
+		case rTown:
 			global.room = roomList.town;
 		break;
-		case "rBattleScreen":
+		case rBattleScreen:
 			global.room = roomList.battle;
 		break;
-		case "rDefeat":
+		case rDefeat:
 			global.room = roomList.defeat;
 		break;
-		case "rDungeonMap":
+		case rDungeonMap:
 			global.room = roomList.map;
 		break;
 		
 	}
+
 	room_goto(_roomToGoTO);
 	
 	for(var i = 0; i < array_length(global.inventory); i ++){

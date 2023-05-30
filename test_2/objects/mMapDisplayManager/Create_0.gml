@@ -17,7 +17,7 @@ debug = false; //?????
 function displayEvent(){
 	
 	var findMapDisplayItem = function(){
-		list = ds_list_create();
+		list = [];
 		for(i = 0; i < instance_number(oMapDisplayItem);i ++){
 			instance = instance_find(oMapDisplayItem, i);
 			ds_list_add(list, instance);
@@ -27,10 +27,10 @@ function displayEvent(){
 
 	var objects = findMapDisplayItem();
 	
-	for(i = 0; i < ds_list_size(objects); i ++){
+	for(i = 0; i < array_length(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
-		objects[|i].resetButton();	
-		objects[|i].savedObject = -1;
+		objects[i].resetButton();	
+		objects[i].savedObject = -1;
 	}
 	
 	//maybe add a general buttion to hide the event and see the map again ???	
@@ -64,13 +64,13 @@ function displayEvent(){
 				
 				if(i < global.maxInventorySize){
 					item = global.inventory[i];
-					with(objects[|i + 1]){
+					with(objects[i + 1]){
 						show_debug_message("the item will be: " + string(other.item));
 						index = other.item != -1 ?  other.item.displaySpriteSubImage : 0;
 						changeSprite(other.xCord,other.yCord,ItemSprite, false, index);
 					}
 				}else{
-					with(objects[|i]){
+					with(objects[i]){
 						//not sure about cal :) 
 						useLockedOverlay(other.xCord,other.yCord,ItemSprite);
 					}
@@ -90,7 +90,7 @@ function displayEvent(){
 			//have to make a menu to use there skills
 
 			for(var i = 0; i < array_length(campfireDisplaySupport); i++){
-				with(objects[|i + 1]){
+				with(objects[i + 1]){
 					//have to look at x and y cord 
 					var xCord = 260 + 150 * i;
 					var yCord = 260; 
@@ -110,7 +110,7 @@ function displayEvent(){
 			if(!withWored){
 
 				for(var i = 0; i < array_length(campfireDisplaySupport); i++){
-					var object = objects[|i + 1];
+					var object = objects[i + 1];
 
 					//have to look at x and y cord 
 					xCord = 260 + 150 * i;
@@ -130,7 +130,7 @@ function displayEvent(){
 			#endregion
 			
 			for(var k = 0; k < array_length(mapOptions); k ++){
-				with(objects[|k + 5]){
+				with(objects[k + 5]){
 				
 					xCord = 640;
 					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapOptions) - k); 
@@ -154,7 +154,7 @@ function displayEvent(){
 				show_debug_message("the 2 with was not triggered ");
 				for(var i = 0; i < array_length(mapOptions); i++){
 					show_debug_message("the skills will be drawn");
-					var object = objects[|i + 5];
+					var object = objects[i + 5];
 					xCord = 800;
 					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) - i); 
 				
@@ -192,14 +192,14 @@ function displayEvent(){
 				//is the discribtionText --> gives text feedback ! 
 				#endregion
 			
-			with(objects[|i + 1]){
+			with(objects[i + 1]){
 				xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) + 1);
 				yCord = 360; 
 				changeSprite(xCord, yCord,mapOptionSprite, false, 0);		
 			}
 			
 			for(var k = 0; k < array_length(mapOptions); k ++){
-				with(objects[|k + 2]){
+				with(objects[k + 2]){
 				
 					xCord = 640;
 					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapOptions) - k); 
@@ -223,7 +223,7 @@ function displayEvent(){
 					show_debug_message("_________________");
 					show_debug_message("with didnt work")
 					show_debug_message("_________________");
-					objectNow = objects[|k + 2]
+					objectNow = objects[k + 2]
 					xCord = 640;
 					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) - k); 
 					objectNow.savedObject = mapOptions[k];

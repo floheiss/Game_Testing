@@ -5,8 +5,8 @@ event_inherited();
 tempo = 165;
 
 //healthstuffs
-baseHealth = 65; 
-currentHealth = baseHealth;
+maxHealth = 65; 
+currentHealth = maxHealth;
 
 //dmgRedStuff
 dmgRedMelee = 0.08;
@@ -69,7 +69,7 @@ function attack1(_list){
 				deBuffDmgRed = 0.2;
 				deBuffTempo = 100;
 			}
-			var target = _list[|i];
+			var target = _list[i];
 			
 			var deBuff = new buffDeBuff(3,deBuffAcc,buffTypes.reRollAcc,target,false);
 			target.checkIfDeBuffBetterAndUse(deBuff);
@@ -112,9 +112,9 @@ function attack2(_list){
 	checkIfDeBuffBetterAndUse(deBuff);
 	healUnit(attack2Stru.dmg);
 	
-	for (var i = 0;	i < ds_list_size(_list); i++) {
+	for (var i = 0;	i < array_length(_list); i++) {
 		checkAgainstRandom100(attack2Stru.acc, reRollAcc){
-			var target = attackList[|i];
+			var target = attackList[i];
 			target.healUnit(attack2Stru.dmg);
 			deBuff.target = target;
 			target.checkIfDeBuffBetterAndUse(deBuff);

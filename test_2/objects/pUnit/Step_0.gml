@@ -1,4 +1,9 @@
-if(room_get_name(room) == "rBattleScreen"){
+if(global.room == roomList.battle && mCombat.drawRdy){
+	
+	if(!sequenceExists ){
+		unitSequence = layer_sequence_create("Squences", x, y, sequenceName);
+		sequenceExists = true;
+	}
 	switch(state){
 		case states.IDLE: 
 			if(layer_sequence_get_headpos(unitSequence) > idleEnd){
@@ -48,7 +53,7 @@ if(room_get_name(room) == "rBattleScreen"){
 		break;
 	}
 
-	if((mCombat.targeting) && mCombat.selectedUnit != id ){
+	if((mCombat.targeting) && mCombat.selectedUnit != id){
 		if(position_meeting(mouse_x, mouse_y, id)){
 			drawTarget = true;
 		} else {
@@ -56,3 +61,12 @@ if(room_get_name(room) == "rBattleScreen"){
 		}
 	}
 }
+
+
+if(global.room !=  roomList.battle){
+	if(ds_exists(unitSequence, asset_sequence)){
+		sequence_destroy(unitSequence);
+	}
+}
+
+

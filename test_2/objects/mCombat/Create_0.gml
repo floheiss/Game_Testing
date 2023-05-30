@@ -3,7 +3,6 @@ randomize();
 combatPhase = phase.init;
 unitsFinished = 0;
 prozessFinished = false;
-allowInput = false;
 
 playGroup = [];
 enemyGroup = [];
@@ -11,40 +10,120 @@ enemyGroup = [];
 actionTaken = actions.attack1;
 attackTargets = possibleTargets.everybody;
 maxNumberTargets = 0;
+drawRdy = false;
 
-selectedUnit = ds_list_create(); 
-units = ds_list_create();
+selectedUnit = 0; 
+units = [];
 
-selectedTargets = ds_list_create(); 
-targets = ds_list_create(); 
+selectedTargets = []; 
+targets = []; 
 targeting = false;
 
-team0 = ds_list_create();
-team1 = ds_list_create();
+team0 = [];
+team1 = [];
 
 turnCounter = 1;
 
 baseUI = layer_get_id("BaseUI");
 targetUI = layer_get_id("TargetingUI");
 
-
 function init(team0Array, team1Array){
-	cSpawerTeam0 = ds_list_create();
-	cSpawerTeam1 = ds_list_create();
 	var sizeTeam0 = array_length(team0Array);
 	var sizeTeam1 = array_length(team1Array);
 	
-
+	#region find position function
 	
-	for(var i = 0; i < instance_number(cSpawner);i ++){
-		var instance = instance_find(cSpawner, i);
-		if(i < array_length(team0Array)){
-			ds_list_add(cSpawerTeam0, instance);
-		}else if(i < (sizeTeam0 + sizeTeam1)){
-			ds_list_add(cSpawerTeam1, instance);
+	//finds the position in the display for given array 
+	//is used for teams in mCombat
+	var findPosition = function(_sizeOfTeam, _team){
+		var positionsX = [];
+		var positionsY = [];
+	
+		if(_team == 0){
+			switch(_sizeOfTeam){
+				case 1: 
+					positionsX[0] = 224; 
+					positionsY[0] = 224;
+				break;
+				case 2: 
+					positionsX[0] = 224; 
+					positionsY[0] = 96;
+					positionsX[1] = 224; 
+					positionsY[1] = 320;
+				break;
+				case 3: 
+					positionsX[0] = 128; 
+					positionsY[0] = 224;
+					positionsX[1] = 352; 
+					positionsY[1] = 96;
+					positionsX[2] = 352; 
+					positionsY[2] = 320;
+				break;
+				case 4: 
+					positionsX[0] = 96; 
+					positionsY[0] = 96;
+					positionsX[1] = 352; 
+					positionsY[1] = 96;
+					positionsX[2] = 96;
+					positionsY[2] = 320;
+					positionsX[3] = 352;
+					positionsY[3] = 320;
+				break;
+			}
+		}else if(_team == 1){
+			switch(_sizeOfTeam){
+				case 1: 
+					positionsX[0] = 928; 
+					positionsY[0] = 224;
+				break;
+				case 2: 
+					positionsX[0] = 928; 
+					positionsY[0] = 96;
+					positionsX[1] = 928; 
+					positionsY[1] = 320;
+				break;
+				case 3: 
+					positionsX[0] = 1024; 
+					positionsY[0] = 224;
+					positionsX[1] = 800; 
+					positionsY[1] = 96;
+					positionsX[2] = 800; 
+					positionsY[2] = 320;
+				break;
+				case 4: 
+					positionsX[0] = 1024; 
+					positionsY[0] = 96;
+					positionsX[1] = 800; 
+					positionsY[1] = 96;
+					positionsX[2] = 800;
+					positionsY[2] = 320;
+					positionsX[3] = 1024;
+					positionsY[3] = 320;
+				break;
+				case 5: 
+					positionsX[0] = 1024; 
+					positionsY[0] = 32;
+					positionsX[1] = 800; 
+					positionsY[1] = 96;
+					positionsX[2] = 800;
+					positionsY[2] = 320;
+					positionsX[3] = 1024;
+					positionsY[3] = 192;
+					positionsX[4] = 1024;
+					positionsY[4] = 352;
+				break;
+			}
+		
 		}
+		var positonXY = [positionsX, positionsY];
+		positonXY[0] = positionsX
+		return positonXY;
 	}
+	
+	#endregion
+	
 	//team 0 
+	#region find positions for team0
 	var positonsXYTeam0 = findPosition(sizeTeam0, 0);
 
 	var positonsXTeam0 = [];
@@ -53,41 +132,22 @@ function init(team0Array, team1Array){
 		positonsXTeam0[i] = positonsXYTeam0[0][i];
 		positonsYTeam0[i] = positonsXYTeam0[1][i];
 	}	
-	for(var i = 0; i < sizeTeam0;i ++){
-		switch(sizeTeam0){
-			case 1:
-				spawer = cSpawerTeam0[|i];
-				var unit = instance_create_depth(positonsXTeam0[i], positonsYTeam0[i], 0 , team0Array[i]);
-				unit.position = i;
-				ds_list_add(team0, unit)
-				ds_list_add(units, unit); 
-			break;
-			case 2: 
-				spawer = cSpawerTeam0[|i];
-				var unit = instance_create_depth(positonsXTeam0[i], positonsYTeam0[i], 0 , team0Array[i]);
-				unit.position = i;
-				ds_list_add(team0, unit)
-				ds_list_add(units, unit); 
-			break;
-			case 3: 
-				spawer = cSpawerTeam0[|i];
-				var unit = instance_create_depth(positonsXTeam0[i], positonsYTeam0[i], 0 , team0Array[i]);
-				unit.position = i;
-				ds_list_add(team0, unit)
-				ds_list_add(units, unit); 
-			break;
-			case 4: 
-				spawer = cSpawerTeam0[|i];
-				var unit = instance_create_depth(positonsXTeam0[i], positonsYTeam0[i], 0 , team0Array[i]);
-				unit.position = i;
-				ds_list_add(team0, unit)
-				ds_list_add(units, unit); 
-			break;
-		}
+	
+	#endregion
+	
+	for(var i = 0; i < sizeTeam0; i ++){
+		var unit = team0Array[i];
+		unit.x = positonsXTeam0[i];
+		unit.y = positonsYTeam0[i];
+		unit.position = i;
+		team0[i] = unit;
+		units[i] = unit; 
 	}
 	
 	
 	//team 1 
+	#region find positions for team0
+	
 	var positonsXYTeam1 = findPosition(sizeTeam1, 1);
 	var positonsXTeam1 = [];
 	var positonsYTeam1 = [];
@@ -95,138 +155,20 @@ function init(team0Array, team1Array){
 		positonsXTeam1[i] = positonsXYTeam1[0][i];
 		positonsYTeam1[i] = positonsXYTeam1[1][i];
 	}
+	
+	#endregion
+	
 	for(var i = 0; i < sizeTeam1;i ++){
-		switch(sizeTeam1){
-			case 1:
-				spawer = cSpawerTeam1[|i];
-				var unit = instance_create_depth(positonsXTeam1[i], positonsYTeam1[i], 0 , team1Array[i]);
-				unit.team = 1;
-				unit.position = i;
-				ds_list_add(team1, unit)
-				ds_list_add(units, unit); 
-			break;
-			case 2: 
-				spawer = cSpawerTeam1[|i];
-				var unit = instance_create_depth(positonsXTeam1[i], positonsYTeam1[i], 0 , team1Array[i]);
-				unit.team = 1;
-				unit.position = i;
-				ds_list_add(team1, unit)
-				ds_list_add(units, unit); 
-			break;
-			case 3: 
-				spawer = cSpawerTeam1[|i];
-				var unit = instance_create_depth(positonsXTeam1[i], positonsYTeam1[i], 0 , team1Array[i]);
-				unit.team = 1;
-				unit.position = i;
-				ds_list_add(team1, unit)
-				ds_list_add(units, unit); 
-			break;
-			case 4: 
-				spawer = cSpawerTeam1[|i];
-				var unit = instance_create_depth(positonsXTeam1[i], positonsYTeam1[i], 0 , team1Array[i]);
-				unit.team = 1;
-				unit.position = i;
-				ds_list_add(team1, unit)
-				ds_list_add(units, unit); 
-			break;
-			case 5: 
-				spawer = cSpawerTeam1[|i];
-				var unit = instance_create_depth(positonsXTeam1[i], positonsYTeam1[i], 0 , team1Array[i]);
-				unit.team = 1;
-				unit.position = i;
-				ds_list_add(team1, unit)
-				ds_list_add(units, unit); 
-			break;
-		}
+		var unit = team1Array[i];
+		unit.x = positonsXTeam1[i];
+		unit.y = positonsYTeam1[i];
+		unit.position = i;
+		unit.team = 1;
+		team1[i] = unit;
+		units[i + sizeTeam0]= unit; 
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

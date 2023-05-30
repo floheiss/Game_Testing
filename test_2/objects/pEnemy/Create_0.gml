@@ -7,4 +7,4 @@ attackPrio = -1; //default -1 (randomTarget)
 //saves all the chances of the attcks
 chancesOfAttacks = [];
 
-
+attacked = false

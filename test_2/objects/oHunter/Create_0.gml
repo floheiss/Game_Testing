@@ -5,8 +5,8 @@ event_inherited();
 tempo = 220;
 
 //healthstuffs
-baseHealth = 65; 
-currentHealth = baseHealth;
+maxHealth = 65; 
+currentHealth = maxHealth;
 
 reRollCrit = 1;
 reRollAcc = 1;

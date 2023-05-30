@@ -1,76 +1,81 @@
 switch(combatPhase){
+
+	#region init
+	
 	case phase.init: 
 		layer_set_visible(targetUI, false);
 		instance_deactivate_layer(targetUI);
-		layer_set_visible(baseUI, false);
-		//team0Array = global.playerGroup;
-		//team1Array = global.enemies;
+		layer_set_visible(baseUI, true);
+		
+		var team0Array = [];
+		var team1Array = [];
+		
 		for(var i = 0; i < array_length(global.playerGroup); i ++){
-			team0Array[i] = global.playerGroup[i]
+			if(global.playerGroup[i] != -1){
+				team0Array[i] = global.playerGroup[i];
+			}
 		}
-		team0Array = [oSamuraiArcher, oSamuraiCommander];
-		//team0Array[0].currentHealth = maxHealth/2;
-		for(var i = 0; i < array_length(global.playerGroup); i ++){
+	
+		for(var i = 0; i < array_length(global.enemies); i ++){
 			team1Array[i] = global.enemies[i];
 		}
-		team1Array = [oSamurai];
-		init(team0Array,team1Array);
+		
+		init(team0Array, team1Array);
+		
+		drawRdy = true;
 		
 		combatPhase = phase.startTurn;
-		
+		bubble_sort(units);
 	break;
 	
-	case phase.startTurn: 
+	#endregion
 	
-		
-		
-		if(unitsFinished >= ds_list_size(units)){
+	case phase.startTurn: 
+		 // have to look at : )
+		if(unitsFinished >= array_length(units)){
+			bubble_sort(units);
 			turnCounter ++;
-			bubble_sort(units);	// have to look at : )
-			for (var i = 0; i < ds_list_size(units);i ++){
-				with(units[|i]){
+			for (var i = 0; i < array_length(units);i ++){
+				with(units[i]){
 					checkEndTurn();
 					actionsInTurn = 0;
 				}
-					
 			}
 			unitsFinished = 0;
 		}
 		
-		for(var i = 0; i < ds_list_size(units);i ++){
-			var inst = units[|i];
+		for(var i = 0; i < array_length(units);i ++){
+			var inst = units[i];
 			if(inst.actionsInTurn < inst.maxActionsInTurn){
 				inst.selected = true;
 				selectedUnit = inst;
 				break;
 			}
 		}
-	
-		if(!allowInput){
-			allowInput = true;
-			event_user(1);
-		}
+		
 		combatPhase = phase.wait;
+		
 	break;
 	
 	case phase.wait: 
+		targeting = true;
 		if(selectedUnit.actionsInTurn >= selectedUnit.maxActionsInTurn){
 			selectedUnit.selected = false;
 			unitsFinished ++;
 			combatPhase = phase.process;
 			
-			event_user(0);
 			layer_set_visible(targetUI, false);
 			instance_deactivate_layer(targetUI);
 			layer_set_visible(baseUI, false);
 			instance_deactivate_layer(baseUI);
 		}
+		
 	break;
 	
 	case phase.process: 
 		targeting = false;
-		for(var i = 0; i < ds_list_size(units); i ++){
-			with(units[|i]){
+		for(var i = 0; i < array_length(units); i ++){
+			with(units[i]){
 				drawTarget = false;
 			}
 			
@@ -80,10 +85,10 @@ switch(combatPhase){
 	break;
 	
 	case phase.checkFinish: 
-		if(ds_list_size(team0) <=  0){
+		if(array_length(team0) <=  0){
 			combatPhase = phase.lose;
 			break;
-		} else if(ds_list_size(team1) <=  0){
+		} else if(array_length(team1) <=  0){
 			combatPhase = phase.win;
 			break;
 		} 
@@ -92,7 +97,6 @@ switch(combatPhase){
 	break;
 	
 	case phase.endTurn: 
-		ds_list_clear(targets);
 		combatPhase = phase.startTurn;
 		
 	break;

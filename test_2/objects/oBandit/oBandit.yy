@@ -15,7 +15,7 @@
     "name": "pEnemy",
     "path": "objects/pEnemy/pEnemy.yy",
   },
-  "persistent": false,
+  "persistent": true,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,
   "physicsFriction": 0.2,
@@ -31,6 +31,9 @@
   "properties": [],
   "solid": false,
   "spriteId": null,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "vTargeting",
+    "path": "sprites/vTargeting/vTargeting.yy",
+  },
   "visible": true,
 }

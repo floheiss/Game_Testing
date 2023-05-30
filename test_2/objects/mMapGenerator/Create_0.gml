@@ -42,7 +42,7 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 			}
 					
 			for(i = 0; i < numberInCulumn; i ++){
-				spawer = objects[|currentObject];
+				spawer = objects[currentObject];
 				//might need to be saved for later not sure
 				creation = instance_create_depth(positonsXCords[i], positonsYCords[i], 0 , oMapEnemy);
 
@@ -67,7 +67,7 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 			
 			
 			for(i = 0; i < numberInColumn; i ++){
-				spawer = objects[|currentObject];
+				spawer = objects[currentObject];
 				
 				//have to add preNotes  i dont know the math behind it yet 
 				preNotes = [];
@@ -78,7 +78,7 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 				var encounter = random(1);
 				if(encounter < probabilityElite){
 					// here is a elite 
-					spawer = objects[|currentObject];
+					spawer = objects[currentObject];
 					objectAtNotes[currentObject] = new  mapNoteCreate(positonsXCords[i], positonsYCords[i], preNotes,noteTypes.elite, currentObject);
 					numberObjectInCurrentColumn ++;
 					currentObject ++;
@@ -86,7 +86,7 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 				}else if((encounter * 2 )< probabilityQuestion){
 					// here is a question 
 					//when do neutrals happen ?????? have to look into later !!!!
-					spawer = objects[|currentObject];
+					spawer = objects[currentObject];
 					if(random(1) < probabilityQuestionGood){
 						//objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.question, currentObject, generateRandomEvent(1));
 						objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i], preNotes,noteTypes.question, currentObject, events.fallenGood);
@@ -104,13 +104,13 @@ function generateMap(_length, _maxNumberInColumn, _probabilityQuestion, _probabi
 				}else{
 					//here is a enemy 
 					/*
-					spawer = objects[|currentObject];
+					spawer = objects[currentObject];
 					objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.enemy,currentObject);
 					numberObjectInCurrentColumn ++;
 					currentObject ++;
 					*/
 					//testcode 
-					spawer = objects[|currentObject];
+					spawer = objects[currentObject];
 					objectAtNotes[currentObject] = new mapNoteCreate(positonsXCords[i], positonsYCords[i],preNotes, noteTypes.campfire,currentObject);
 					numberObjectInCurrentColumn ++;
 					currentObject ++;
@@ -161,7 +161,7 @@ function displayMap(map){
 #region general funtion 
 //finds cSpawner in the Map are used to generate notes 
 function findMapObjects(){
-	list = ds_list_create();
+	list = [];
 	for(var i = 0; i < instance_number(cSpawner);i ++){
 		instance = instance_find(cSpawner, i);
 		ds_list_add(list, instance);

@@ -5,8 +5,8 @@ event_inherited();
 tempo = 190;
 
 //healthstuffs
-baseHealth = 85; 
-currentHealth = baseHealth;
+maxHealth = 85; 
+currentHealth = maxHealth;
 
 
 
@@ -67,7 +67,7 @@ title, describtion, 1, 300, 1);
 function attack2(_list){
 	var result = basicDmgAttack(_list, attack2Stru, actions.attack2);
 	if(result){
-		var target =_list[|0];
+		var target =_list[0];
 		var stunResult = target.stunUnit(attack2Stru.acc, reRollAcc, 0.45);
 		if(stunResult){
 			var deBuff = new buffDeBuff(2, 0.05, buffTypes.doge,target, false);
@@ -83,8 +83,8 @@ attack3Stru = new attacksDesribtion(self, 0.8, 5, 2, dmgType.ranged, 0.0, 0.07,
 title, describtion, 2, 300); 
 function attack3(_list){
 	basicDmgAttack(_list, attack3Stru, actions.attack3);
-	for(i = 0; i < ds_list_size(_list); i ++){
-		var target = _list[|i];
+	for(i = 0; i < array_length(_list); i ++){
+		var target = _list[i];
 		var _stun = target.stunUnit(0.8, reRollAcc + 1, 0.3);
 		if(_stun){
 			var deBuff = new buffDeBuff(3, 0.09, buffTypes.doge, target, false);

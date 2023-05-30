@@ -18,12 +18,13 @@ welcomeText = "";
 function displayMenu(){
 	
 	#region finds all objects in the MenuScree + reset
+	
 	var findDisplayObjects = function(){
-		var list = ds_list_create();
+		var list = [];
 		
 		for(var i = 0; i < instance_number(oDisplaySprite);i ++){
 			var instance = instance_find(oDisplaySprite, i);
-			ds_list_add(list, instance);
+			list[i] =  instance;
 		}
 		
 		return list;
@@ -31,9 +32,9 @@ function displayMenu(){
 
 	objects = findDisplayObjects();
 		
-	for(i = 0; i < ds_list_size(objects); i ++){
+	for(i = 0; i < array_length(objects); i ++){
 		
-		with(objects[|i]){
+		with(objects[i]){
 			//resets all the objects so there is no leagcy for other menus
 			resetButton();
 		
@@ -61,17 +62,17 @@ function displayMenu(){
 				//wip for removeing the display if contract is taken
 				welcomeText = "";
 				bgSubimage = 1;
-				with(objects[|0]){
+				with(objects[0]){
 					changeSprite(400,220,Sign_Go_Work);
 				}
 			}else{
 				welcomeText = "Hi, need money again ?";
-				with(objects[|0]){
+				with(objects[0]){
 					changeSprite(200,200,Vera_Guild_girl, false, 0);
 				}
 			
 				for(var i = 0; i < 6; i++){
-					with(objects[|i + 1]){
+					with(objects[i + 1]){
 						if(i < 3){
 							var xCord = 480 + 192 * i;
 							contractDispalyed = oGuild.contracts[i];
@@ -117,13 +118,13 @@ function displayMenu(){
 					
 				if(i < global.maxInventorySize){
 					var item = global.inventory[i];
-					with(objects[|i]){
+					with(objects[i]){
 						savedObject = item;
 						var index = savedObject != -1 ? item.displaySpriteSubImage : 0;
 						changeSprite(xCord,yCord,ItemSprite, false, index);
 					}
 				}else{
-					with(objects[|i]){
+					with(objects[i]){
 						changeSprite(xCord,yCord,ItemSprite, false, 0);
 						setConditionForLocking(true);
 					}
@@ -143,13 +144,13 @@ function displayMenu(){
 			var merchantInventory = oMerchant.merchantInventory;
 			
 			welcomeText = "Hi, need supplies?";
-			with(objects[|0]){
+			with(objects[0]){
 				changeSprite(228,250,Vera_Guild_girl);
 			}
 
 			for(var i = 0; i < array_length(merchantInventory); i++){
 				
-				with(objects[|i + 1]){
+				with(objects[i + 1]){
 					if(i < array_length(merchantInventory) /2){
 						var xCord = 480 + 95 * i;
 						itemDisplayed = merchantInventory[i];
@@ -191,12 +192,12 @@ function displayMenu(){
 			currentDisplayedSupport = false;
 			bg = Menu_Background_Guild;
 			welcomeText = "Need replacments ?";
-			with(objects[|0]){
+			with(objects[0]){
 				changeSprite(200,200,Vera_Guild_girl, false, 0);
 			}
 			var numberOfDisplayedSupports = array_length(oTavern.supportSelection);
 			for(var i = 0; i < numberOfDisplayedSupports; i++){
-				with(objects[|i + 1]){
+				with(objects[i + 1]){
 					if(i < (numberOfDisplayedSupports / 2)){
 						var xCord = 480 + 142 * i;
 						supportDispalyed = oTavern.supportSelection[i];

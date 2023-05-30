@@ -5,8 +5,8 @@ event_inherited();
 tempo = 180;
 
 //healthstuffs
-baseHealth = 95; 
-currentHealth = baseHealth;
+maxHealth = 95; 
+currentHealth = maxHealth;
 
 
 

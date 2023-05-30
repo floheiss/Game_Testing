@@ -8,9 +8,9 @@ bonusTempo = 0;
 currentTempo = baseTempo + bonusTempo;
 
 //healthstuffs
-baseHealth = 1;//45
+maxHealth = 1;//45
 bonusHealth = 0;
-maxHealth = baseHealth + bonusHealth;
+maxHealth = maxHealth + bonusHealth;
 currentHealth = maxHealth;
 
 //bloodStuffs
@@ -61,22 +61,22 @@ function attack1(list){
 	type = dmgType.ranged; 
 	pen = 0.2; 
 	
-	attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(list);i ++){
-		ds_list_add(attackList, list[| i]);
-		show_debug_message("i attacked: " + string(attackList[|i]));
+	attackList = [];
+	for(var i = 0; i <  array_length(list);i ++){
+		ds_list_add(attackList, list[ i]);
+		show_debug_message("i attacked: " + string(attackList[i]));
 	}
 	
 	if(checkForHit(accuracy)){
-		var target = attackList[|0];
+		var target = attackList[0];
 		target.damageUnit(dmg, type, pen);
 		show_debug_message("hit for: " + string(dmg));
 	} else {
 		show_debug_message("miss");
 	}
 	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
-	   with(attackList[|i]){
+	for (var i = 0;	i < array_length(attackList); i++) {
+	   with(attackList[i]){
 		   if(state == states.DEATH){
 			   
 		   } else {
@@ -103,15 +103,15 @@ function attack2(list){
 	type = dmgType.ranged;
 	pen = 0.1;
 	
-	attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(list);i ++){
-		ds_list_add(attackList, list[| i]);
-		show_debug_message("i attacked: " + string(attackList[|i]));
+	attackList = [];
+	for(var i = 0; i <  array_length(list);i ++){
+		ds_list_add(attackList, list[ i]);
+		show_debug_message("i attacked: " + string(attackList[i]));
 	}
 	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
+	for (var i = 0;	i < array_length(attackList); i++) {
 	    if(checkForHit(accuracy)){
-			var target = attackList[|i];
+			var target = attackList[i];
 			dmg = 7 + 3 * lvl; // + any Gear (not yet)
 			target.damageUnit(dmg, type, pen);
 			show_debug_message("hit for: " + string(dmg));
@@ -138,14 +138,14 @@ function attack3(list){
 	type = dmgType.melee;
 	pen = 0.4;
 	
-	attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(list);i ++){
-		ds_list_add(attackList, list[| i]);
-		show_debug_message("i attacked: " + string(attackList[|i]));
+	attackList = [];
+	for(var i = 0; i <  array_length(list);i ++){
+		ds_list_add(attackList, list[ i]);
+		show_debug_message("i attacked: " + string(attackList[i]));
 	}
 	
 	if(checkForHit(accuracy)){
-		var target = attackList[|0];
+		var target = attackList[0];
 		dmg = 10 + 5 * lvl; // + any Gear (not yet)
 		target.damageUnit(dmg, type,pen);
 		show_debug_message("hit for: " + string(dmg));
@@ -164,10 +164,10 @@ function updateTargetNumbers(){
 	numberTargetAttack3 = 1; 
 	switch(team){
 		case 0:
-			numberTargetAttack2 = ds_list_size(mCombat.team1); 
+			numberTargetAttack2 = array_length(mCombat.team1); 
 		break;
 		case 1: 
-			numberTargetAttack2 = ds_list_size(mCombat.team0); 
+			numberTargetAttack2 = array_length(mCombat.team0); 
 		break;
 	}
 }

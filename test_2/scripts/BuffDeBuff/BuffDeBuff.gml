@@ -136,49 +136,7 @@ function buffDeBuff(_duration, _amout, _type, _target, _goodEffect, _removeEffec
 #endregion
 
 #region findActiveBuffs and deBuffs on Target
-//findes activ buffs for given target 
-//used for displays mostly
-function findActivBuffs(_target){
-	var activBuffs = 0;
-	if(_target.buffDmgRed != false){
-		activBuffs ++;
-	}
-	if(_target.buffDoge != false){
-		activBuffs ++;
-	}
-	if(_target.buffHealth != false){
-		activBuffs ++;
-	}
-	if(_target.buffBlood != false){
-		activBuffs ++;
-	}
-	if(_target.buffTempo != false){
-		activBuffs ++;
-	}
-	return activBuffs;
-}
 
-//findes activ deBuffs for given target 
-//used for displays mostly
-function findActivDeBuffs(_target){
-	var deactivBuffs = 0;
-	if(_target.deBuffDmgRed!= false){
-		deactivBuffs ++;
-	}
-	if(_target.deBuffDoge != false){
-		deactivBuffs ++;
-	}
-	if(_target.deBuffHealth != false){
-		deactivBuffs ++;
-	}
-	if(_target.deBuffBlood != false){
-		deactivBuffs ++;
-	}
-	if(_target.deBuffTempo != false){
-		deactivBuffs ++;
-	}
-	return deactivBuffs;
-}
 
 #endregion
 

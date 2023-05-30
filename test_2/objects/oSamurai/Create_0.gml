@@ -2,8 +2,8 @@ event_inherited();
 tempo = 260;
 
 //healthstuffs
-baseHealth = 60; 
-currentHealth = baseHealth;
+maxHealth = 60; 
+currentHealth = maxHealth;
 
 class = classList.bloodMage; //NEED TO CHANGE LATER
 
@@ -58,15 +58,15 @@ function attack1(list){
 	pen = 0.1;
 	currentBloodLvL -= 10;
 	
-	attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(list);i ++){
-		ds_list_add(attackList, list[| i]);
-		show_debug_message("i attacked: " + string(attackList[|i]));
+	attackList = [];
+	for(var i = 0; i <  array_length(list);i ++){
+		ds_list_add(attackList, list[ i]);
+		show_debug_message("i attacked: " + string(attackList[i]));
 	}
 	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
+	for (var i = 0;	i < array_length(attackList); i++) {
 	    if(checkForHit(accuracy)){
-			var target = attackList[|i];
+			var target = attackList[i];
 			target.damageUnit(dmg, type, pen);
 			show_debug_message("hit for: " + string(dmg));
 		} else{
@@ -74,8 +74,8 @@ function attack1(list){
 		}
 	}
 	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
-	   with(attackList[|i]){
+	for (var i = 0;	i < array_length(attackList); i++) {
+	   with(attackList[i]){
 		   if(state == states.DEATH){
 			   
 		   }else{
@@ -107,15 +107,15 @@ function attack2(list){
 	pen = 0.9;
 	currentBloodLvL -= 55;
 	
-	attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(list);i ++){
-		ds_list_add(attackList, list[| i]);
-		show_debug_message("i attacked: " + string(attackList[|i]));
+	attackList = [];
+	for(var i = 0; i <  array_length(list);i ++){
+		ds_list_add(attackList, list[ i]);
+		show_debug_message("i attacked: " + string(attackList[i]));
 	}
 	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
+	for (var i = 0;	i < array_length(attackList); i++) {
 	    if(checkForHit(accuracy)){
-			var target = attackList[|i];
+			var target = attackList[i];
 			target.damageUnit(dmg, type, pen);
 			show_debug_message("hit for: " + string(dmg));
 		} else{
@@ -150,15 +150,15 @@ function attack3(list){
 	pen = 0.45;
 	currentBloodLvL -= 5;
 	
-	attackList = ds_list_create();
-	for(var i = 0; i <  ds_list_size(list);i ++){
-		ds_list_add(attackList, list[| i]);
-		show_debug_message("i attacked: " + string(attackList[|i]));
+	attackList = [];
+	for(var i = 0; i <  array_length(list);i ++){
+		ds_list_add(attackList, list[ i]);
+		show_debug_message("i attacked: " + string(attackList[i]));
 	}
 	
-	for (var i = 0;	i < ds_list_size(attackList); i++) {
+	for (var i = 0;	i < array_length(attackList); i++) {
 	    if(checkForHit(accuracy)){
-			var target = attackList[|i];
+			var target = attackList[i];
 			target.damageUnit(dmg, type, pen);
 			show_debug_message("hit for: " + string(dmg));
 		} else{
@@ -180,14 +180,14 @@ function updateTargetNumbers(){
 	numberTargetAttack2 = 1; 
 	switch(team){
 		case 0:
-			if(ds_list_size(mCombat.team1) < 2){
+			if(array_length(mCombat.team1) < 2){
 				numberTargetAttack3 = 1
 			}else{
 				numberTargetAttack3 = 2;
 			}
 		break;
 		case 1:
-			if(ds_list_size(mCombat.team0) < 2){
+			if(array_length(mCombat.team0) < 2){
 				numberTargetAttack3 = 1
 			}else{
 				numberTargetAttack3 = 2;

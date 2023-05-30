@@ -32,10 +32,7 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": {
-    "name": "BerserkerIcon",
-    "path": "sprites/BerserkerIcon/BerserkerIcon.yy",
-  },
+  "spriteId": null,
   "spriteMaskId": {
     "name": "vTargeting",
     "path": "sprites/vTargeting/vTargeting.yy",

@@ -1,13 +1,13 @@
 //sorts a given list 
 // might rework later --> for diffrent sort function
  function bubble_sort(_list){
-    var list_size = ds_list_size(_list);
+    var list_size = array_length(_list);
     for (var i = 0; i < list_size; i++) {
         for (var j = 0; j < list_size - i - 1; j++) {
-            if (list[|j].currentTempo < _list[|j+1].currentTempo) {
-                var swapped = list[|j];
-                list[|j] = _list[|j+1];
-                list[|j+1] = swapped;
+            if (_list[j].tempo < _list[j+1].tempo) {
+                var swapped = _list[j];
+                _list[j] = _list[j+1];
+                _list[j+1] = swapped;
             }
         }
     }
@@ -15,132 +15,12 @@
 
 #region mCombat move later
 
-//plays userevents in mCombat --> need to delete later 
-function playUserEvent0120(){
-	with(mCombat){
-		event_user(0);
-		event_user(1);
-		event_user(2);
-		event_user(0);
-	}
-}
-
-function unitAttackUnit(attacker, target, attack){
-	switch(attack){
-		case actions.attack1: 
-			with(attacker){
-				attacker.attack1(target);
-				ds_list_clear(mCombat.selectedTargets);
-			}
-		break;
-		case actions.attack2: 
-			with(attacker){
-				attacker.attack2(target);
-				ds_list_clear(mCombat.selectedTargets);
-			}
-		break;
-		case actions.attack3: 
-			with(attacker){
-				attacker.attack3(target);
-				ds_list_clear(mCombat.selectedTargets);
-			}		
-	}
-}
-
-
 //removes units in the selection phase of the combat
 function checkIfUnitAlreadySelectedAndDelete(unit){
 	if(ds_list_find_index(mCombat.selectedTargets, unit)  != -1 ){
 			ds_list_delete(mCombat.selectedTargets, ds_list_find_index(mCombat.selectedTargets, unit));
 		}
 
-}
-
-
-//finds the position in the display for given array 
-//is used for teams in mCombat
-function findPosition(sizeOfTeam, team){
-	var positionsX = [];
-	var positionsY = [];
-	
-	if(team == 0){
-		switch(sizeOfTeam){
-			case 1: 
-				positionsX[0] = 224; 
-				positionsY[0] = 224;
-			break;
-			case 2: 
-				positionsX[0] = 224; 
-				positionsY[0] = 96;
-				positionsX[1] = 224; 
-				positionsY[1] = 320;
-			break;
-			case 3: 
-				positionsX[0] = 128; 
-				positionsY[0] = 224;
-				positionsX[1] = 352; 
-				positionsY[1] = 96;
-				positionsX[2] = 352; 
-				positionsY[2] = 320;
-			break;
-			case 4: 
-				positionsX[0] = 96; 
-				positionsY[0] = 96;
-				positionsX[1] = 352; 
-				positionsY[1] = 96;
-				positionsX[2] = 96;
-				positionsY[2] = 320;
-				positionsX[3] = 352;
-				positionsY[3] = 320;
-			break;
-		}
-	}else if(team == 1){
-		switch(sizeOfTeam){
-			case 1: 
-				positionsX[0] = 928; 
-				positionsY[0] = 224;
-			break;
-			case 2: 
-				positionsX[0] = 928; 
-				positionsY[0] = 96;
-				positionsX[1] = 928; 
-				positionsY[1] = 320;
-			break;
-			case 3: 
-				positionsX[0] = 1024; 
-				positionsY[0] = 224;
-				positionsX[1] = 800; 
-				positionsY[1] = 96;
-				positionsX[2] = 800; 
-				positionsY[2] = 320;
-			break;
-			case 4: 
-				positionsX[0] = 1024; 
-				positionsY[0] = 96;
-				positionsX[1] = 800; 
-				positionsY[1] = 96;
-				positionsX[2] = 800;
-				positionsY[2] = 320;
-				positionsX[3] = 1024;
-				positionsY[3] = 320;
-			break;
-			case 5: 
-				positionsX[0] = 1024; 
-				positionsY[0] = 32;
-				positionsX[1] = 800; 
-				positionsY[1] = 96;
-				positionsX[2] = 800;
-				positionsY[2] = 320;
-				positionsX[3] = 1024;
-				positionsY[3] = 192;
-				positionsX[4] = 1024;
-				positionsY[4] = 352;
-			break;
-		}
-		
-	}
-	var positonXY = [positionsX, positionsY];
-	return positonXY;
 }
 
 #endregion
@@ -171,23 +51,19 @@ function chanceFrom100(_rerolls = 0){
 	return number;
 }
 
-//checks for hits returns a miss text if not
-//might get reworked to account for acc Buffs
+//checks for any given value returns a true if value was hit
 //can be given any value --> 0-1 OR 0-100
 function checkAgainstRandom100(_valueToCheck, _rerolls = 0){
 	var value = _valueToCheck;
 	if(value <= 1){
-		value = _valueToCheck * 10 // 1 * 10 = 80%
+		value = value * 100;
 	}
-	
 	
 	var number = chanceFrom100(_rerolls);
 	
 	if(number < value){
 		return true;
 	} else {
-		show_debug_message("number was not hit");
-		show_debug_message("number: " + string(number) + " | value: " + string(value));
 		return false;
 	}
 }
@@ -256,6 +132,12 @@ _rerolls = 0){
 //returns a random item in an given array 
 function findRandomItemInArray(_arrayToFindIn){
 	//have to check math :) 
+	if(!is_array(_arrayToFindIn)){
+		var listWork = _arrayToFindIn;
+		for(var i = 0; i < array_length(listWork); i ++){
+			_arrayToFindIn[i] = listWork[i];
+		}
+	}
 	var lengthResult = array_length(_arrayToFindIn);
 	var resultNumer = chanceFrom100(); 
 	var amountPerPosition = round(100/lengthResult);

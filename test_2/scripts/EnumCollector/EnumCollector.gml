@@ -60,23 +60,27 @@ enum itemList{
 enum classList{
 	bloodMage,
 	conquistador, //will stay
-	footsoldiar, //will stay
-	missonarry, //will stay
-	eagleWarrior, //will stay
-	jaguarWarrior, //will stay
-	hunter, //will stay
-	nobal, //will stay
+	footsoldiar,
+	missonarry,
+	eagleWarrior,
+	jaguarWarrior, 
+	hunter, 
+	nobal, 
 	witchhunter, //will stay
 	
 	fieldHand, //remove later
-	berserker, //remove later
-	disownedNobal, //remove later
-	butcher, //remove later
-	monch, //remove later
-	samurai, //remove later
-	huntsMan, //remove later
-	gunSlinger, //remove later
+	berserker, 
+	disownedNobal,
+	butcher,
+	monch,
+	samurai, 
+	huntsMan,
+	gunSlinger, 
 	peasent, //remove later
+	
+	//enemys are added here as i dont know why not
+	bandit, //will stay
+	
 }
 
 #endregion
@@ -174,6 +178,7 @@ enum actions{
 	skill1,
 	skill2,
 	skill3,
+	skill4,
 }
 
 //what can be targeted in the battlephase by attacks
