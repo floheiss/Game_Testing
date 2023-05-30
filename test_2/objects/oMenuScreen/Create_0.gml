@@ -30,13 +30,17 @@ function displayMenu(){
 	objects = findDisplayObjects();
 		
 	for(i = 0; i < ds_list_size(objects); i ++){
-		//resets all the objects so there is no leagcy for other menus
-		objects[|i].resetButton();
+		with(objects[|i]){
+			//resets all the objects so there is no leagcy for other menus
+			resetButton();
 		
-		//maybe later look at to make 1 var ??????????
-		objects[|i].contractDispalyed = false;
-		objects[|i].itemDisplayed = false;
-		objects[|i].supportDispalyed = false;
+			//maybe later look at to make 1 var ??????????
+			contractDispalyed = false;
+			itemDisplayed = false;
+			supportDispalyed = false;
+			savedObject = -1;
+			
+		}
 	}
 	
 	#endregion
@@ -87,43 +91,39 @@ function displayMenu(){
 		
 		#region inventory
 		case menus.inventory:
-			inventory = global.inventory;
+		
 			
 			bg = Menu_Background_Inventory;
 			welcomeText = "";
+			addItemToInventory(itemList.bandage);
+			addItemToInventory(itemList.healingPotion, 3);
 			
+					
 			for(var i = 0; i < 30; i ++){
-				var xCord = 0; //note sure
-				var yCord = 0;
+				
 				#region calculate x/y
 				
-				if(i < 10){
-					xCord = x + 25 + 4 * i + 85*i;
-					yCord = y + 35;
-				}else if(i < 20){
-					xCord = x + 25 + 10 * (i-10) + 85 * (i-10) ;
-					yCord = y + 35 + 25 + 85;
-				}else{
-					xCord = x + 25 + 10* (i-20) + 85 * (i-20) ;
-					yCord = y + 35 + 25 * 2 + 85 * 2;
-				}
+				var xCord = (x - sprite_get_xoffset(sprite_index));
+				var yCord = (y - sprite_get_yoffset(sprite_index));
+				var minus10Multi = floor(i / 10);
+				var iCal = (i - (10 * minus10Multi));
+				
+				xCord += 25 + 3 * iCal + 85 * iCal;
+				yCord += 35 + 25 * minus10Multi + 85 * minus10Multi;
 				
 				#endregion
-				
-				addItemToInventory(itemList.bandage);
-				addItemToInventory(itemList.healingPotion, 3);
-				
+					
 				if(i < global.maxInventorySize){
 					var item = global.inventory[i];
 					with(objects[|i]){
-						show_debug_message("the item will be: " + string(item));
-						var index = item != -1 ? item.displaySpriteSubImage : 0;
+						savedObject = item;
+						var index = savedObject != -1 ? item.displaySpriteSubImage : 0;
 						changeSprite(xCord,yCord,ItemSprite, false, index);
 					}
 				}else{
 					with(objects[|i]){
-						//not sure about cal :) 
-						lockWithOutImage(xCord,yCord,ItemSprite);
+						changeSprite(xCord,yCord,ItemSprite, false, 0);
+						setConditionForLocking(true);
 					}
 				}
 				

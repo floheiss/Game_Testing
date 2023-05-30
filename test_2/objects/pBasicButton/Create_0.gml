@@ -113,7 +113,11 @@ function resetButton(){
 	displayedTextyCord = 0;
 	
 	locked = false;
-	condition = -1;
-	conditionParamArray = [];
+	lockCondition = -1;
+	lockConditionParamArray = [];
 	lockWithOutImageFlag = false;
+	
+	drawCondition = -1;
+	
+	savedObject = -1;
 }

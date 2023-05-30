@@ -11,7 +11,7 @@ function DisplayHover(){
 	#region merchant
 	
 	if(self.itemDisplayed != false){
-		if(mInventory.isInventoryFull()){
+		if(isInventoryFull()){
 			oMenuScreen.welcomeText = "Your inventory is already full";
 		}else if(global.gold < self.itemDisplayed.cost){
 			oMenuScreen.welcomeText = "Sry i cant give credit";
@@ -82,15 +82,15 @@ function DisplayMain(){
 		#region merchant
 		
 		case menus.merchant:
-			var toBuyItem = oMenuScreen.currentDisplayedItem;
+			var itemToBuy = oMenuScreen.currentDisplayedItem;
 			
-			if(global.gold >= toBuyItem.cost && 
+			if(global.gold >= itemToBuy.cost && 
 			!oMerchant.merchantInventory[self.position].sold &&
-			!mInventory.isInventoryFull()){
-				global.gold -= toBuyItem.cost;
+			!isInventoryFull()){
+				global.gold -= itemToBuy.cost;
 				oMerchant.merchantInventory[self.position].sold = true;
-				mInventory.addItemToInventory(toBuyItem.typeOfItem);
-				self.image_index = 1;
+				addItemToInventory(itemToBuy.typeOfItem);
+				self.locked = true;
 				//have to change as now oGame handels allowInput !!!
 				with(oGame){
 					event_user(0);

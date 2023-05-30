@@ -1,6 +1,6 @@
 currentMenu = -1;
 menusUI = layer_get_id("menusUI");
-
+layer_set_visible(menusUI, false);
 
 function displayMenuInTown(){
 	with(oGame){
