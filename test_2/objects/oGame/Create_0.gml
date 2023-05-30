@@ -25,8 +25,6 @@ global.playerGroup[0] = instance_create_depth(0,0,0,oBloodMage);
 global.enemies = []; //default []
 global.enemies[0] = instance_create_depth(0,0,0,oConquistador);
 
-global.ItemGen = instance_create_depth(0,0,0,mItem); //fk items 
-
 global.allowInput = true;
 
 //retuns the instance of the BM in the Party

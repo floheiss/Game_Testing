@@ -20,16 +20,19 @@ function displayMenu(){
 	#region finds all objects in the MenuScree + reset
 	var findDisplayObjects = function(){
 		var list = ds_list_create();
+		
 		for(var i = 0; i < instance_number(oDisplaySprite);i ++){
 			var instance = instance_find(oDisplaySprite, i);
 			ds_list_add(list, instance);
 		}
+		
 		return list;
 	}
 
 	objects = findDisplayObjects();
 		
 	for(i = 0; i < ds_list_size(objects); i ++){
+		
 		with(objects[|i]){
 			//resets all the objects so there is no leagcy for other menus
 			resetButton();
@@ -38,7 +41,6 @@ function displayMenu(){
 			contractDispalyed = false;
 			itemDisplayed = false;
 			supportDispalyed = false;
-			savedObject = -1;
 			
 		}
 	}

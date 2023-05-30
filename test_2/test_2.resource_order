@@ -149,6 +149,7 @@
     {"name":"mMapDisplayManager","order":3,"path":"objects/mMapDisplayManager/mMapDisplayManager.yy",},
     {"name":"BloodMage_Attack_2","order":4,"path":"sprites/BloodMage_Attack_2/BloodMage_Attack_2.yy",},
     {"name":"Attack_3_Samurai_Archer","order":5,"path":"sprites/Attack_3_Samurai_Archer/Attack_3_Samurai_Archer.yy",},
+    {"name":"Items","order":4,"path":"scripts/Items/Items.yy",},
     {"name":"mMapGenerator","order":5,"path":"objects/mMapGenerator/mMapGenerator.yy",},
     {"name":"BloodMage_Attack_1","order":3,"path":"sprites/BloodMage_Attack_1/BloodMage_Attack_1.yy",},
     {"name":"oPartyInfoIcon","order":1,"path":"objects/oPartyInfoIcon/oPartyInfoIcon.yy",},

@@ -89,6 +89,7 @@ function DisplayMain(){
 			!isInventoryFull()){
 				global.gold -= itemToBuy.cost;
 				oMerchant.merchantInventory[self.position].sold = true;
+				
 				addItemToInventory(itemToBuy.typeOfItem);
 				self.locked = true;
 				//have to change as now oGame handels allowInput !!!

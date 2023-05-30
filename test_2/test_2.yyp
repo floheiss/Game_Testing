@@ -206,6 +206,7 @@
     {"id":{"name":"mMapDisplayManager","path":"objects/mMapDisplayManager/mMapDisplayManager.yy",},},
     {"id":{"name":"BloodMage_Attack_2","path":"sprites/BloodMage_Attack_2/BloodMage_Attack_2.yy",},},
     {"id":{"name":"Attack_3_Samurai_Archer","path":"sprites/Attack_3_Samurai_Archer/Attack_3_Samurai_Archer.yy",},},
+    {"id":{"name":"Items","path":"scripts/Items/Items.yy",},},
     {"id":{"name":"mMapGenerator","path":"objects/mMapGenerator/mMapGenerator.yy",},},
     {"id":{"name":"BloodMage_Attack_1","path":"sprites/BloodMage_Attack_1/BloodMage_Attack_1.yy",},},
     {"id":{"name":"oPartyInfoIcon","path":"objects/oPartyInfoIcon/oPartyInfoIcon.yy",},},
