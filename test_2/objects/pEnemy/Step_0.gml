@@ -2,9 +2,11 @@ event_inherited();
 
 #region  "AI" (What attack to use)
 if(global.room == roomList.battle){
-	var attackIng = (mCombat.selectedUnit == id) ? true : false;
 	
-	if(attackIng && true == false){
+	var attackIng = (mCombat.selectedUnit == id) ? true : false;
+	attacked = (lastActiveTurn < mCombat.turnCounter) ? false : true;
+
+	if(attackIng){
 		var usedAttackMethode = -1;
 		var usedAttackStruct = -1;
 
@@ -91,6 +93,7 @@ if(global.room == roomList.battle){
 		if(!attacked){
 			method_call(usedAttackMethode,[targets]);
 			attacked = true;
+			lastActiveTurn = mCombat.turnCounter;
 		}
 		
 		/*

@@ -4,7 +4,7 @@ if(drawInMap && getsDraw){
 			draw_self();
 		}
 	
-		if(btnState == buttonState.disabled){
+		if(btnState == buttonState.disabled && !useSubImage){
 			//maybe error
 			var spriteUsed = (spriteToDraw != -1) ? spriteToDraw : lockWithOutImageFlag;
 			var lockOverLayXscale = sprite_get_width(spriteUsed)/128;

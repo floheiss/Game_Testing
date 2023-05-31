@@ -32,10 +32,7 @@ if(global.drawPartyInfo){
 							
 						}
 					
-					MainFunction = fun;			
-					show_debug_message("Main Function: " + string(MainFunction));
-					show_debug_message("The Main function is a methode: " + string(is_method(fun)) + ", True: " + string(true));
-				
+					MainFunction = fun;
 				}
 			}else{
 				//we do nothing here 

@@ -22,13 +22,7 @@ function reloadGun(){
 
 #region conditions
 
-function checkReloded(_unit){
-	if(_unit.reloaded){
-		return false;
-	}else{
-		return true;
-	}
-}
+
 
 function checkMericals(_unit){
 	if(_unit.mericalsLeft < 1){
@@ -71,7 +65,7 @@ function checkOnlyOneEnemy(_unit){
 //maybe _owner dosnt work --> self ref to scribt 
 function attacksDesribtion(_owner ,_acc, _dmgBase, _dmgLvl, _dmgType, _pen, _critChance,  
 _title, _describtion, _targetNumber, _pointValue,
-_rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCost = 0) constructor{
+_rerolls = 0, _canTarget = possibleTargets.enemies, _condition = false, _bloodCost = 0) constructor{
 	
 	acc = _acc;
 	dmgTypeAttack = _dmgType;
@@ -81,7 +75,6 @@ _rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCos
 	dmgLvL= _dmgLvl;
 	
 	condition = _condition
-	locked = false;
 	
 	title = _title;
 	describtion = _describtion;
@@ -95,19 +88,6 @@ _rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCos
 	pointValue = _pointValue;
 	owner = _owner;
 
-	function updateCondition(){
-		
-		if(is_bool(condition)){
-			if(!condition){
-				locked = true;
-			}
-		}else{
-			if(!script_execute(condition, owner)){
-				locked = true;
-			}
-		}
-	}
-	
 	function calDmg(){
 		//any gear is added here
 		var dmgCal = round(dmgBase + dmgLvL * owner.lvl);
@@ -144,8 +124,7 @@ _rerolls = 0, _canTarget = possibleTargets.enemies, _condition = true, _bloodCos
 			}
 		}
 	}
-	
-	updateCondition();
+
 	dmg = calDmg();
 }
 

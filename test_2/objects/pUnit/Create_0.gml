@@ -151,7 +151,7 @@ function damageUnit(_dmgNumber, _dmgType, _armorPen){
 }
 
 function healUnit(_heal){ 
-	if(currentHealth + hea_heall < maxHealth){
+	if(currentHealth + _heal < maxHealth){
 		currentHealth += _heal;
 	} else {
 		currentHealth = maxHealth;

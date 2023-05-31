@@ -40,32 +40,24 @@ function attack1(_list){
 	//applieDotsToTargets(_list, bleed);
 }
 
-reloaded = true;
-title = "Gun !";
-describtion = "Shoot somebody";
-attack2Stru = new attacksDesribtion(self, 0.6, 55, 20, dmgType.ranged, 0.45, 0.07,
-title, describtion, 1, 500, -1, checkReloded); 
+
+title = "Transfusion";
+describtion = "Succ";
+attack2Stru = new attacksDesribtion(self, 0.75, 15, 6, dmgType.magic, 0.00, 0.08,
+title, describtion, 1, 500); 
 function attack2(_list){
-	var result = basicDmgAttack(_list, attack2Stru, actions.attack2);
-	if(result){
-		var dotDmg = 6;
-		var bleed = new damageOverTime(2, dotDmg, dotTypes.bleed, undefined);
-		applieDotsToTargets(_list, bleed);
-	
-	}
-	reloaded = false;
+	basicDmgAttack(_list, attack2Stru, actions.attack2);
+	healUnit(attack2Stru.dmg)
 }
+
 
 title = "Let him bleed";
 describtion = "slice into an enemy resulting in a bleed"
 attack3Stru = new attacksDesribtion(self, 0.8, 15, 7, dmgType.melee, 0.08, 0.06,
-title, describtion, 1, 100); 
+title, describtion, 1, 100, undefined, undefined, true); 
 function attack3(_list){
 	var result = basicDmgAttack(_list, attack3Stru, actions.attack2);
-	if(result){
-		var bleed = new damageOverTime(5, 2, dotTypes.bleed, undefined);
-		applieDotsToTargets(_list, bleed);
-	}
+	reloaded = false;
 }
 
 

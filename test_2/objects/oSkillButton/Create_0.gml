@@ -9,6 +9,40 @@ var _con = function(){
 
 setConditionForDrawing(_con);
 
+var _lockCon = function(){
+	var unit = mCombat.selectedUnit;
+	if(global.room == roomList.battle && unit != 0){
+		var struct = -1;
+		switch(actionOfButton){
+			case actions.attack1:
+				struct = unit.attack1Stru;
+			break;
+			case actions.attack2:
+				struct = unit.attack2Stru;
+			break;
+			case actions.attack3:
+				struct = unit.attack3Stru;
+			break;
+			case actions.skill1:
+				struct = unit.skill1Stru;
+			break;
+			case actions.skill2:
+				struct = unit.skill2Stru;
+			break;
+			case actions.skill3:
+				struct = unit.skill3Stru;
+			break;
+			case actions.skill4:
+				struct = unit.skill4Stru;
+			break;
+		}
+		return struct.condition;
+	}
+	return -1;
+}
+
+setConditionForLocking(_lockCon);
+
 MainFunction = function(){
 	with(mCombat){
 		var unit = selectedUnit;
