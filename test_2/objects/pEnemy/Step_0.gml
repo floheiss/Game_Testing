@@ -4,7 +4,7 @@ event_inherited();
 if(global.room == roomList.battle){
 	var attackIng = (mCombat.selectedUnit == id) ? true : false;
 	
-	if(attackIng){
+	if(attackIng && true == false){
 		var usedAttackMethode = -1;
 		var usedAttackStruct = -1;
 

@@ -2,6 +2,13 @@ event_inherited();
 
 changeSprite(x,y,sprite_index,true);
 
+var _con = function(){
+	var _phase = (mCombat.combatPhase == phase.wait && mCombat.selectedUnit.team == 0)? true: false;
+	return _phase;
+}
+
+setConditionForDrawing(_con);
+
 MainFunction = function(){
 	with(mCombat){
 		var unit = selectedUnit;

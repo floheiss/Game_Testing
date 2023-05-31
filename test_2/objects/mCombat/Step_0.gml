@@ -66,8 +66,6 @@ switch(combatPhase){
 			
 			layer_set_visible(targetUI, false);
 			instance_deactivate_layer(targetUI);
-			layer_set_visible(baseUI, false);
-			instance_deactivate_layer(baseUI);
 		}
 		
 	break;

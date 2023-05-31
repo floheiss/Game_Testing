@@ -1,6 +1,7 @@
 if(targeting && global.allowInput){
 	if(position_meeting(MOUSEGUI_X,MOUSEGUI_Y, pUnit)){
-		var unit = instance_position(MOUSEGUI_X,MOUSEGUI_Y, pUnit);
+		var unit = instance_position(MOUSEGUI_X,MOUSEGUI_Y, pUnit);	
+			
 		#region unitAttackUnit
 		
 		var unitAttackUnit = function(attacker, target, attack){
@@ -23,7 +24,7 @@ if(targeting && global.allowInput){
 		}
 		
 		#endregion
-		
+			
 		#region playUserEvents
 		
 		var playUserEvent0120 = function(){
@@ -41,195 +42,57 @@ if(targeting && global.allowInput){
 		
 		#endregion
 		
+		#region checkValdiTarget 
 		
-		switch(attackTargets){
-			#region everybody
-			case possibleTargets.everybody:
-				switch(actionTaken){
-					case actions.attack1: 				
-						
-						if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) == -1){
-							ds_list_add(selectedTargets, unit);
-							selectedTeam = selectedUnit.team;  //for now only 2 Teams 0 and 1 
-							
-								if(array_length(selectedTargets) == selectedUnit.numberTargetAttack1){
-									
-									playUserEvent0120();
-									unitAttackUnit(selectedUnit, selectedTargets, actions.attack1);
-									
-								}
-						}else if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) != -1){
-								checkIfUnitAlreadySelectedAndDelete(unit);
-							}		
-					
-					break;
-			
-					case actions.attack2: 
-						
-						if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) == -1){
-							ds_list_add(selectedTargets,unit);
-								if(array_length(selectedTargets) == selectedUnit.numberTargetAttack2){
-									
-									playUserEvent0120();
-									unitAttackUnit(selectedUnit, global.selectedTargets, actions.attack2);
-									
-								}
-						}else if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) != -1){
-							checkIfUnitAlreadySelectedAndDelete(unit);
-						}
-					break;
-					
-					case actions.attack3: 
-						
-						if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) == -1){
-							ds_list_add(selectedTargets,unit);
-								if(array_length(selectedTargets) == selectedUnit.numberTargetAttack3){
-									
-									playUserEvent0120();
-									unitAttackUnit(selectedUnit, selectedTargets, actions.attack3);
-									
-								}
-						}else if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) != -1){
-							checkIfUnitAlreadySelectedAndDelete(unit);
-						}
-					break;
+		//checks if a given unit is a valid target for the attack 
+		//if it is ALREADY SELECTED it retuns -1 
+		//else it will return true if valid 
+		//or false if NOT vaild 
+		var checkValidTarget = function(_value){
+				var valid = false;
+				for(var i = 0; i < array_length(selectedTargets); i ++){
+					if(selectedTargets[i].id == _value.id){
+						valid= -1;
+						break;
+					} 
 				}
-			
-			break;
-			
-			#endregion
-			
-			
-			#region enemies
-			
-			case possibleTargets.enemies:
-				if(selectedUnit.team != unit.team){
-					switch(actionTaken){
-						case actions.attack1: 				
-							var alreadySelected = false;
-							for(var i = 0; i < array_length(selectedTargets); i ++){
-								if(selectedTargets[i].id == unit.id){
-									alreadySelected = true;
-									break;
-								}
-							}
-							if(unit != selectedUnit && !alreadySelected){
-								selectedTargets[array_length(selectedTargets)] = unit;
-								
-								if(array_length(selectedTargets) == maxNumberTargets){
-									
-									unitAttackUnit(selectedUnit, selectedTargets, actions.attack1);
-									playUserEvent0120();
-								}
-							}else if(unit != selectedUnit && alreadySelected){
-								checkIfUnitAlreadySelectedAndDelete(unit);
-							}
-							
-							
+				
+				if(!valid){
+					switch(attackTargets){
+						case possibleTargets.enemies:
+							valid = (_value.team != selectedUnit.team)? true: false;
 						break;
-			
-						case actions.attack2: 
-							
-							
-							if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) == -1){
-								ds_list_add(selectedTargets,unit);
-
-								if(array_length(selectedTargets) == selectedUnit.numberTargetAttack2){
-									
-									playUserEvent0120();
-									unitAttackUnit(selectedUnit, selectedTargets, actions.attack2);
-									
-								}
-							}else if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) != -1){
-								checkIfUnitAlreadySelectedAndDelete(unit);
-							}
-							
-						
+						case possibleTargets.allies: 		
+							valid = (_value.team == selectedUnit.team)? true: false;
 						break;
-						case actions.attack3: 
-						
-							if(unit != selectedUnit&& ds_list_find_index(selectedTargets, unit) == -1){
-								ds_list_add(selectedTargets,unit);
-								if(array_length(selectedTargets) == selectedUnit.numberTargetAttack3){
-									
-									playUserEvent0120();
-									unitAttackUnit(selectedUnit, selectedTargets, actions.attack3);
-									
-								}
-							}else if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) != -1){
-								checkIfUnitAlreadySelectedAndDelete(unit);
-							}
-							
+						case possibleTargets.everybody: 		
+							valid = true;	
 						break;
 					}
 				}
-		
-			break;
-			#endregion
-			
-			#region allies
-			
-			case possibleTargets.allies:
-			
-				if(selectedUnit.team == unit.team){
-					switch(actionTaken){
-						case actions.attack1: 				
-						
-							if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) == -1){
-								ds_list_add(global.selectedTargets,unit);
-									if(array_length(global.selectedTargets) == maxNumberTargets){
-									
-										playUserEvent0120();
-										unitAttackUnit(selectedUnit, global.selectedTargets, actions.attack1);
-									
-									}
-							}else if(unit != selectedUnit && ds_list_find_index(global.selectedTargets, unit) != -1){
-								checkIfUnitAlreadySelectedAndDelete(unit);
-							}
-							
-							
-						break;
-			
-						case actions.attack2: 		
-							if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) == -1){
-								ds_list_add(selectedTargets,unit);
-									if(array_length(selectedTargets) == selectedUnit.numberTargetAttack2){
-									
-										playUserEvent0120();
-										unitAttackUnit(selectedUnit, selectedTargets, actions.attack2);
-									
-									}
-							}else if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) != -1){
-								checkIfUnitAlreadySelectedAndDelete(unit);
-							}
-							
-							
-						break;
-						
-						case actions.attack3: 
-						
-							if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) == -1){
-								ds_list_add(selectedTargets,unit);
-									if(array_length(selectedTargets) == selectedUnit.numberTargetAttack3){
-									
-										playUserEvent0120();
-										unitAttackUnit(selectedUnit, selectedTargets, actions.attack3);
-									
-									}
-							}else if(unit != selectedUnit && ds_list_find_index(selectedTargets, unit) != -1){
-								checkIfUnitAlreadySelectedAndDelete(unit);
-							}
-							
-						break;
-					}
-				}
-		
-			break;
-			
-			#endregion
-		
+				
+				return valid;
+			}
+		#endregion
+				
+		if(checkValidTarget(unit) == -1){
+			var _con = function(_value){
+				return _value.id == unit.id;
+			}
+			var index = array_find_index(selectedTargets, _con);
+			array_delete(selectedTargets, index, 1);
+			show_debug_message(string(unit.id) + " was already selected and has been removed");
+		}else if(checkValidTarget(unit)){
+			selectedTargets[array_length(selectedTargets)] = unit;
+			show_debug_message(string(unit.id) + " was a vaild target and has been added");
+		}else{
+				show_debug_message(string(unit.id) + " was NOT a  vaild target and has been added")
 		}
-		
+		if(array_length(selectedTargets) == maxNumberTargets){							
+			unitAttackUnit(selectedUnit, selectedTargets, actionTaken);
+			playUserEvent0120();
+		}
+				
 		#region reset all	
 		
 		targets = []; 
@@ -240,5 +103,5 @@ if(targeting && global.allowInput){
 		
 		#endregion
 		
-	}
+	}	
 }
