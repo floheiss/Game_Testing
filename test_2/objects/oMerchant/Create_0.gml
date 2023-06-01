@@ -44,8 +44,8 @@ MainFunction = function(){
 						tier2Items,
 						tier1Items
 					);
-	
-					return salteItem = getNewSaleItem(saleItemType);
+					salteItem = getNewSaleItem(saleItemType)
+					return salteItem;
 				}
 
 				for(var i = 0; i < maxItems; i ++){

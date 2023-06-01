@@ -50,11 +50,16 @@ function attack2(_list){
 	healUnit(attack2Stru.dmg)
 }
 
+var reloadCheck = function(){
+	show_debug_message("thue check was called");
+	var r = owner.reloaded;
+	return r;
+}
 
 title = "Let him bleed";
 describtion = "slice into an enemy resulting in a bleed"
 attack3Stru = new attacksDesribtion(self, 0.8, 15, 7, dmgType.melee, 0.08, 0.06,
-title, describtion, 1, 100, undefined, undefined, true); 
+title, describtion, 1, 100, 0, possibleTargets.enemies, reloadCheck); 
 function attack3(_list){
 	var result = basicDmgAttack(_list, attack3Stru, actions.attack2);
 	reloaded = false;

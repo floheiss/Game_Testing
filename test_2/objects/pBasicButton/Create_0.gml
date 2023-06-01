@@ -69,7 +69,6 @@ function setConditionForLocking(_condition, _conditionParamArray = []){
 		if(is_bool(lockCondition)){
 			locked = lockCondition;
 		}else if(is_method(lockCondition)){
-			show_debug_message("the condition: " + string(lockCondition));
 			locked = lockCondition();
 		}else{
 			

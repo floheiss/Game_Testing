@@ -1,58 +1,56 @@
 function DisplayHover(){
-	
-	#region guild
-	
-	if(self.contractDispalyed!= false){
-		oMenuScreen.currentDisplayedContrat = self.contractDispalyed;
-	}
-	
-	#endregion
-	
-	#region merchant
-	
-	if(self.itemDisplayed != false){
-		if(isInventoryFull()){
-			oMenuScreen.welcomeText = "Your inventory is already full";
-		}else if(global.gold < self.itemDisplayed.cost){
-			oMenuScreen.welcomeText = "Sry i cant give credit";
-		}else{
-			oMenuScreen.currentDisplayedItem = self.itemDisplayed;
-		}
-	}
-	
-	#endregion
-	
-	#region Tavern
-	
-	if(self.supportDispalyed != false){
-		var numberInParty = 0;
-		for(var i = 0; i < array_length(global.playerGroup); i ++){
-			if(global.playerGroup[i] != -1){
-				numberInParty ++;
-			}
-		}
-		show_debug_message("member cost: " + string(self.supportDispalyed.cost));
-		show_debug_message("--------------------");
-		show_debug_message( "global gold: " + string(global.gold));
-		if(global.maxPlayGroupSize <= numberInParty){
-			oMenuScreen.welcomeText = "Sorry the people here dont trust you enough to come in higher numbers";
-		} else if(global.gold < self.supportDispalyed.cost){
-			oMenuScreen.welcomeText = "Sry i cant give credit filler"; 
-		} else{
-			oMenuScreen.currentDisplayedSupport = self.supportDispalyed;
-		}
+	if(savedObject != -1){
+		switch(oTown.currentMenu){
+			#region guild
 		
-	}
+			case menus.guild:
+				oMenuScreen.currentDisplayedContrat = savedObject;
+			break;
+		
+			#endregion
+		
+			#region merchant
+			case menus.merchant:
+				var item = oMerchant.merchantInventory[savedObject];
+				if(isInventoryFull()){
+					oMenuScreen.welcomeText = "Your inventory is already full";
+				}else if(global.gold <item.cost){
+					oMenuScreen.welcomeText = "Sry i cant give credit";
+				}else{
+					oMenuScreen.currentDisplayedItem = item;
+				}
+			break;
+			#endregion
 	
-	#endregion
-
+			#region tavern
+			case menus.tavern:
+				var numberInParty = 0;
+				for(var i = 0; i < array_length(global.playerGroup); i ++){
+					if(global.playerGroup[i] != -1){
+						numberInParty ++;
+					}
+				}
+				show_debug_message("member cost: " + string(savedObject.cost));
+				show_debug_message("--------------------");
+				show_debug_message( "global gold: " + string(global.gold));
+				if(global.maxPlayGroupSize <= numberInParty){
+					oMenuScreen.welcomeText = "Sorry the people here dont trust you enough to come in higher numbers";
+				} else if(global.gold < savedObject.cost){
+					oMenuScreen.welcomeText = "Sry i cant give credit filler"; 
+				} else{
+					oMenuScreen.currentDisplayedSupport = savedObject;
+				}
+			break;
+			#endregion
+		
+		}
+	}
 }
 
 function DisplayMain(){
 	
 	switch(oTown.currentMenu){
 		#region guild
-		
 		case menus.guild:
 			global.contract = oMenuScreen.currentDisplayedContrat;
 			with(oTown){
@@ -60,23 +58,18 @@ function DisplayMain(){
 				displayMenuInTown();
 			}
 		break;
-		
 		#endregion 
 		
 		#region tavern
-		
 		case menus.tavern:
 			var member = oMenuScreen.currentDisplayedSupport;
-			if(member != false){
-				member.sold = true;
-				global.gold -= member.cost;
-				class = member.class;
-				lvl = member.lvl;
-				oTavern.convertSaleSupportIntoPlayGroup(class, lvl);
-			}
+			member.sold = true;
+			global.gold -= member.cost;
+			class = member.class;
+			lvl = member.lvl;
+			oTavern.convertSaleSupportIntoPlayGroup(class, lvl);
 			oMenuScreen.currentDisplayedSupport = false;
 		break;
-		
 		#endregion
 		
 		#region merchant
@@ -85,10 +78,10 @@ function DisplayMain(){
 			var itemToBuy = oMenuScreen.currentDisplayedItem;
 			
 			if(global.gold >= itemToBuy.cost && 
-			!oMerchant.merchantInventory[self.position].sold &&
+			!oMerchant.merchantInventory[savedObject].sold &&
 			!isInventoryFull()){
 				global.gold -= itemToBuy.cost;
-				oMerchant.merchantInventory[self.position].sold = true;
+				oMerchant.merchantInventory[savedObject].sold = true;
 				
 				addItemToInventory(itemToBuy.typeOfItem);
 				self.locked = true;

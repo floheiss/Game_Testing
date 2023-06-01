@@ -22,7 +22,11 @@ function reloadGun(){
 
 #region conditions
 
-
+function checkReloded(){
+	show_debug_message("thue check was called");
+	var r = owner.reloaded;
+	return r;
+}
 
 function checkMericals(_unit){
 	if(_unit.mericalsLeft < 1){

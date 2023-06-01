@@ -15,7 +15,7 @@ function createSaleSupport(_class, _cost, _hoverText, _icon) constructor{
 	lvl = 1;
 	hoverText = _hoverText;
 	icon = _icon;
-	cost = _cost
+	cost = 0;
 	useLvLbasedOnBM = true;
 	sold = false;
 	
@@ -47,10 +47,13 @@ function createSaleSupport(_class, _cost, _hoverText, _icon) constructor{
 	//not sure about the formular (5x the basecost maxes at ca lvl 15)
 	function adjustCost(){
 		if(lvl != 1){
-			cost = ((5 * baseCost) - baseCost) * exp((0.1 * baseCost) * lvl)
+			return ((5 * baseCost) - baseCost) * exp((0.1 * baseCost) * lvl)
 		}
+		return baseCost;
 	}
-	// adjustCost(); for late when worked on 
+	cost = adjustCost();
+	
+	
 }
 
 var class = 0;

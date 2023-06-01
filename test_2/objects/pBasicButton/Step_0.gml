@@ -8,7 +8,9 @@ if(drawCondition != -1){
 	}
 }
 
-if(drawCondition){
+if(getsDraw){
+	
+	#region locking the button
 	
 	if(lockCondition != -1){
 		if(is_bool(lockCondition)){
@@ -19,8 +21,13 @@ if(drawCondition){
 			locked = script_execute(lockCondition, lockConditionParamArray);
 		}
 	}
+	
 	btnState = (locked) ? buttonState.disabled :  buttonState.active;
 
+	#endregion
+	
+	#region setting Subimage
+	
 	if(useSubImage){
 		if(btnState == buttonState.active){
 			image_index = 0;
@@ -36,7 +43,10 @@ if(drawCondition){
 		}
 	
 	}
-
+	
+	#endregion
+	
+	
 	if(HoverFunction != noone && 
 		position_meeting(MOUSEGUI_X,MOUSEGUI_Y, id) &&
 		btnState != buttonState.disabled){
