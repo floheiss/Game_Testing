@@ -19,10 +19,8 @@ doge = 0.04;
 //has bad crit mulit as fokus on raw dmg 
 critMultiplier = 2.3;
 
-
-
 #region spriteVars
-icon = SamuraiIcon;
+icon = Missonarry_Icon;
 
 class = classList.missonarry; 
 

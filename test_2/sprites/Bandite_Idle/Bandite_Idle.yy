@@ -30,7 +30,7 @@
   "origin": 0,
   "parent": {
     "name": "Bandite",
-    "path": "folders/Sprites/Chars/curr/Bandite.yy",
+    "path": "folders/Sprites/Chars/Bandite.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

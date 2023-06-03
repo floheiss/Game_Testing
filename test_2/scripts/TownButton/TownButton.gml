@@ -30,9 +30,6 @@ function DisplayHover(){
 						numberInParty ++;
 					}
 				}
-				show_debug_message("member cost: " + string(savedObject.cost));
-				show_debug_message("--------------------");
-				show_debug_message( "global gold: " + string(global.gold));
 				if(global.maxPlayGroupSize <= numberInParty){
 					oMenuScreen.welcomeText = "Sorry the people here dont trust you enough to come in higher numbers";
 				} else if(global.gold < savedObject.cost){
@@ -67,7 +64,15 @@ function DisplayMain(){
 			global.gold -= member.cost;
 			class = member.class;
 			lvl = member.lvl;
+			locked = true;
 			oTavern.convertSaleSupportIntoPlayGroup(class, lvl);
+			with(oGame){
+				event_user(0);
+				for(var i = 0; i < 100; i ++){
+					//passes for some time to stop any wierd inputs 
+				}
+				event_user(0);
+			}
 			oMenuScreen.currentDisplayedSupport = false;
 		break;
 		#endregion
@@ -84,8 +89,8 @@ function DisplayMain(){
 				oMerchant.merchantInventory[savedObject].sold = true;
 				
 				addItemToInventory(itemToBuy.typeOfItem);
-				self.locked = true;
-				//have to change as now oGame handels allowInput !!!
+				locked = true;
+				
 				with(oGame){
 					event_user(0);
 					for(var i = 0; i < 100; i ++){
@@ -93,6 +98,7 @@ function DisplayMain(){
 					}
 					event_user(0);
 				}
+			
 				oMenuScreen.currentDisplayedItem = false;
 			}
 

@@ -22,7 +22,7 @@ doge = 0.12;
 critMultiplier = 2.5;
 
 #region spriteVars
-icon = SamuraiIcon;
+icon = WitchHunter_Icon;
 
 class = classList.witchhunter; 
 

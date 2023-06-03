@@ -22,7 +22,7 @@ doge = 0.06;
 critMultiplier = 2.25;
 
 #region spriteVars
-icon = SamuraiIcon;
+icon = Footsoldier_Icon;
 
 class = classList.footsoldiar; 
 

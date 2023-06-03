@@ -23,7 +23,7 @@ doge = 0.35;
 critMultiplier = 3.0;
 
 #region spriteVars
-icon = SamuraiIcon;
+icon = Hunter_Icon;
 
 class = classList.hunter; 
 

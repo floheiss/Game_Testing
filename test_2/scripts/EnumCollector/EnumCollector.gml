@@ -66,17 +66,9 @@ enum classList{
 	jaguarWarrior, 
 	hunter, 
 	nobal, 
+	priest1,
+	priest2,
 	witchhunter, //will stay
-	
-	fieldHand, //remove later
-	berserker, 
-	disownedNobal,
-	butcher,
-	monch,
-	samurai, 
-	huntsMan,
-	gunSlinger, 
-	peasent, //remove later
 	
 	//enemys are added here as i dont know why not
 	bandit, //will stay

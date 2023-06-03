@@ -22,7 +22,7 @@ doge = 0.09;
 critMultiplier = 2.3;
 
 #region spriteVars
-icon = SamuraiIcon;
+icon = EagleWarrior_Icon;
 
 class = classList.eagleWarrior; 
 
@@ -48,7 +48,6 @@ deathEnd = 80;
 #endregion
 
 #endregion
-
 
 #region attacks 
 

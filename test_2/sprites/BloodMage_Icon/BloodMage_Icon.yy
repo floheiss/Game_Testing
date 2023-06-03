@@ -26,7 +26,7 @@
   "origin": 0,
   "parent": {
     "name": "BloodMage",
-    "path": "folders/Sprites/Chars/curr/BloodMage.yy",
+    "path": "folders/Sprites/Chars/BloodMage.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

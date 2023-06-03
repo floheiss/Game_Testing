@@ -24,7 +24,7 @@ doge = 0.1;
 critMultiplier = 2.2;
 
 #region spriteVars
-icon = SamuraiIcon;
+icon = Nobal_Icon;
 
 class = classList.nobal; 
 

@@ -62,21 +62,16 @@ function displayMenu(){
 					changeSprite(200,200,Vera_Guild_girl, false, 0);
 					HoverFunction = noone;
 				}
-				var xCord = 480; 
-				for(var i = 0; i < 6; i++){
+				for(var i = 0; i < array_length(oGuild.contracts); i++){
 					with(objects[i + 1]){
-						if(i < 3){
-							xCord += 192 * i;
-							savedObject = oGuild.contracts[i];
-							changeSprite(xCord,180,Contract);
-							setUseHighlightHoverImage(Contract, 1);
-						}else{
-							xCord += 192 * (i - 3)
-							savedObject = oGuild.contracts[i];
-							changeSprite(xCord, 200+64+50,Contract);
-							setUseHighlightHoverImage(Contract, 1);
-						}
-					
+						var halfContract = (array_length(oGuild.contracts) / 2);
+						var iCal = (i < halfContract)? i: (i - halfContract); 				
+						var xCord = 480 + 192 * iCal;
+						savedObject = oGuild.contracts[i];
+						var yCord = (i < halfContract)? 180 : 316;
+						changeSprite(xCord, yCord, Contract);
+						setUseHighlightHoverImage(Contract, 1);
+						show_debug_message(yCord);
 					}
 				}
 			}
@@ -144,14 +139,12 @@ function displayMenu(){
 				
 				with(objects[i + 1]){
 					savedObject = i;
-					show_debug_message(savedObject)
 					var item = merchantInventory[savedObject];
 					
 					var iForX = (i < (array_length(merchantInventory) / 2)) ? i  : (i - array_length(merchantInventory) / 2);
 					var xCord = 480 + 95 * iForX;
 					
-					var addY = (i < (array_length(merchantInventory) / 2)) ? 0 : 110;
-					var yCord = 200 + addY;
+					var yCord = (i < (array_length(merchantInventory) / 2)) ? 200 : 310;
 					
 					var index = (item.sold == true) ? 0 : item.displaySpriteSubImage;
 					changeSprite(xCord,yCord,ItemSprite, false, index);
@@ -177,16 +170,15 @@ function displayMenu(){
 			var numberOfDisplayedSupports = array_length(oTavern.supportSelection);
 			for(var i = 0; i < numberOfDisplayedSupports; i++){
 				with(objects[i + 1]){
-					if(i < (numberOfDisplayedSupports / 2)){
-						var xCord = 480 + 142 * i;
-						savedObject = oTavern.supportSelection[i];
-						changeSprite(xCord,180,savedObject.icon, false, 0);
-					}else{
-						var xCord = 480 + 142 * (i - (numberOfDisplayedSupports / 2));
-						savedObject = oTavern.supportSelection[i];
-						changeSprite(xCord,210+64+50, savedObject.icon, false, 0);
-					}
-					
+					var halfMembers = (numberOfDisplayedSupports / 2); 
+					var iCal = (i < halfMembers)? i: (i - (numberOfDisplayedSupports / 2));
+					var xCord = 480 + 142 * iCal;
+					var yCord = (i < halfMembers)? 180 : 314;	
+					savedObject = oTavern.supportSelection[i];
+					show_debug_message(savedObject);
+					changeSprite(xCord,yCord,savedObject.icon, false, 0);
+					image_xscale = 1.5;
+					image_yscale = 1.5;
 				}
 			}
 			

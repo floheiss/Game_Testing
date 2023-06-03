@@ -24,9 +24,9 @@ doge = 0.1;
 critMultiplier = 2.2;
 
 #region spriteVars
-icon = SamuraiIcon;
+icon = Priest_2_Icon;
 
-class = classList.nobal; 
+class = classList.priest2; 
 
 //spriteStuff
 idleStart = 0;

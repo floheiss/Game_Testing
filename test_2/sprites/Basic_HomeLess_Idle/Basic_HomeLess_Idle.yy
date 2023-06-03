@@ -30,7 +30,7 @@
   "origin": 0,
   "parent": {
     "name": "Basic_HomeLess",
-    "path": "folders/Sprites/Chars/curr/Basic_HomeLess.yy",
+    "path": "folders/Sprites/Chars/Basic_HomeLess.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

@@ -9,7 +9,7 @@ supportSelection = [];
 
 #region define all support choices 
 
-function createSaleSupport(_class, _cost, _hoverText, _icon) constructor{
+var saleSupport = function(_class, _cost, _hoverText, _icon) constructor{
 	class = _class;
 	baseCost = _cost;
 	lvl = 1;
@@ -61,65 +61,121 @@ var cost = 0;
 var hoverText = "something went wrong";
 var icon = 0;
 
-class = classList.fieldHand;
+class = classList.conquistador;
+cost = 500;
+hoverText = "One of the local spanish. he is a good shot";
+icon = Conquistador_Icon;
+conquistador = new saleSupport(class, cost, hoverText, icon);
+
+class = classList.footsoldiar;
 cost = 150;
-hoverText = "filler field Hand";
-icon = FieldHandIcon;
-fieldHand = new createSaleSupport(class, cost, hoverText, icon);
+hoverText = "filler Soldier";
+icon = Footsoldier_Icon;
+footsoldiar = new saleSupport(class, cost, hoverText, icon);
 
-class = classList.berserker;
+class = classList.nobal;
 cost = 300;
-hoverText = "filler Berserker";
-icon = BerserkerIcon;
-berserker = new createSaleSupport(class, cost, hoverText, icon);
-
-class = classList.peasent;
-cost = 100;
-hoverText = "filler Peasent";
-icon = SamuraiIcon;
-peasent = new createSaleSupport(class, cost, hoverText, icon);
-
-class = classList.butcher;
-cost = 200;
-hoverText = "filler Butcher";
-icon = ButcherIcon;
-butcher = new createSaleSupport(class, cost, hoverText, icon);
-
-class = classList.disownedNobal;
-cost = 350;
 hoverText = "filler Nobal";
-icon = DisowedNobalIcon;
-disownedNobal = new createSaleSupport(class, cost, hoverText, icon);
+icon = Nobal_Icon;
+nobal = new saleSupport(class, cost, hoverText, icon);
+
+class = classList.eagleWarrior;
+cost = 175;
+hoverText = "filler Eagle";
+icon = EagleWarrior_Icon;
+eagleWarrior = new saleSupport(class, cost, hoverText, icon);
+
+class = classList.jaguarWarrior;
+cost = 175;
+hoverText = "filler Jaguar";
+icon = JaguarWarrior_Icon;
+jaguarWarrior = new saleSupport(class, cost, hoverText, icon);
+
+class = classList.missonarry;
+cost = 350;
+hoverText = "filler Missonarry";
+icon = Missonarry_Icon;
+missonarry = new saleSupport(class, cost, hoverText, icon);
+
+class = classList.hunter;
+cost = 325;
+hoverText = "filler Hunter";
+icon = Hunter_Icon;
+hunter = new saleSupport(class, cost, hoverText, icon);
 
 class = classList.witchhunter;
-cost = 675;
+cost = 550;
 hoverText = "filler Witchhunter";
-icon = WitchHunterIcon;
-witchHunter= new createSaleSupport(class, cost, hoverText, icon);
+icon = WitchHunter_Icon;
+witchHunter = new saleSupport(class, cost, hoverText, icon);
 
-class = classList.huntsMan;
-cost = 325;
-hoverText = "filler HuntsMan";
-icon = HuntsManIcon;
-huntsMan= new createSaleSupport(class, cost, hoverText, icon);
-
-class = classList.monch;
-cost = 275;
-hoverText = "filler Monch";
-icon = MonchIcon;
-monch = new createSaleSupport(class, cost, hoverText, icon);
-
-class = classList.samurai;
+class = classList.priest1;
 cost = 600;
-hoverText = "filler Samurai";
-icon = SamuraiIcon;
-samurai = new createSaleSupport(class, cost, hoverText, icon);
+hoverText = "filler Priest 1";
+icon = Priest_1_Icon;
+priest1 = new saleSupport(class, cost, hoverText, icon);
 
-class = classList.gunSlinger;
+class = classList.priest2;
 cost = 325;
-hoverText = "filler GunSlinger";
-icon = GunSlingerIcon;
-gunSlinger = new createSaleSupport(class, cost, hoverText, icon);
+hoverText = "filler Priest 2";
+icon = Priest_2_Icon;
+priest2 = new saleSupport(class, cost, hoverText, icon);
+
+#endregion
+
+#region convertSaleSupportIntoPlayGroup
+
+function convertSaleSupportIntoPlayGroup(_class, _lvl){
+				var member = false;
+				var position = oGame.findOpenSlotInPlayGroup();
+				if(position == -1){
+					show_debug_message("there are no open Slots for teammates");
+					return 0;
+				}
+	
+				switch(_class){
+					case classList.footsoldiar:
+						member = instance_create_depth(0,0,0,oFootsoldier);
+					break;
+					case classList.conquistador:
+						member = instance_create_depth(0,0,0,oConquistador);
+					break;
+					case classList.nobal:
+						member = instance_create_depth(0,0,0,oNobal);
+					break;
+					case classList.priest1:
+						member = instance_create_depth(0,0,0,oPriest1);
+					break;
+					case classList.priest2:			
+						member = instance_create_depth(0,0,0,oPriest2);			
+					break;
+					case classList.hunter:
+						member = instance_create_depth(0,0,0,oHunter);
+					break;
+					case classList.missonarry:
+						member = instance_create_depth(0,0,0,oMissonarry);
+					break;
+					case classList.jaguarWarrior:
+						member = instance_create_depth(0,0,0,oJaguarWarrior);
+					break;
+					case classList.eagleWarrior:
+						member = instance_create_depth(0,0,0,oEagleWarrior);
+					break;
+					case classList.witchhunter:
+						member = instance_create_depth(0,0,0,oWitchHunter);
+					break;
+				}
+	
+				member.lvl = _lvl;
+				//i = 1000 !!!!!!!!!!!
+				//for lvling up the new member
+				for(var i = 1000; i < member.lvl; i++){
+					member.lvlUp(); // have to make 
+				}
+	
+				global.playerGroup[position] = member;
+			}
+
 
 #endregion
 
@@ -132,7 +188,7 @@ MainFunction = function(){
 			//uses the tier system 
 			//LvL of the Supps is always based on PlayerLvL
 			
-			 var generateSupportSelection = function(){
+ 			 var generateSupportSelection = function(){
 				var numberOfDisplayedSupports = 8;
 				//1 is a high tier support 
 				//3 3 tier
@@ -141,15 +197,15 @@ MainFunction = function(){
 				//ON AVARAGE
 				var number = round( random_range(1, 2));
 				if(number == 1){
-					supportSelection[0] = witchHunter;
-				}else{
-					supportSelection[0] = samurai;
+					supportSelection[0] = nobal;
+				}else {
+					supportSelection[0] = nobal; //witchHunter
 				}
 
 				//very unsure about this 
-				var tier1 = [fieldHand, peasent, butcher, monch];  
-				var tier2 = [huntsMan, gunSlinger, berserker]; 
-				var tier3 = [disownedNobal];
+				var tier1 = [eagleWarrior, missonarry, footsoldiar, priest2];  
+				var tier2 = [jaguarWarrior, hunter, priest1]; 
+				var tier3 = [conquistador];
 	
 	
 				for(var i = 1; i < 4; i ++){
@@ -161,7 +217,7 @@ MainFunction = function(){
 					tier1);
 				}
 	
-				for(j = 4; j < 8; j ++){
+				for(var j = 4; j < 8; j ++){
 					supportSelection[j] = generateFormTierList(
 					[-1,10,30],
 					undefined,
@@ -172,7 +228,7 @@ MainFunction = function(){
 				}
 		
 				if(numberOfDisplayedSupports  > 8){
-					for(k = 8; k < numberOfDisplayedSupports; k ++){
+					for(var k = 8; k < numberOfDisplayedSupports; k ++){
 						supportSelection[k] = generateFormTierList(
 						[-1,5,25],
 						undefined,
@@ -184,70 +240,7 @@ MainFunction = function(){
 				}
 			}
 
-			 var convertSaleSupportIntoPlayGroup = function(_class, _lvl){
-				support = false;
-				position = oGame.findOpenSlotInPlayGroup();
-				if(position == -1){
-					show_debug_message("there are no open Slots for teammates");
-					return 0;
-				}
-	
-				switch(_class){
-					case classList.berserker:
-						support = instance_create_depth(0,0,0,oSamurai);
-						support.class = classList.berserker; //remove later:) 
 			
-					break;
-					case classList.butcher:
-						support = instance_create_depth(0,0,0,oSamurai);
-						support.class = classList.butcher;
-			
-					break;
-					case classList.disownedNobal:
-						support = instance_create_depth(0,0,0,oSamuraiCommander);
-						support.class = classList.disownedNobal;
-					break;
-					case classList.fieldHand:
-						support = instance_create_depth(0,0,0,oSamurai);
-						support.class = classList.fieldHand;
-			
-					break;
-					case classList.gunSlinger:			
-						support = instance_create_depth(0,0,0,oSamuraiArcher);
-						support.class = classList.gunSlinger;
-			
-					break;
-					case classList.huntsMan:
-						support = instance_create_depth(0,0,0,oSamuraiArcher);
-						support.class = classList.huntsMan;
-					break;
-					case classList.monch:
-						support = instance_create_depth(0,0,0,oSamuraiCommander);
-						support.class = classList.monch;
-					break;
-					case classList.peasent:
-						support = instance_create_depth(0,0,0,oSamurai);
-						support.class = classList.peasent;
-					break;
-					case classList.samurai:
-						support = instance_create_depth(0,0,0,oSamurai);
-						support.class = classList.samurai;
-					break;
-					case classList.witchhunter:
-						support = instance_create_depth(0,0,0,oSamuraiCommander);
-						support.class = classList.witchhunter;
-					break;
-				}
-	
-				support.lvl = _lvl;
-				//i = 1000 !!!!!!!!!!!
-				for(i = 1000; i < support.lvl; i++){
-					support.lvlUp(); // have to make 
-				}
-	
-				global.playerGroup[position] = support;
-			}
-
 			generateSupportSelection();
 		}
 		with(oTown){
