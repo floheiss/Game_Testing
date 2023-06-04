@@ -71,7 +71,6 @@ function displayMenu(){
 						var yCord = (i < halfContract)? 180 : 316;
 						changeSprite(xCord, yCord, Contract);
 						setUseHighlightHoverImage(Contract, 1);
-						show_debug_message(yCord);
 					}
 				}
 			}

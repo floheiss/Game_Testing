@@ -57,6 +57,7 @@
     {"name":"pBasicButton","order":2,"path":"objects/pBasicButton/pBasicButton.yy",},
     {"name":"oEagleWarrior","order":9,"path":"objects/oEagleWarrior/oEagleWarrior.yy",},
     {"name":"mInfoboxes","order":3,"path":"objects/mInfoboxes/mInfoboxes.yy",},
+    {"name":"MapGen","order":6,"path":"scripts/MapGen/MapGen.yy",},
     {"name":"Dots","order":3,"path":"scripts/Dots/Dots.yy",},
     {"name":"MapEnemyElite","order":3,"path":"sprites/MapEnemyElite/MapEnemyElite.yy",},
     {"name":"deBugButton","order":3,"path":"objects/deBugButton/deBugButton.yy",},

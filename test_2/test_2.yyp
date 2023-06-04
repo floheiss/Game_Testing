@@ -59,7 +59,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.200.0.299",
+    "IDEVersion": "2023.4.0.84",
   },
   "resources": [
     {"id":{"name":"MouseOverInfo","path":"sprites/MouseOverInfo/MouseOverInfo.yy",},},
@@ -83,6 +83,7 @@
     {"id":{"name":"oGuild","path":"objects/oGuild/oGuild.yy",},},
     {"id":{"name":"oEagleWarrior","path":"objects/oEagleWarrior/oEagleWarrior.yy",},},
     {"id":{"name":"mInfoboxes","path":"objects/mInfoboxes/mInfoboxes.yy",},},
+    {"id":{"name":"MapGen","path":"scripts/MapGen/MapGen.yy",},},
     {"id":{"name":"MapEnemy","path":"sprites/MapEnemy/MapEnemy.yy",},},
     {"id":{"name":"mapEventFallenGoods","path":"sprites/mapEventFallenGoods/mapEventFallenGoods.yy",},},
     {"id":{"name":"Dots","path":"scripts/Dots/Dots.yy",},},

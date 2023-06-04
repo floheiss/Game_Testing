@@ -17,10 +17,10 @@ debug = false; //?????
 function displayEvent(){
 	
 	var findMapDisplayItem = function(){
-		list = [];
-		for(i = 0; i < instance_number(oMapDisplayItem);i ++){
-			instance = instance_find(oMapDisplayItem, i);
-			ds_list_add(list, instance);
+		var list = [];
+		for(var i = 0; i < instance_number(oMapDisplayItem);i ++){
+			var instance = instance_find(oMapDisplayItem, i);
+			list[i] = instance;
 		}
 		return list;
 	}

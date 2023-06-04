@@ -23,12 +23,13 @@ MainFunction = function(){
 	//_reward = the reward for the contract 
 	//_description = [] for text description of the contract
 	//_mapInfo = [] with all infos for a map 
-	var createContract = function(_difficulty, _dungeonType, _contractType, _reward, _description,_mapInfo, _extra = -1) constructor{
+	var contract = function(_difficulty, _dungeonType, _contractType, _reward, _description,_mapInfo, _extra = -1) constructor{
 		mapLength = _mapInfo[0];
-		mapMaxNumberInColumn = _mapInfo[1];
-		mapProbabilityQuestion = _mapInfo[2];
-		mapProbabilityQuestionGood = _mapInfo[3];
-		mapProbabilityElite = _mapInfo[4];
+		mapLinesInMap = _mapInfo[1];
+		mapProbabilityTiersMapNotes= _mapInfo[2];
+		mapProbabilityProbabilityQuestionEvents= _mapInfo[3];
+		mapMinNumers = _mapInfo[4];
+		mapMaxNumers= _mapInfo[5];
 	
 		difficulty = _difficulty;
 		dungeonType = _dungeonType;
@@ -40,7 +41,6 @@ MainFunction = function(){
 	
 		descriptionTitle = _description[0];
 		descriptionMission = _description[1];
-	
 	
 		extra = _extra;
 	}
@@ -204,24 +204,27 @@ MainFunction = function(){
 		switch(_difficulty){
 			case enemyDifficulty.easy:
 				mapInfo[0] = round(random_range(5, 6)); //mapLength
-				mapInfo[1] = 3;							//mapMaxNumberInColumn
-				mapInfo[2] = random_range(1, 0.3);	//mapProbabilityQuestion
-				mapInfo[3] = random_range(0.65, 0.8);	//mapProbabilityQuestionGood
-				mapInfo[4] = random_range(0.05, 0.15);	//mapProbabilityElite
+				mapInfo[1] = 3;							//linesInMap
+				mapInfo[2] = [5, 10, 30];				//probabilityTiersMapNotes
+				mapInfo[3] = [0, 20, 10];				//probabilityQuestionEvents
+				mapInfo[4] = [0, 0, 2, 2];				//minNumers
+				mapInfo[5] = [2, 1, 1, 30];				//maxNumers
 			break;
 			case enemyDifficulty.normal:
-				mapInfo[0] = round(random_range(6, 8));
-				mapInfo[1] = 4;
-				mapInfo[2] = random_range(1, 0.3);
-				mapInfo[3] = random_range(0.50, 0.7);
-				mapInfo[4] = random_range(0.1, 0.2);
+				mapInfo[0] = round(random_range(7, 8)); //mapLength
+				mapInfo[1] = 4;							//linesInMap
+				mapInfo[2] = [15, 10, 20];				//probabilityTiersMapNotes
+				mapInfo[3] = [0, 35, 15];				//probabilityQuestionEvents
+				mapInfo[4] = [1, 1, 0, 4];				//minNumers
+				mapInfo[5] = [1, 2, 2];					//maxNumers
 			break;
 			case enemyDifficulty.hard:
-				mapInfo[0] = round(random_range(9,10));
-				mapInfo[1] = 5;
-				mapInfo[2] = random_range(1, 0.3);
-				mapInfo[3] = random_range(0.5, 0.7);
-				mapInfo[4] = random_range(0.15, 0.3);
+				mapInfo[0] = round(random_range(9, 10));//mapLength
+				mapInfo[1] = 5;							//linesInMap
+				mapInfo[2] = [20, 10, 20];				//probabilityTiersMapNotes
+				mapInfo[3] = [0, 20, 10];				//probabilityQuestionEvents
+				mapInfo[4] = [2, 2, 1, 3];				//minNumers
+				mapInfo[5] = [3, 3, 2];					//maxNumers
 			break;
 		}
 	
@@ -370,7 +373,7 @@ MainFunction = function(){
 	var description = randomDescription(dungeonType, contractType);
 	var mapInfo = randomMapInfo(difficulty, contractType);
 	
-	contracts[0] = new createContract(difficulty, dungeonType, contractType, reward, description,mapInfo);
+	contracts[0] = new contract(difficulty, dungeonType, contractType, reward, description,mapInfo);
 	
 	//contract 2
 	//should be harder then 1 
@@ -381,7 +384,7 @@ MainFunction = function(){
 	description = randomDescription( dungeonType, contractType);
 	mapInfo = randomMapInfo(difficulty, contractType);
 	
-	contracts[1] = new createContract(enemyDifficulty.easy, dungeonType, contractType, reward, description,mapInfo);
+	contracts[1] = new contract(enemyDifficulty.easy, dungeonType, contractType, reward, description,mapInfo);
 	
 	//contract 3
 	difficulty = enemyDifficulty.normal;
@@ -391,7 +394,7 @@ MainFunction = function(){
 	description = randomDescription( dungeonType, contractType);
 	mapInfo = randomMapInfo(difficulty, contractType);
 	
-	contracts[2] = new createContract(enemyDifficulty.normal, dungeonType, contractType, reward, description,mapInfo);
+	contracts[2] = new contract(enemyDifficulty.normal, dungeonType, contractType, reward, description,mapInfo);
 	
 	//contract 4
 	//should be harder then 3
@@ -402,7 +405,7 @@ MainFunction = function(){
 	description = randomDescription( dungeonType, contractType);
 	mapInfo = randomMapInfo(difficulty, contractType);
 	
-	contracts[3] = new createContract(enemyDifficulty.normal, dungeonType, contractType, reward, description,mapInfo);
+	contracts[3] = new contract(enemyDifficulty.normal, dungeonType, contractType, reward, description,mapInfo);
 	
 	//contract 5
 	difficulty = enemyDifficulty.hard;
@@ -412,7 +415,7 @@ MainFunction = function(){
 	description = randomDescription( dungeonType, contractType);
 	mapInfo = randomMapInfo(difficulty, contractType);
 	
-	contracts[4] = new createContract(difficulty, dungeonType, contractType, reward, description,mapInfo);
+	contracts[4] = new contract(difficulty, dungeonType, contractType, reward, description,mapInfo);
 	
 	//contract 6
 	//should be harder then 5
@@ -423,13 +426,10 @@ MainFunction = function(){
 	description = randomDescription( dungeonType, contractType);
 	mapInfo = randomMapInfo(difficulty, contractType);
 	
-	contracts[5] = new createContract(difficulty, dungeonType, contractType,reward, description,mapInfo);
+	contracts[5] = new contract(difficulty, dungeonType, contractType,reward, description,mapInfo);
 	#endregion
 	
-	contracts = array_shuffle(contracts);
-	
-	return contracts;
-	
+	contracts = array_shuffle(contracts);	
 }
 
 	if(oTown.currentMenu == -1){

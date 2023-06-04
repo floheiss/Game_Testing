@@ -2,15 +2,14 @@
 if(!global.map){
 	contract = global.contract;
 	
-	global.map = mMapGenerator.generateMap(contract.mapLength,
-	contract.mapMaxNumberInColumn,
-	contract.mapProbabilityQuestion,
-	contract.mapProbabilityQuestionGood,
-	contract.mapProbabilityElite);
+	global.map = generateMap(contract.mapLength, contract.mapLinesInMap,
+	contract.mapProbabilityTiersMapNotes,
+	contract.mapProbabilityProbabilityQuestionEvents,
+	contract.mapMinNumers, contract.mapMaxNumers);
 }
 
-if(room_get_name(room) == "rDungeonMap"){
-	mMapGenerator.displayMap(global.map);
+if(global.room == rDungeonMap){
+	displayMap(global.map);
 }
 
 
