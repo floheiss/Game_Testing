@@ -28,7 +28,10 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": null,
+  "spriteId": {
+    "name": "MapExit",
+    "path": "sprites/MapExit/MapExit.yy",
+  },
   "spriteMaskId": null,
   "visible": true,
 }

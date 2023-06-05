@@ -50,19 +50,21 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 		for(var i = 0; i < array_length(_preNotes); i ++){
 			preNotes[i] = _preNotes[i];
 		}
-		subImage = 0;
+		locked = true;
 	}
 
 	//a strct that is a save for the map --> length, number of notes, and objects of the notes 
 	//is used to generate the same map again after battle or other
 	//generate Map
-	var map = function(_length, _notesInColumns, _lines) constructor{
+	var map = function(_length, _notesInColumns, _lines, _contractType,_contractTypeExtraInfo = 0.5) constructor{
 		length = _length;
+		
+		#region counts all the notes + catigorizes them
+		
 		notesInCloumns = [];
 		for(var i = 0; i < array_length(_notesInColumns); i++){
 			notesInCloumns[i] = _notesInColumns[i];
 		}
-		
 		//is all the objects order by position in the lines
 		objectAtNotes = [];
 		
@@ -96,6 +98,27 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 				}	
 			}
 		}
+		
+		#endregion 
+		
+		contractType = _contractType;
+		contractTypeExtraInfo = _contractTypeExtraInfo
+		
+		valueToCompletion = 0;
+		switch(contractType){
+			case contracTyps.defeatEnemys:
+				//there is a number of enemies that have to be defeated to complte the contract 
+				valueToCompletion = ceil(numberOfNormalEnemies * contractTypeExtraInfo);
+				valueToCompletion += ceil(numberOfElits * contractTypeExtraInfo);
+			break; 
+			case contracTyps.exlore:
+				//there is a number of notes that have to be visited (not campfire is optinal)
+				valueToCompletion = ceil(numberOfNormalEnemies * contractTypeExtraInfo);
+				valueToCompletion += ceil(numberOfElits * contractTypeExtraInfo);
+				valueToCompletion += ceil(numberOfQuestion * contractTypeExtraInfo);
+			break; 
+		}
+		
 	}
 	
 	#endregion
@@ -356,6 +379,7 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 		//its should stay 100% 
 		//addes the first note (always a fight)
 		var firstNote = new mapNote(-1, -1, [], noteTypes.enemy, -1, -1);
+		firstNote.locked = false;
 		line[0] =  firstNote;
 		//generates random notes for all but the first
 		//sets the position in the line -1 IF the maxNumber is reached 
@@ -555,7 +579,8 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 	}
 	#endregion
 		
-	returnMap = new map(_length, numberInColumns, lines);
+	returnMap = new map(_length, numberInColumns, lines, 
+	global.contract.contractType, global.contract.contractTypeExtraInfo);
 	
 	return returnMap;
 }
@@ -581,37 +606,44 @@ function displayMap(_map){
 	for(var currentObject = 0; currentObject < array_length(_map.objectAtNotes); currentObject ++){
 		if(_map.objectAtNotes[currentObject] != -1){
 			var currentNote = _map.objectAtNotes[currentObject];
-			var creation = false; 
+			var creation = -1;
+			var objectToCreate = -1;
+			var spriteToUse = -1
 			switch(currentNote.typeOfNote){
 				case noteTypes.enemy:
-					creation = instance_create_depth(currentNote.xCord,currentNote.yCord, 0, oMapEnemy);
-					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapEnemy,false,false);	
+					objectToCreate = oMapEnemy;
+					spriteToUse = MapEnemy;
 				break;
 				case noteTypes.elite:
-					creation = instance_create_depth(currentNote.xCord, currentNote.yCord, 0, oMapEnemyElite);
-					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapEnemyElite,false,false);
+					objectToCreate = oMapEnemyElite;
+					spriteToUse = MapEnemyElite;
 				break;
 				case noteTypes.question:
-					creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapQuestion);
-					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapQuestion,false,false);
-					creation.event = currentNote.specific;
+					objectToCreate = oMapQuestion;
+					spriteToUse = MapQuestion;
 				break;
 				case noteTypes.campfire:
-					creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapCampfire);
-					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapCampfire,false,false);
+					objectToCreate = oMapCampfire;
+					spriteToUse = MapCampfire;
 				break;
 				case noteTypes.boss:
-					creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapBoss);
-					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapBoss,false,false);
+					objectToCreate = oMapBoss;
+					spriteToUse = MapBoss;
 				break;
 				case noteTypes.exitMap:
-						creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapExitMap);
-					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapExit,false,false);
+					objectToCreate = oMapExitMap;
+					spriteToUse = MapExit;
 				break;
 			}
-			
-			addVariablsToCreation(creation,currentObject, currentNote);
+			creation = instance_create_depth(currentNote.xCord,currentNote.yCord, 0, objectToCreate);
+			creation.changeSprite(currentNote.xCord, currentNote.yCord, spriteToUse,false,false);
 			creation.setUseHighlightHoverImage(MapHover);
+			
+			if(currentNote.typeOfNote == noteTypes.question){
+				creation.event = currentNote.specific;
+			}
+			
+			addVariablsToCreation(creation, currentObject, currentNote);
 		}
 	}
 

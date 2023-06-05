@@ -20,6 +20,10 @@ MainFunction = function(){
 	//_difficulty enemyDifficulty 
 	//_dungeonType = where the dungeon is 
 	//_contractType = [0,1] saves the type of contract and extra info needed 
+		//extraInfo for contractTypes: 
+			//defeatEnemys --> % of enemies defeated
+			//collect --> ???????
+			//exlore --> % of notes seen/enemies defeated
 	//_reward = the reward for the contract 
 	//_description = [] for text description of the contract
 	//_mapInfo = [] with all infos for a map 
