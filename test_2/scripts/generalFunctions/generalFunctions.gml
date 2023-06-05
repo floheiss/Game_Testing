@@ -69,8 +69,6 @@ function checkAgainstRandom100(_valueToCheck, _rerolls = 0){
 }
 
 #region tierList System
-
-
 //is used to generate random items/things form 1-4 tiers
 //is given an array that reflects the chances of tier pics (undefined --> random form tier1)
 //ie [10,10,30] -->(tier 4 has 10% | tier 3 has 10% | tier 2 30% | tier 1 50% / the rest)
@@ -128,7 +126,6 @@ _rerolls = 0){
 	}
 }
 
-//NEW FORM LINUX
 //returns a random item in an given array 
 function findRandomItemInArray(_arrayToFindIn){
 	//have to check math :) 

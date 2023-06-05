@@ -25,7 +25,7 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 	
 		var xCords = [];
 		var yCords = [];
-		for(i = 0; i < _numberInColumn; i ++) {
+		for(var i = 0; i < _numberInColumn; i ++) {
 			xCords[i] = xRow + ceil(random_range(- 15, 15));
 			yCords[i] = yDIff * i + 64 + ceil(random_range(- 15, 15));
 		
@@ -403,11 +403,45 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 	//lines is now a full construct of lines 
 	#endregion
 	
+	//testing right here right now --> boss condtition :)
+	#region additions for BossLayout
+	if(global.contract.contractType == contracTyps.boss){
+		//if the contracts is a boss then some additions have to be made 
+			//campfire before boss + boss note + exit
+	
+	
+		#region adding the campfires
+		numberInColumns[_length] = _linesInMap;//the number in the colum of campfire is the one befor -1
+	
+		//addeds the line of campfires at the end
+		//should work :) ????
+		for(var i = 0; i < numberInColumns[_length]; i ++){
+			lines[i, _length] = new mapNote(-1, -1, [], noteTypes.campfire, -1);
+		}	
+		#endregion
+	
+		#region adding the boss and ext 
+	
+		numberInColumns[_length+1] = 1;//the number in the colum of campfire is the one befor -1
+		numberInColumns[_length+2] = 1;
+	
+		lines[0, _length+1]= new mapNote(-1, -1, [], noteTypes.boss, -1);
+		lines[0, _length+2] = new mapNote(-1, -1, [], noteTypes.exitMap, -1);
+	
+		#endregion
+		// +3 for campfire + boss + exit 
+		_length += 3;
+	}
+
+	#endregion
+	
+	
 	#region x/yCords + preNotes + numbering 
 	//now all the x/yCords are set 
 	//are set here as now all notes are assambled
 	//gives all the notes a position form 0 - last note
 	//this is to set all the positions is the last thing in the system
+	//THIS ALSO SETS THE PRENOTES I DONT SEE WHERE THEY MIGHT HAVE PROBLEMS VERY HAPPY
 	var fullnumberOfMapNotes = 0;
 	for(var currentRow = 0; currentRow < _length; currentRow ++){
 		var xyCords = findPositionMap(currentRow, numberInColumns[currentRow]);
@@ -461,8 +495,16 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 						case -1: 
 							if(lines[i, currentRow - 1] != -1){
 								if(i == 0){
-									note.preNotes[0] = lines[i, preLine];
-									note.preNotes[1] = lines[i + 1, preLine];
+									if(numberInColumns[currentRow] == 1){
+										show_debug_message("i went into to dangerzone");
+										//fixes if the were 3+ lines and now there is only 1 
+										for(var j = 0; j < numberInColumns[preLine]; j++){
+											note.preNotes[j] = lines[j, preLine];
+										}
+									}else{
+										note.preNotes[0] = lines[i, preLine];
+										note.preNotes[1] = lines[i + 1, preLine];
+									}
 								}else if((i+1) == numberInColumns[currentRow]){
 									note.preNotes[0] = lines[numberInColumns[preLine] - 2, currentRow -1];
 									note.preNotes[1] = lines[numberInColumns[preLine] - 1, currentRow -1];
@@ -476,24 +518,22 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 						
 						#region current bigger
 						case 1: 
-						//	if(lines[i, currentRow - 1] != -1){
-								if(i == 0){
-									note.preNotes[0] = lines[i, preLine];
-									note.preNotes[1] = lines[i + 1, preLine];
-								}else if((i+1) == numberInColumns[currentRow]){
-									show_debug_message("bigger last was triggerd");
-									note.preNotes[0] = lines[(numberInColumns[preLine] - 2), preLine];
-									note.preNotes[1] = lines[(numberInColumns[preLine] - 1), preLine];
-								}else{
-									note.preNotes[0] = lines[i, preLine];
-									//should fix a small bug :) 
-									while(note.preNotes[0].positionInList == note.positionInList ){
-									note.preNotes[0] = lines[i - 1, preLine];
-										
-									}
-									
+							if(i == 0){
+								note.preNotes[0] = lines[i, preLine];
+								note.preNotes[1] = lines[i + 1, preLine];
+							}else if((i+1) == numberInColumns[currentRow]){
+								note.preNotes[0] = lines[(numberInColumns[preLine] - 2), preLine];
+								note.preNotes[1] = lines[(numberInColumns[preLine] - 1), preLine];
+							}else{
+								note.preNotes[0] = lines[i, preLine];
+								/*
+								//should fix a small bug :) 
+								while(note.preNotes[0].positionInList == note.positionInList){
+									note.preNotes[0] = lines[i - 1, preLine];	
 								}
-						//	}
+								*/
+									
+							}
 						break;
 						#endregion
 					}
@@ -513,10 +553,6 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 			}
 		}
 	}
-	//NOTE 
-		//prenotes --> might just be lines[i -1, currentRow] + checking if it is not -1;
-		//will get the map to run then testing this 
-
 	#endregion
 		
 	returnMap = new map(_length, numberInColumns, lines);
@@ -545,25 +581,35 @@ function displayMap(_map){
 	for(var currentObject = 0; currentObject < array_length(_map.objectAtNotes); currentObject ++){
 		if(_map.objectAtNotes[currentObject] != -1){
 			var currentNote = _map.objectAtNotes[currentObject];
+			var creation = false; 
 			switch(currentNote.typeOfNote){
 				case noteTypes.enemy:
-					var creation = instance_create_depth(currentNote.xCord,currentNote.yCord, 0, oMapEnemy);
+					creation = instance_create_depth(currentNote.xCord,currentNote.yCord, 0, oMapEnemy);
 					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapEnemy,false,false);	
 				break;
 				case noteTypes.elite:
-					var creation = instance_create_depth(currentNote.xCord, currentNote.yCord, 0, oMapEnemyElite);
+					creation = instance_create_depth(currentNote.xCord, currentNote.yCord, 0, oMapEnemyElite);
 					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapEnemyElite,false,false);
 				break;
 				case noteTypes.question:
-					var creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapQuestion);
+					creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapQuestion);
 					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapQuestion,false,false);
 					creation.event = currentNote.specific;
 				break;
 				case noteTypes.campfire:
-					var creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapCampfire);
+					creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapCampfire);
 					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapCampfire,false,false);
 				break;
+				case noteTypes.boss:
+					creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapBoss);
+					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapBoss,false,false);
+				break;
+				case noteTypes.exitMap:
+						creation = instance_create_depth(currentNote.xCord, currentNote.yCord,0, oMapExitMap);
+					creation.changeSprite(currentNote.xCord, currentNote.yCord,MapExit,false,false);
+				break;
 			}
+			
 			addVariablsToCreation(creation,currentObject, currentNote);
 			creation.setUseHighlightHoverImage(MapHover);
 		}

@@ -6,7 +6,9 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
-  "overriddenProperties": [],
+  "overriddenProperties": [
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"pBasicButton","path":"objects/pBasicButton/pBasicButton.yy",},"propertyId":{"name":"MainFunction","path":"objects/pBasicButton/pBasicButton.yy",},"value":"0",},
+  ],
   "parent": {
     "name": "GeneralStuff",
     "path": "folders/Objects/GeneralStuff.yy",

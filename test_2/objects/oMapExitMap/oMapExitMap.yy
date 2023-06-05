@@ -1,17 +1,18 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "mMapGenerator",
-  "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
-  ],
+  "name": "oMapExitMap",
+  "eventList": [],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Dungeon",
-    "path": "folders/Objects/Dungeon.yy",
+    "name": "mapItems",
+    "path": "folders/Objects/Dungeon/Map/mapItems.yy",
   },
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "pMapItem",
+    "path": "objects/pMapItem/pMapItem.yy",
+  },
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,

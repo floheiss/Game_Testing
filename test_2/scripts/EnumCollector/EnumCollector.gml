@@ -126,7 +126,9 @@ enum noteTypes{
 	question,
 	elite,
 	campfire, // used to heal and manage disgust 
-	travalMerchant // can buy items even in run (high prices)
+	travalMerchant, // can buy items even in run (high prices)
+	boss,
+	exitMap,
 }
 
 //for map generation
