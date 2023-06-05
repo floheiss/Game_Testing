@@ -65,14 +65,37 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 		
 		//is all the objects order by position in the lines
 		objectAtNotes = [];
+		
+		numberOfElits = 0;
+		numberOfCampfire = 0;
+		numberOfQuestion = 0;
+		numberOfNormalEnemies = 0;
+		
 		var currentObject = 0;
 		for(var i = 0; i <  length; i++){
 			for(var j = 0; j < notesInCloumns[i]; j ++){
-				objectAtNotes[currentObject] = _lines[j, i];
-				currentObject ++;
+				var note = _lines[j, i];
+				if(note != -1){
+					objectAtNotes[currentObject] = note;
+					currentObject ++;
+					switch(note.typeOfNote){
+						case noteTypes.elite:
+							numberOfElits ++;
+						break;
+						case noteTypes.question:
+							numberOfQuestion ++;
+						break; 
+						case noteTypes.campfire:
+							numberOfCampfire ++;
+						break;
+						case noteTypes.enemy:
+							numberOfNormalEnemies ++;
+						break;
+					}
+					
+				}	
 			}
 		}
-	
 	}
 	
 	#endregion
@@ -139,8 +162,10 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 	var checkIfNoteTypeVaild = function(_noteType, _lineToCheck, _maxNumbers){
 		var numberOfLookedType = 0;
 		for(var i = 0; i < array_length(_lineToCheck); i ++){
-			if(_lineToCheck[i] != -1 && _lineToCheck[i].typeOfNote == _noteType){
-				numberOfLookedType ++;	
+			if(_lineToCheck[i] != -1){
+				if(_lineToCheck[i].typeOfNote == _noteType){
+					numberOfLookedType ++;	
+				}
 			}
 		}
 		var valid = true;
@@ -315,9 +340,9 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 		numberInColumns[i] = _linesInMap + round(random_range(-1, 1));
 	}
 	var numberInColumnsPassicCounter = array_create(_length, 0);
+	numberInColumnsPassicCounter[0] = _linesInMap;
 	
 	#endregion
-	
 	//saves all the lines 
 	var lines = [];
 	
@@ -328,9 +353,13 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 			//other --> position + x/yCord + preNotes Later when all lines are created 
 		var line = [];
 		
+		//its should stay 100% 
+		//addes the first note (always a fight)
+		var firstNote = new mapNote(-1, -1, [], noteTypes.enemy, -1, -1);
+		line[0] =  firstNote;
 		//generates random notes for all but the first
 		//sets the position in the line -1 IF the maxNumber is reached 
-		for(var j = 0; j < _length - 1; j ++){
+		for(var j = 1; j < _length; j ++){
 			//sets the type of the number 
 			if(numberInColumnsPassicCounter[j] < numberInColumns[j]){
 				
@@ -350,10 +379,6 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 		
 		#endregion	
 		
-		//its should stay 100% 
-		//addes the first note (always a fight)
-		var firstNote = new mapNote(-1, -1, [], noteTypes.enemy, -1, -1);
-		array_insert(line, 0, firstNote); 
 		checkIfLineVaild(line, _minNumbers);
 		//now a line gets put into lines 
 			// [[],[]] --> 
@@ -365,20 +390,20 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 	#region the last line (this holds any overflow)
 	//this will hold any overflow form numberInColumns (4 notes are wanted but only 3 lines exist)
 	line = array_create(_length, -1);
+	
 	for(var i = 0; i < _length; i ++){
-		if(numberInColumnsPassicCounter[i] < numberInColumns[i]){
+		if(numberInColumnsPassicCounter[i] < numberInColumns[i] && i > 0){
 			var noteType = noteTypes.enemy;
-			line[i] = new mapNote(-1, -1, [], noteType, -1);;
+			line[i] = new mapNote(-1, -1, [], noteType, -1);
+		//	numberInColumnsPassicCounter[i] ++;
 		}
 	}
-	
 	array_insert(lines, _linesInMap, line);
-	
-	
+
 	//lines is now a full construct of lines 
 	#endregion
 	
-	#region x/yCords + numbering 
+	#region x/yCords + preNotes + numbering 
 	//now all the x/yCords are set 
 	//are set here as now all notes are assambled
 	//gives all the notes a position form 0 - last note
@@ -387,16 +412,102 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 	for(var currentRow = 0; currentRow < _length; currentRow ++){
 		var xyCords = findPositionMap(currentRow, numberInColumns[currentRow]);
 		for(var i = 0; i < numberInColumns[currentRow]; i ++){
-			if(lines[i, currentRow] != -1){
-				var note = lines[i, currentRow];
+			var note = lines[i, currentRow];
+			if(note != -1){
+				#region x/yCords + numbering + questionmarkInfo
 				note.xCord = xyCords[0, i];
 				note.yCord = xyCords[1, i];
 				
-				
 				note.positionInList = fullnumberOfMapNotes;
+			
 				if(note.typeOfNote == noteTypes.question){
 				var eventKind = generateFormTierList(_probabilityQuestionEvents, undefined, [-1], [0], [1]);
 					note.specific = generateRandomEvent(eventKind, _probabilityQuestionEvents);
+				}
+				#endregion
+				
+				if(currentRow > 0){
+					var preLine = currentRow - 1;
+					#region sets currentColumnIs
+					//1| 0 | -1 
+						//1 the current line is bigger 
+						//-1 the current line is smaller
+						//0 the current line is the same size
+					var currentColumnIs = 0; 
+					var befor = numberInColumns[preLine];
+					var now = numberInColumns[currentRow];
+					if(befor == now){
+						currentColumnIs = 0;
+					}else if(befor < now){
+						currentColumnIs = 1;
+					}else if(befor > now){
+						currentColumnIs = -1;
+					}
+					
+					#endregion
+					
+					#region fills preNotes basic
+					switch(currentColumnIs){
+						#region basic case
+						case 0: 
+							if(lines[i, preLine] != -1){
+								note.preNotes[0] = lines[i, preLine];
+							}
+							//most basic thing no second line for now 
+						break;
+						#endregion
+						
+						#region current smaller
+						case -1: 
+							if(lines[i, currentRow - 1] != -1){
+								if(i == 0){
+									note.preNotes[0] = lines[i, preLine];
+									note.preNotes[1] = lines[i + 1, preLine];
+								}else if((i+1) == numberInColumns[currentRow]){
+									note.preNotes[0] = lines[numberInColumns[preLine] - 2, currentRow -1];
+									note.preNotes[1] = lines[numberInColumns[preLine] - 1, currentRow -1];
+									
+								}else{
+									note.preNotes[0] = lines[i, preLine];				
+								}
+							}
+						break;
+						#endregion
+						
+						#region current bigger
+						case 1: 
+						//	if(lines[i, currentRow - 1] != -1){
+								if(i == 0){
+									note.preNotes[0] = lines[i, preLine];
+									note.preNotes[1] = lines[i + 1, preLine];
+								}else if((i+1) == numberInColumns[currentRow]){
+									show_debug_message("bigger last was triggerd");
+									note.preNotes[0] = lines[(numberInColumns[preLine] - 2), preLine];
+									note.preNotes[1] = lines[(numberInColumns[preLine] - 1), preLine];
+								}else{
+									note.preNotes[0] = lines[i, preLine];
+									//should fix a small bug :) 
+									while(note.preNotes[0].positionInList == note.positionInList ){
+									note.preNotes[0] = lines[i - 1, preLine];
+										
+									}
+									
+								}
+						//	}
+						break;
+						#endregion
+					}
+					#endregion
+					
+					#region fills preNotes advanced
+					if(i > 0 && ((i+1) < numberInColumns[currentRow])){
+						var newMovmentLines = (checkAgainstRandom100(60))? 1: 0;
+						for(var j = 0; j < newMovmentLines; j ++){
+							var toWhere = (round(random_range(0,1)) == 1)? 1 : -1;
+							note.preNotes[1] = lines[i + toWhere, preLine];	
+						}
+					}
+					#endregion
 				}
 				fullnumberOfMapNotes ++;
 			}
@@ -416,7 +527,6 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 //is used to display a given map 
 //is used when returning to the map 
 function displayMap(_map){
-	
 	#region addVariablsToCreation
 	
 	//adds all current Variabls to a MapObject 
