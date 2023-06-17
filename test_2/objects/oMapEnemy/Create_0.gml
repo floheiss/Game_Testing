@@ -2,5 +2,8 @@ event_inherited();
 
 function mapNoteFunction(){
 	updateMapList();
-	oDM.generateEncounter(enemyDifficulty.normal);	
+	oDM.genrateEnemys(0);
+	//this is for now 
+	locked = true;
+	oGame.transitionRoom(rBattleScreen);
 }

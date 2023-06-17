@@ -27,10 +27,9 @@ function displayEvent(){
 
 	var objects = findMapDisplayItem();
 	
-	for(i = 0; i < array_length(objects); i ++){
+	for(var i = 0; i < array_length(objects); i ++){
 		//resets all the objects so there is no leagcy for other menus
-		objects[i].resetButton();	
-		objects[i].savedObject = -1;
+		objects[i].resetButton();
 	}
 	
 	//maybe add a general buttion to hide the event and see the map again ???	
@@ -192,14 +191,8 @@ function displayEvent(){
 				//is the discribtionText --> gives text feedback ! 
 				#endregion
 			
-			with(objects[i + 1]){
-				xCord = 350 + 10 + sprite_get_height(mapOptionSprite) * (array_length(mapOptions) + 1);
-				yCord = 360; 
-				changeSprite(xCord, yCord,mapOptionSprite, false, 0);		
-			}
-			
 			for(var k = 0; k < array_length(mapOptions); k ++){
-				with(objects[k + 2]){
+				with(objects[k + 1]){
 				
 					xCord = 640;
 					yCord = 360 + 10 + sprite_get_height(mapOptionSprite) * (array_length(other.mapOptions) - k); 
@@ -208,13 +201,14 @@ function displayEvent(){
 					//should work as there is (if i think correctly) to chance the locked state while in event
 					//have to look at not sure if somethin diffrent is need when closing ???
 					MainFunction = triggerEvent;
-					
+					show_debug_message(savedObject);
 					setConditionForLocking(savedObject.condition);
 					changeSprite(xCord,yCord,mapOptionSprite, false);
 					setUseHighlightHoverImage(mapOptionSprite, 1);
 					setDisplayedText(savedObject.textForDisplay, 
 					xCord - sprite_get_xoffset(mapOptionSprite) + 20,
 					yCord - sprite_get_yoffset(mapOptionSprite) + (sprite_get_height(mapOptionSprite) / 2) - 10);
+					show_debug_message("will display the saved object");
 				}
 				
 				#region  non with Code (Debug / linux bubuggieness)

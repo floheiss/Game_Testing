@@ -36,7 +36,6 @@ function changeSprite(_xCord, _yCord, _spriteToChangeTo, _useSubImage = false, _
 	useSubImage = _useSubImage;
 }
 
-
 //is used for highlighting when hovered
 //is given the image (can use a subimage of the normal image
 //Subimage can also not be set
@@ -121,4 +120,7 @@ function resetButton(){
 	drawCondition = -1;
 	
 	savedObject = -1;
+	
+	image_xscale = 1;
+	image_yscale = 1;
 }

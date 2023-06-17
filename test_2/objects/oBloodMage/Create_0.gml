@@ -43,11 +43,11 @@ function attack1(_list){
 
 title = "Transfusion";
 describtion = "Succ";
-attack2Stru = new attacksDesribtion(self, 0.75, 15, 6, dmgType.magic, 0.00, 0.08,
+attack2Stru = new attacksDesribtion(self, 0.75, 300, 6, dmgType.magic, 1.00, 0.08,
 title, describtion, 1, 500); 
 function attack2(_list){
 	basicDmgAttack(_list, attack2Stru, actions.attack2);
-	healUnit(attack2Stru.dmg)
+	healUnit(300)
 }
 
 var reloadCheck = function(){

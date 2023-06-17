@@ -21,12 +21,10 @@ function displayMenu(){
 	
 	var findDisplayObjects = function(){
 		var list = [];
-		
 		for(var i = 0; i < instance_number(oDisplaySprite);i ++){
 			var instance = instance_find(oDisplaySprite, i);
 			list[i] =  instance;
 		}
-		
 		return list;
 	}
 
@@ -189,11 +187,15 @@ function displayMenu(){
 		
 		case menus.partyInfo:
 		
-			bg = Menu_PartyInfo; //have to make
+			bg = Party_Info_BG; //have to make
 			var xCord = 200;
 			var yCord = 400;
-			memberSequence = currentDisplayedSupport.unitSequence;
-			
+			//if i want to play a sequence i have to look at it a bit more :) 
+			//memberSequence = currentDisplayedSupport.unitSequence;
+			var member = currentDisplayedSupport;
+			with(objects[0]){
+				changeSprite(100,200,member.icon);
+			}
 		break;
 				
 		#endregion

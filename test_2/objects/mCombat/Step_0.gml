@@ -30,6 +30,7 @@ switch(combatPhase){
 	
 	#endregion
 	
+	#region startTurn
 	case phase.startTurn: 
 		 // have to look at : )
 		if(unitsFinished >= array_length(units)){
@@ -56,7 +57,9 @@ switch(combatPhase){
 		combatPhase = phase.wait;
 		
 	break;
+	#endregion
 	
+	#region wait
 	case phase.wait: 
 		targeting = true;
 		if(selectedUnit.actionsInTurn >= selectedUnit.maxActionsInTurn){
@@ -69,7 +72,9 @@ switch(combatPhase){
 		}
 		
 	break;
+	#endregion 
 	
+	#region process
 	case phase.process: 
 		targeting = false;
 		for(var i = 0; i < array_length(units); i ++){
@@ -81,7 +86,9 @@ switch(combatPhase){
 		
 		combatPhase = phase.checkFinish;
 	break;
+	#endregion
 	
+	#region checkFinish
 	case phase.checkFinish: 
 		if(array_length(team0) <=  0){
 			combatPhase = phase.lose;
@@ -93,21 +100,27 @@ switch(combatPhase){
 		combatPhase = phase.endTurn;
 		prozessFinished = false;
 	break;
+	#endregion
 	
+	#region end Turn
 	case phase.endTurn: 
-		combatPhase = phase.startTurn;
-		
+		combatPhase = phase.startTurn;	
 	break;
+	#endregion
 	
+	#region win
 	case phase.win: 
 		//Loot 
-		room_goto(rDungeonMap);
+		oGame.transitionRoom(rDungeonMap);
 	break;
+	#endregion
 	
+	#region lose
 	case phase.lose: 
 		//loseScreen 
-		room_goto(rDefeat);
-	break;	
+		oGame.transitionRoom(rDefeat);
+	break;
+	#endregion
 }
 
 

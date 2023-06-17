@@ -5,37 +5,28 @@ event = events.fallenGood; //rework to save the event it self in the question no
 
 //is used when the note is clicked on the Map
 function mapNoteFunction(){
-	mapEventImage = 0;
-	mapOptionsArray = [];
-	displayText = "";
+	//this saves the chance for later (after battle or if leaving 
+	updateMapList();
+	//this is for now not sure about 
+	locked = true;
 	
-	//generate the event 
-		//set the menu in the mDisplayManager
-		//will set mapEventImage as the background
-		//will set currentEvent to this event
-		//will set the option for mapOptions
-			//will give them a function what will happen if clicked 
-				//returns any information need to proceed (true, [flase, "force"])
-				//uses this in the next stage of the event to make decicions
-				//all funtions will be found in the mapDisplayItem
-			//will give them text to display 
-			//will give them a condition if false they will lock 
-				//condition must allways return true or false
-	//more notes/same notes in the mMapDisplayManager
-	
+	var mapEventImage = 0;
+	var mapOptionsArray = [];
+	var displayText = "";
+		
 	//this is what will be left after reworking to save only event in questionmark
 	switch(event){
 		#region fallenGoods
 	
 		case events.fallenGood:
 			displayText = "your party comes across a chest, that seams to have fallen of a wagon";
-			mapEventImage = mapEventFallenGoods; //have to make main Image
+			mapEventImage = mapEventFallenGoods; 
 			//leave the chest alone 
 			mapOptionsArray[0] = new mapOption("Leave the chest by the wayside",
-			closeTheEvent, true, true);		
+			closeTheEvent, false, true);		
 			//use force to open chest 
 			mapOptionsArray[1] = new mapOption("Use your strong arms OwO >~<",
-			openChestWithForce, true);		
+			openChestWithForce, false);		
 			//use a lockpick to open chest
 			mapOptionsArray[2] = new mapOption("Use a Lockpick to open", 
 			openChestWithLockpick, checkIventroyForLockPick);
@@ -44,7 +35,7 @@ function mapNoteFunction(){
 		
 		#endregion
 		
-		#region infection Working on
+		#region infection WIP
 			
 		#endregion
 	}
@@ -54,13 +45,13 @@ function mapNoteFunction(){
 	mMapDisplayManager.mapEventImage = mapEventImage;
 	mMapDisplayManager.discribtionText = displayText;
 	
-	for(i = 0; i < array_length(mapOptionsArray); i ++){
+	for(var i= 0; i < array_length(mapOptionsArray); i ++){
 		mMapDisplayManager.mapOptions[i] = mapOptionsArray[i];
 	}
 	
 	mMapDisplayManager.displayEvent();
 	
-	//is used to activate the menu display 
+	//is used to activate the menu display
 	displayMapEvent();
 }
 

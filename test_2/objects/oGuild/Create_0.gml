@@ -101,7 +101,7 @@ MainFunction = function(){
 				mapInfo[1] = 4;							//linesInMap
 				mapInfo[2] = [15, 10, 20];				//probabilityTiersMapNotes
 				mapInfo[3] = [0, 35, 15];				//probabilityQuestionEvents
-				mapInfo[4] = [1, 1, 0, 4];				//minNumers
+				mapInfo[4] = [1, 1, 1, 4];				//minNumers
 				mapInfo[5] = [1, 2, 2];					//maxNumers
 			break;
 			case enemyDifficulty.hard:

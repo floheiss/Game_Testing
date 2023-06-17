@@ -1,8 +1,9 @@
 event_inherited();
 
 positionInList = 0;
+columnSelf = 0
+
 preNotes = [];
-active = true;
 
 drawInMap = true;
 drawInGui = false;
@@ -12,9 +13,7 @@ function mapNoteFunction(){
 }
 
 function updateMapList(){
-	currentNote = global.map.objectAtNotes[positionInList];
-	currentNote.subImage = 1;
-	// currentNote.active = false;
+	mMapManager.changeActiveColumn(self);
 }
 
 function displayMapEvent(){
@@ -38,4 +37,20 @@ function mapOption(_text, _onClick, _condition, _endEvent = false) constructor{
 	endEvent = _endEvent;
 }
 
+var con = function(){
+	var result = false;
+	if(array_length(preNotes) > 0){
+		for(var i = 0; i < array_length(preNotes); i ++){
+			var note = preNotes[i];
+			if(note != -1){
+				if(note.locked){
+					result = true;
+					break;
+				}
+			}
+		}
+	}
+	return result; 
+}
 
+//setConditionForLocking(con);

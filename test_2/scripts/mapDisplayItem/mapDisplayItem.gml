@@ -40,7 +40,7 @@ function closeTheEvent(){
 #region conditions
 
 function checkIventroyForLockPick(_item){
-	if(mInventory.findItemInInventory(itemList.lockPickSet) != false){
+	if(findItemInInventory(itemList.lockPickSet) != false){
 		return false;
 	}else {
 		return true;

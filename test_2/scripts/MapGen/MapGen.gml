@@ -40,12 +40,14 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 	
 	//a struct that is used to save the map 
 	//it saves its x,y,type and 1 other variable(is the event good or bad for Questions)
-	var mapNote = function(_xCord, _yCord, _preNotes, _typeOfNote, _position, _specific = -1) constructor{
+	var mapNote = function(_xCord, _yCord, _preNotes, _typeOfNote, _position, _Column) constructor{
 		xCord = _xCord;
 		yCord = _yCord;
+		
 		typeOfNote = _typeOfNote;
 		positionInList = _position;
-		specific = _specific;
+		columnSelf = _Column
+		specific = -1;
 		preNotes = [];
 		for(var i = 0; i < array_length(_preNotes); i ++){
 			preNotes[i] = _preNotes[i];
@@ -103,6 +105,8 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 		
 		contractType = _contractType;
 		contractTypeExtraInfo = _contractTypeExtraInfo
+		activeColumn = 0;
+		pathInMap = [];
 		
 		valueToCompletion = 0;
 		switch(contractType){
@@ -418,7 +422,7 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 	for(var i = 0; i < _length; i ++){
 		if(numberInColumnsPassicCounter[i] < numberInColumns[i] && i > 0){
 			var noteType = noteTypes.enemy;
-			line[i] = new mapNote(-1, -1, [], noteType, -1);
+			line[i] = new mapNote(-1, -1, [], noteType, -1, -1);
 		//	numberInColumnsPassicCounter[i] ++;
 		}
 	}
@@ -460,7 +464,7 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 	#endregion
 	
 	
-	#region x/yCords + preNotes + numbering 
+	#region x/yCords + preNotes + numbering + columnSelf
 	//now all the x/yCords are set 
 	//are set here as now all notes are assambled
 	//gives all the notes a position form 0 - last note
@@ -477,9 +481,9 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 				note.yCord = xyCords[1, i];
 				
 				note.positionInList = fullnumberOfMapNotes;
-			
+				note.columnSelf = currentRow; // not sure
 				if(note.typeOfNote == noteTypes.question){
-				var eventKind = generateFormTierList(_probabilityQuestionEvents, undefined, [-1], [0], [1]);
+					var eventKind = generateFormTierList(_probabilityQuestionEvents, undefined, [-1], [0], [1]);
 					note.specific = generateRandomEvent(eventKind, _probabilityQuestionEvents);
 				}
 				#endregion
@@ -520,7 +524,6 @@ _probabilityQuestionEvents = [-1,20,30], _minNumbers = [0, 0, 0, 0], _maxNumbers
 							if(lines[i, currentRow - 1] != -1){
 								if(i == 0){
 									if(numberInColumns[currentRow] == 1){
-										show_debug_message("i went into to dangerzone");
 										//fixes if the were 3+ lines and now there is only 1 
 										for(var j = 0; j < numberInColumns[preLine]; j++){
 											note.preNotes[j] = lines[j, preLine];
@@ -596,8 +599,10 @@ function displayMap(_map){
 		if(_creation != -1){
 			_creation.positionInList = _currentObject;
 			for(var i = 0; i < array_length(_currentNote.preNotes); i ++){
-				_creation.preNotes[i] = _currentNote.preNotes[i]
+				_creation.preNotes[i] = _currentNote.preNotes[i];
 			}
+			_creation.columnSelf = _currentNote.columnSelf;
+			_creation.locked = _currentNote.locked;
 		}
 	}
 	
@@ -646,5 +651,6 @@ function displayMap(_map){
 			addVariablsToCreation(creation, currentObject, currentNote);
 		}
 	}
-
+	
+	mMapManager.mapDisplayed = true;
 }

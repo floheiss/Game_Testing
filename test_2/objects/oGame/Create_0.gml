@@ -23,7 +23,6 @@ global.gold = 1000; //gold of the player
 global.playerGroup = array_create(global.maxPlayGroupSize, -1); //default -1 for all slots
 global.playerGroup[0] = instance_create_depth(0,0,0,oBloodMage);
 global.enemies = []; //default []
-global.enemies[0] = instance_create_depth(0,0,0,oBandit);
 
 global.allowInput = true;
 
